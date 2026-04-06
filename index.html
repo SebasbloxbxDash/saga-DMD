@@ -17,12 +17,11 @@
         th, td { border: 1px solid #222; padding: 12px; text-align: left; }
         th { background: #8b0000; color: #fff; }
         .yt-link { color: #ff4444; text-decoration: none; font-weight: bold; }
-        .status-unverified { color: #ffa500; font-weight: bold; font-style: italic; }
         .card { background: #161616; padding: 15px; margin-bottom: 12px; border-left: 3px solid #8b0000; font-size: 0.85rem; }
-        .warning-card { background: #2a0000; padding: 15px; border: 1px solid #ff4444; color: #ffcccc; font-size: 0.85rem; margin-top: 20px; border-radius: 4px; }
-        .lost-status { color: #ff4444; font-weight: bold; text-transform: uppercase; border: 1px solid #ff4444; padding: 2px 5px; font-size: 0.7rem; border-radius: 3px; margin-bottom: 5px; display: inline-block; }
-        .build-status { color: #00ff00; font-weight: bold; font-size: 0.7rem; text-transform: uppercase; }
-        .pending-status { color: #f1c40f; font-weight: bold; font-size: 0.7rem; text-transform: uppercase; }
+        .tag { font-weight: bold; font-size: 0.7rem; text-transform: uppercase; padding: 2px 5px; border-radius: 3px; display: inline-block; margin-bottom: 5px; }
+        .lost { color: #ff4444; border: 1px solid #ff4444; }
+        .build { color: #00ff00; border: 1px solid #00ff00; }
+        .pending { color: #f1c40f; border: 1px solid #f1c40f; }
         .song-tag { color: #f1c40f; font-style: italic; font-weight: bold; }
         footer { text-align: center; padding: 40px; font-size: 0.7rem; color: #444; border-top: 1px solid #222; margin-top: 40px; }
     </style>
@@ -46,36 +45,38 @@
                 <tr>
                     <th>Nombre Oficial</th>
                     <th>Canción Remake</th>
-                    <th>Estado de Verificación</th>
+                    <th>Verificación</th>
                     <th>Link del Layout</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><b>DMD Proyecto Alfa</b></td><td>Cursed</td><td class="status-unverified">NO VERIFICADO</td><td><a class="yt-link" href="https://www.youtube.com/watch?v=8kl_IeFCb8Y" target="_blank">Ver</a></td></tr>
-                <tr><td><b>DMD Proyecto Beta</b></td><td>Cradles</td><td class="status-unverified">NO VERIFICADO</td><td><a class="yt-link" href="https://youtu.be/mKHdJxEyPb0" target="_blank">Ver</a></td></tr>
-                <tr><td><b>DMD Proyecto Gamma</b></td><td>Bonfire</td><td class="status-unverified">NO VERIFICADO</td><td><a class="yt-link" href="https://youtu.be/cqxARXV1ECY" target="_blank">Ver</a></td></tr>
-                <tr><td><b>DMD Proyecto Delta</b></td><td>Stalemate</td><td class="status-unverified">NO VERIFICADO</td><td><a class="yt-link" href="https://www.youtube.com/watch?v=MRpoQXTcSd8" target="_blank">Ver</a></td></tr>
-                <tr><td><b>DMD Proyecto Omega</b></td><td>Tears of the Damned</td><td class="status-unverified">NO VERIFICADO</td><td><a class="yt-link" href="https://youtu.be/vHtphwcbXtE" target="_blank">Ver</a></td></tr>
+                <tr><td><b>DMD Proyecto Alfa</b></td><td>Cursed</td><td style="color:orange">NO VERIFICADO</td><td><a class="yt-link" href="https://www.youtube.com/watch?v=8kl_IeFCb8Y" target="_blank">Ver</a></td></tr>
+                <tr><td><b>DMD Proyecto Beta</b></td><td>Cradles</td><td style="color:orange">NO VERIFICADO</td><td><a class="yt-link" href="https://youtu.be/mKHdJxEyPb0" target="_blank">Ver</a></td></tr>
+                <tr><td><b>DMD Proyecto Gamma</b></td><td>Bonfire</td><td style="color:orange">NO VERIFICADO</td><td><a class="yt-link" href="https://youtu.be/cqxARXV1ECY" target="_blank">Ver</a></td></tr>
+                <tr><td><b>DMD Proyecto Delta</b></td><td>Stalemate</td><td style="color:orange">NO VERIFICADO</td><td><a class="yt-link" href="https://www.youtube.com/watch?v=MRpoQXTcSd8" target="_blank">Ver</a></td></tr>
+                <tr><td><b>DMD Proyecto Omega</b></td><td>Tears of the Damned</td><td style="color:orange">NO VERIFICADO</td><td><a class="yt-link" href="https://youtu.be/vHtphwcbXtE" target="_blank">Ver</a></td></tr>
             </tbody>
         </table>
     </div>
 
-    <h2>🕒 SECCIÓN II: SERIE "EXPERIMENTO" Y LOST MEDIA</h2>
+    <h2>🕒 SECCIÓN II: PRECUELAS Y REGISTRO LOST MEDIA</h2>
+    
     <div class="card">
-        <span class="lost-status">Lost Media Parcial</span> | <span class="build-status">CONSTRUCCIÓN CONFIRMADA</span><br>
-        <strong>DMD Proyecto Duffy (V3):</strong> Basado en la V1/V2 original. La V1 es Lost Media rescatada visualmente por Sebas.<br>
+        <span class="tag build">EN CONSTRUCCIÓN</span><br>
+        <strong>Experimento Duffy:</strong> Proyecto actual de Sebas basado en el <i>DMD Proyecto Duffy</i>.<br>
+        <span class="tag lost">LOST MEDIA</span> <strong>DMD Proyecto Duffy (V1/V2):</strong> Archivos originales desaparecidos; solo queda registro visual parcial.<br>
         <span class="song-tag">Canción: Nuke Powder - Maeloux</span>
     </div>
 
     <div class="card">
-        <span class="lost-status">Lost Media Total</span> | <span class="pending-status">NO CONFIRMADO</span><br>
-        <strong>DMD Proyecto Mini Mini:</strong> Basado en el Proyecto Mini (V1) extraviado. Se han visto indicios de que <b>sebasbloxbx</b> iniciará su construcción próximamente.<br>
+        <span class="tag pending">POR INICIAR</span><br>
+        <strong>Experimento Mini Mini:</strong> Futuro proyecto de Sebas basado en el <i>DMD Proyecto Mini Mini</i>.<br>
+        <span class="tag lost">LOST MEDIA</span> <strong>DMD Proyecto Mini Mini (V1):</strong> Datos totalmente extraviados de la versión original.<br>
         <span class="song-tag">Canción: Nuke Powder 2 - Maeloux</span>
     </div>
 
-    <div class="warning-card">
-        <strong>⚠️ AVISO PARA LA COMUNIDAD:</strong><br>
-        Se informa que <b>SOLO</b> existen el "DMD Proyecto Duffy" y el "DMD Proyecto Mini Mini" como experimentos oficiales. Cualquier otra mención a supuestos "experimentos" fuera de este archivo es <u>totalmente falsa</u> y no forma parte del canon de la Saga DMD Proyecto.
+    <div style="background: #2a0000; padding: 10px; border: 1px solid #ff4444; border-radius: 4px; font-size: 0.8rem;">
+        <strong>NOTA DE ADMINISTRACIÓN:</strong> Los nombres "Experimento" definen la fase de desarrollo actual, mientras que "DMD Proyecto [Nombre]" se reserva para las versiones históricas calificadas como Lost Media.
     </div>
 
     <h2>📂 SECCIÓN III: ARCHIVO LEGACY (VERSIONES V1)</h2>
@@ -101,7 +102,7 @@
 </div>
 
 <footer>
-    © 2026 DEPARTAMENTO MENTAL DEMONÍACO | SISTEMA DE PRESERVACIÓN HISTÓRICA
+    © 2026 DEPARTAMENTO MENTAL DEMONÍACO | ARCHIVO CENTRAL
 </footer>
 
 </body>

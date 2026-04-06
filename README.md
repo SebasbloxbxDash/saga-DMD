@@ -1,4 +1,4 @@
-<div style="background-color: #000000; color: #FFFFFF; padding: 30px; border: 5px solid #FF0000; font-family: 'Courier New', Courier, monospace;">
+<div style="background-color: #000000; color: #000000; padding: 30px; border: 5px solid #FF0000; font-family: 'Courier New', Courier, monospace;">
 
 <h1 align="center"><font color="#FF0000">🔴 EXPEDIENTE CLASIFICADO: SAGA DMD 🪦</font></h1>
 

@@ -3,131 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAGA DMD | ARCHIVO DE INTELIGENCIA</title>
+    <title>SISTEMA DMD | AUDITORÍA FINAL 2026</title>
     <style>
-        body { background: #0a0a0a; color: #d1d1d1; font-family: sans-serif; margin: 0; padding: 15px; line-height: 1.5; }
-        header { text-align: center; border-bottom: 3px solid #8b0000; padding: 25px 0; background: #000; margin-bottom: 20px; }
-        h1 { margin: 0; font-size: 1.6rem; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
-        .roles { background: #1a1a1a; padding: 10px; border-radius: 5px; display: inline-block; margin-top: 10px; border: 1px solid #333; }
-        .admin-tag { color: #ff4444; font-weight: bold; }
-        .host-tag { color: #00ff00; font-weight: bold; }
-        h2 { border-left: 5px solid #8b0000; padding-left: 10px; font-size: 1.1rem; text-transform: uppercase; margin-top: 35px; color: #fff; background: rgba(139,0,0,0.1); }
-        .card { background: #161616; padding: 15px; margin-bottom: 12px; border-left: 3px solid #8b0000; font-size: 0.85rem; }
-        .tag { font-weight: bold; font-size: 0.7rem; text-transform: uppercase; padding: 2px 5px; border-radius: 3px; display: inline-block; margin-bottom: 5px; }
-        .lost-critical { color: #ff0000; border: 1px solid #ff0000; background: rgba(255,0,0,0.1); }
-        .done { color: #00ff00; border: 1px solid #00ff00; }
-        .progress { color: #f1c40f; border: 1px solid #f1c40f; }
-        .song-tag { color: #f1c40f; font-style: italic; font-weight: bold; }
-        .scroll-box { overflow-x: auto; background: #111; border: 1px solid #333; border-radius: 4px; margin-top: 10px; }
-        table { width: 100%; border-collapse: collapse; min-width: 850px; font-size: 0.8rem; }
-        th, td { border: 1px solid #222; padding: 12px; text-align: left; }
-        th { background: #8b0000; color: #fff; }
-        .yt-link { color: #ff4444; text-decoration: none; font-weight: bold; }
-        
-        .community-box { text-align: center; margin-top: 50px; padding: 40px 20px; border-top: 1px solid #333; background: #050505; }
-        .btn-discord { text-decoration: none; color: #fff; font-weight: bold; padding: 15px 40px; border-radius: 4px; transition: 0.3s; font-size: 1rem; text-transform: uppercase; background: #5865F2; display: inline-block; margin-top: 15px; }
-        .btn-discord:hover { background: #4752c4; box-shadow: 0 0 20px rgba(88,101,242,0.5); }
+        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
-        footer { text-align: center; padding: 40px; font-size: 0.7rem; color: #444; border-top: 1px solid #222; }
+        :root {
+            --color-principal: #ff0000;
+            --color-secundario: #b30000;
+            --color-fondo: #050000;
+            --color-texto: #eee;
+        }
+
+        body { 
+            background-color: var(--color-fondo); 
+            color: var(--color-secundario); 
+            font-family: 'Special Elite', monospace; 
+            margin: 0; padding: 20px; 
+            background-image: radial-gradient(circle, #0f0000 0%, #000000 100%);
+            line-height: 1.4;
+        }
+
+        header { 
+            text-align: center; border: 2px double #4a0000; padding: 30px; 
+            background: rgba(10, 0, 0, 0.9); box-shadow: 0 0 25px #4a0000;
+            margin-bottom: 40px;
+        }
+
+        .warning-label { 
+            background: var(--color-principal); color: #000; padding: 5px 20px; 
+            font-weight: bold; display: inline-block; text-transform: uppercase; 
+            margin-bottom: 15px; font-size: 0.9rem; border-radius: 2px;
+        }
+
+        h2 { 
+            border-bottom: 1px solid #4a0000; color: var(--color-principal); 
+            text-transform: uppercase; letter-spacing: 2px; margin-top: 50px; 
+            padding-bottom: 10px; text-shadow: 0 0 10px rgba(255,0,0,0.3);
+        }
+
+        .scroll-box { overflow-x: auto; background: #000; border: 1px solid #4a0000; margin-top: 15px; }
+
+        table { width: 100%; border-collapse: collapse; min-width: 850px; font-size: 0.85rem; }
+        th, td { border: 1px solid #200; padding: 12px; text-align: left; }
+        th { background: #300; color: var(--color-principal); text-transform: uppercase; }
+
+        .card { 
+            background: rgba(20, 0, 0, 0.8); padding: 20px; margin-bottom: 20px; 
+            border-left: 5px solid #600; position: relative; border-right: 1px solid #200;
+        }
+
+        .tag { font-weight: bold; padding: 3px 10px; font-size: 0.7rem; border-radius: 3px; text-transform: uppercase; display: inline-block; margin-bottom: 10px; }
+        .tag-lost { background: #600; color: #fff; }
+        .tag-change { background: #f1c40f; color: #000; }
+        .tag-ok { color: #00ff00; font-weight: bold; border: 1px solid #00ff00; padding: 2px 5px; }
+        .tag-reanimation { color: #ff0000; font-weight: bold; border: 1px solid #ff0000; padding: 2px 5px; animation: pulse 1.5s infinite; }
+
+        @keyframes pulse {
+            0% { opacity: 1; box-shadow: 0 0 2px #f00; }
+            50% { opacity: 0.4; box-shadow: 0 0 10px #f00; }
+            100% { opacity: 1; box-shadow: 0 0 2px #f00; }
+        }
+
+        .btn-video { 
+            color: #ff4444; text-decoration: none; font-weight: bold; 
+            border: 1px solid #4a0000; padding: 6px 12px; 
+            background: rgba(139, 0, 0, 0.1); transition: 0.3s; font-size: 0.75rem;
+        }
+        .btn-video:hover { background: var(--color-principal); color: #000; box-shadow: 0 0 15px #f00; }
+
+        .conclusion-box {
+            background: rgba(40, 0, 0, 0.5); border: 2px double #ff0000;
+            padding: 25px; margin-top: 40px; font-size: 0.95rem; color: #eee;
+            border-radius: 5px; line-height: 1.6;
+        }
+
+        .discord-section {
+            text-align: center; margin-top: 50px; padding: 30px; 
+            border: 1px dashed #ff0000; background: rgba(15, 0, 0, 0.8);
+        }
+
+        .btn-discord {
+            display: inline-block; background: #000; color: #fff; border: 2px solid #ff0000; 
+            padding: 20px 45px; text-decoration: none; font-weight: bold; 
+            text-transform: uppercase; letter-spacing: 3px; transition: 0.4s;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+        }
+        .btn-discord:hover { background: #ff0000; color: #000; transform: scale(1.05); }
+
+        footer { text-align: center; padding: 60px; color: #400; font-size: 0.75rem; border-top: 1px solid #200; margin-top: 60px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>SAGA DMD</h1>
-    <div class="roles">
-        <span class="admin-tag">CREADOR ORIGINAL & ADMIN:</span> StilexlPlus <br>
-        <span class="host-tag">NUEVO HOST & DESARROLLADOR:</span> sebasbloxbx
-    </div>
+    <div class="warning-label">📑 REPORTE DE AUDITORÍA TÉCNICA</div>
+    <h1>DEPARTAMENTO MENTAL DEMONÍACO (DMD)</h1>
+    <p style="color: #888;">Administración: <b>StilexlPlus</b> | Desarrollo y Remakes: <b>sebasbloxbx</b></p>
+    <p style="font-size: 0.8rem; margin-top: 10px;">Estatus: Registro Maestro de Versiones y Transición Sonora // 2026</p>
 </header>
 
-<div class="container">
-    <h2>🚀 SECCIÓN I: REMAKES 2.2 (ESTADO DE DESARROLLO)</h2>
+<div class="container" style="max-width: 1100px; margin: 0 auto;">
+
+    <h2>🗂️ SECCIÓN I: ARCHIVO HISTÓRICO DE VERSIONES ORIGINALES (V1)</h2>
     <div class="scroll-box">
         <table>
             <thead>
                 <tr>
-                    <th>Nombre Oficial</th>
-                    <th>Canción Remake</th>
-                    <th>Progreso</th>
-                    <th>Verificación</th>
+                    <th>SUJETO / PROYECTO</th>
+                    <th>FRECUENCIA SONORA</th>
+                    <th>ESTATUS</th>
+                    <th>REGISTRO DE VIDEO</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><b>DMD Proyecto Alfa</b></td><td>Cursed</td><td><span class="tag done">TERMINADO</span></td><td style="color:orange">NO VERIFICADO</td></tr>
-                <tr><td><b>DMD Proyecto Beta</b></td><td>Cradles</td><td><span class="tag done">TERMINADO</span></td><td style="color:orange">NO VERIFICADO</td></tr>
-                <tr><td><b>DMD Proyecto Gamma</b></td><td>Bonfire</td><td><span class="tag done">TERMINADO</span></td><td style="color:orange">NO VERIFICADO</td></tr>
-                <tr><td><b>DMD Proyecto Delta</b></td><td>Stalemate</td><td><span class="tag progress">95% TERMINADO</span></td><td style="color:orange">NO VERIFICADO</td></tr>
-                <tr><td><b>DMD Proyecto Omega</b></td><td>Tears of the Damned</td><td><span class="tag done">TERMINADO</span></td><td style="color:orange">NO VERIFICADO</td></tr>
-                <tr><td><b>DMD Proyecto Final</b></td><td>Soulless 5</td><td><span class="tag" style="color:#00d2ff; border:1px solid #00d2ff">COLLAB</span></td><td style="color:orange">NO VERIFICADO</td></tr>
+                <tr><td>DMD Proyecto Alfa</td><td>Terror (DemonCity)</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/1aRzOjynTxw" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
+                <tr><td>DMD Proyecto Beta</td><td>Cradles (Sub Urban)</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/TWe5_23_rd0" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
+                <tr><td>DMD Proyecto Gamma</td><td>Bonfire (Knife Party)</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/SbgF-LUdxhU" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
+                <tr><td>DMD Proyecto Omega</td><td>Steel Terror supernova</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/ydFFRSLYgmg" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
+                <tr><td>DMD Proyecto Final</td><td>At the Speed of Light</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/52AZ2MG33IU" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
             </tbody>
         </table>
     </div>
 
-    <h2>🕒 SECCIÓN II: REGISTRO LOST MEDIA Y PRECUELAS</h2>
+    <h2>⚠️ SECCIÓN II: DOCUMENTACIÓN DE PRECUELAS Y LOST MEDIA</h2>
     
-    <div class="card" style="border-left: 5px solid #ff0000;">
-        <span class="tag lost-critical">BORRADO ABSOLUTO</span><br>
-        <strong>DMD Proyecto Beta (V2):</strong> Perdido tras el colapso del dispositivo de <b>StilexlPlus</b>. Ningún archivo fue recuperado.
+    <div class="card">
+        <span class="tag tag-lost">Lost Media Rescatado</span>
+        <h3>Experimento Duffy (V3)</h3>
+        <p>Basado en DMD Proyecto Duffy (V1/V2). La versión V1 es Lost Media, rescatada mediante registros externos de video.</p>
+        <p style="color: #888;">🎵 Canción: <b>Nuke Powder</b> | <a href="https://youtu.be/jJyvanYn7Ho" style="color:#f00" target="_blank">Acceder a Rescate</a></p>
     </div>
 
     <div class="card">
-        <span class="tag" style="border: 1px solid #888; color: #888;">CANCELADO</span> <span class="tag" style="color: #ff4444; border: 1px solid #ff4444;">LOST MEDIA</span><br>
-        <strong>Origen DMD:</strong> El primer concepto de la saga. Cancelado y extraviado permanentemente.<br>
-        <span class="song-tag">Canción: Astronaut 13 (Flashyizz Remix)</span>
+        <span class="tag tag-lost">Lost Media</span>
+        <h3>Experimento Mini Mini</h3>
+        <p>Proyecto basado en DMD Proyecto Mini (V1). La V1 permanece inaccesible en los servidores públicos.</p>
+        <p style="color: #888;">🎵 Canción: <b>Nuke Powder 2</b></p>
     </div>
 
-    <div class="card">
-        <span class="tag done">CONSTRUCCIÓN CONFIRMADA</span><br>
-        <strong>Experimento Duffy (V3):</strong> Basado en DMD Proyecto Duffy (V1/V2). La V1 es Lost Media, rescatada por Sebas en video.<br>
-        <span class="song-tag">Canción: Nuke Powder</span>
+    <div class="card" style="border-left-color: #ff0000;">
+        <span class="tag" style="background:#000; color:#f00; border:1px solid #f00;">CANCELADO / INEXISTENTE</span>
+        <h3>Origen DMD / Experimento DinDon</h3>
+        <p><b>Origen:</b> Cancelado. <b>DinDon:</b> Confirmado como inexistente al no detectarse la frecuencia "Nuke Powder 3".</p>
+        <p style="color: #888;">🎵 Canción: <b>Astronaut 13 (Flashyizz Remix)</b></p>
     </div>
 
-    <div class="card">
-        <span class="tag progress">PLANIFICADO</span><br>
-        <strong>Experimento Mini Mini:</strong> Basado en DMD Proyecto Mini (V1). La V1 es Lost Media.<br>
-        <span class="song-tag">Canción: Nuke Powder 2</span>
+    <div class="card" style="border-left-color: #3498db;">
+        <span class="tag" style="background:#3498db; color:#fff;">ERROR DE HARDWARE</span>
+        <h3>DMD Proyecto Alfa (Versión Broma)</h3>
+        <p>Nivel satírico perdido definitivamente tras un cambio de teléfono sin respaldo de datos del terminal antiguo.</p>
     </div>
 
-    <h2>📂 SECCIÓN III: ARCHIVO LEGACY (VERSIONES V1 - TERMINADAS)</h2>
+    <h2>📊 SECCIÓN III: ESTADO DE REMAKES Y PRODUCCIÓN ACTUAL (2.2)</h2>
     <div class="scroll-box">
         <table>
             <thead>
                 <tr>
-                    <th>Versión Antigua</th>
-                    <th>Estado Histórico</th>
-                    <th>Evidencia</th>
+                    <th>SUJETO (REMAKE)</th>
+                    <th>NUEVA FRECUENCIA</th>
+                    <th>ESTADO</th>
+                    <th>REGISTRO ACTUALIZADO</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><b>DMD Proyecto Alfa V1</b></td><td><span class="tag done">TERMINADO</span></td><td><a class="yt-link" href="https://youtu.be/1aRzOjynTxw" target="_blank">Link</a></td></tr>
-                <tr><td><b>DMD Proyecto Beta V1</b></td><td><span class="tag done">TERMINADO</span></td><td><a class="yt-link" href="https://youtu.be/TWe5_23_rd0" target="_blank">Link</a></td></tr>
-                <tr><td><b>DMD Proyecto Gamma V1</b></td><td><span class="tag done">TERMINADO</span></td><td><a class="yt-link" href="https://youtu.be/SbgF-LUdxhU" target="_blank">Link</a></td></tr>
-                <tr><td><b>DMD Proyecto Delta V1</b></td><td><span class="tag done">TERMINADO</span></td><td><a class="yt-link" href="https://youtu.be/rMxKo099LUM" target="_blank">Link</a></td></tr>
-                <tr><td><b>DMD Proyecto Final V1</b></td><td><span class="tag done">TERMINADO</span></td><td><a class="yt-link" href="https://youtu.be/52AZ2MG33IU" target="_blank">Link</a></td></tr>
+                <tr><td>Proyecto Alfa</td><td>Cursed</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/8kl_IeFCb8Y" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
+                <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/mKHdJxEyPb0" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
+                <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/cqxARXV1ECY" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
+                <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-reanimation">🔴 EN REANIMACIÓN</span></td><td><span style="color:#444;">[ PROCESANDO... ]</span></td></tr>
+                <tr><td>Proyecto Omega</td><td>Tears of the Damned</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/vHtphwcbXtE" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
+                <tr><td>Proyecto Final</td><td>Soulless 5</td><td><span class="tag-ok">✅ SINCRONIZADO</span></td><td><a href="https://youtu.be/7hHWxGLE9iw" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
             </tbody>
         </table>
     </div>
 
-    <h2>❌ SECCIÓN IV: MITOS Y DESMENTIDOS</h2>
-    <div class="card" style="border-left-color: #ff0000; background: rgba(255,0,0,0.05);">
-        <strong>DMD Proyecto Dindon:</strong> Confirmado como <b>FALSO / NO EXISTE</b>.
+    <div class="conclusion-box">
+        <h3 style="color: #ff0000; margin-top: 0;">📉 CONCLUSIÓN DE EVOLUCIÓN SONORA</h3>
+        <p>La transición de <b>Steel Terror supernova</b> a <b>Tears of the Damned (Omega)</b> y de <b>At the Speed of Light</b> a <b>Soulless 5 (Final)</b> marca el cambio hacia un estilo de dificultad extrema y sincronización técnica milimétrica.</p>
+        <hr style="border: 0; border-top: 1px solid #4a0000; margin: 15px 0;">
+        <p style="text-align: center; font-weight: bold; margin-bottom: 0;">
+            FIN DEL REPORTE OFICIAL <br>
+            Autenticado por: Sistema de Gestión de Activos DMD - 2026
+        </p>
     </div>
 
-    <div class="card" style="border-left-color: #ff4444;">
-        <span class="tag" style="color: #a29bfe; border: 1px solid #a29bfe;">VERSIÓN DE BROMA</span> <span class="tag" style="color: #ff4444; border: 1px solid #ff4444;">LOST MEDIA</span><br>
-        <strong>DMD Proyecto Alfa (Broma):</strong> Confirmado por StilexlPlus. Extraviado por accidente.
+    <div class="discord-section">
+        <p style="color: #ff4444; font-size: 0.75rem; margin-bottom: 20px; text-transform: uppercase;">⚠️ PROTOCOLO DE COMUNICACIÓN EXTERNA ACTIVADO ⚠️</p>
+        <a href="https://discord.gg/XBnVak8Aj" target="_blank" class="btn-discord">INGRESAR AL DISCORD OFICIAL</a>
+        <p style="color: #400; font-size: 0.65rem; margin-top: 15px;">ID ENLACE: XBnVak8Aj // ACCESO NIVEL 5</p>
     </div>
-</div>
 
-<div class="community-box">
-    <h2 style="border:none; background:none; text-align:center; margin-top:0;">CENTRO DE COORDINACIÓN</h2>
-    <p style="font-size:0.85rem; color:#888;">Únete al Discord oficial para participar en el Collab del Proyecto Final.</p>
-    <a href="https://discord.gg/h4ytu8zpnH" target="_blank" class="btn btn-discord">Entrar al Servidor</a>
 </div>
 
 <footer>
-    © 2026 DEPARTAMENTO MENTAL DEMONÍACO | ARCHIVO CENTRAL DE LA SAGA DMD
+    DMD AUDIT SYSTEM // REGISTRO MAESTRO SINCRO // CUARTEL CENTRAL // 2026
 </footer>
 
 </body>

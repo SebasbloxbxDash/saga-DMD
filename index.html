@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DMD | NÚCLEO DE AUDITORÍA</title>
+    <title>SISTEMA DMD | NÚCLEO ADMINISTRATIVO</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
         :root { --color-principal: #ff0000; --color-fondo: #050000; }
-        body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; user-select: none; }
+        body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; user-select: none; overflow-x: hidden; }
+
+        /* --- ACCESO --- */
+        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; }
+        .auth-box { border: 1px solid var(--color-principal); padding: 30px; background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 50px #4a0000; }
+        input { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 10px; font-family: 'Special Elite'; box-sizing: border-box; outline: none; }
+        button { background: var(--color-principal); color: #000; border: none; padding: 12px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
+        .toggle-link { color: #600; cursor: pointer; font-size: 0.7rem; text-decoration: underline; margin: 0 5px; }
 
         /* --- NAVEGACIÓN --- */
         .tabs-nav { display: flex; justify-content: center; gap: 10px; padding: 15px; background: #000; border-bottom: 2px solid #300; position: sticky; top: 0; z-index: 100; }
@@ -15,23 +22,17 @@
         .tab-button.active { border-color: red; color: red; background: rgba(50,0,0,0.2); box-shadow: 0 0 10px red; }
 
         /* --- CONTENIDO --- */
-        .section-content { display: none; padding: 20px; max-width: 1000px; margin: auto; animation: fadeIn 0.3s; }
-        .section-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
+        #main-content { display: none; padding: 20px; max-width: 1000px; margin: auto; }
         header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; }
         .card { background: rgba(20, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-left: 4px solid #600; }
         
-        .table-scroll { overflow-x: auto; border: 1px solid #300; }
-        table { width: 100%; border-collapse: collapse; min-width: 600px; font-size: 0.8rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem; }
         th, td { border: 1px solid #200; padding: 10px; text-align: left; }
         th { background: #200; color: red; }
 
-        /* --- ESTADOS --- */
-        .reanimacion { color: #ff0000; font-weight: bold; animation: alert 1s infinite; text-shadow: 0 0 5px red; }
-        @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+        .reanimacion { color: #ff0000; font-weight: bold; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* --- FORO --- */
         .forum-box { background: #000; border: 1px solid #300; padding: 15px; height: 350px; overflow-y: auto; margin-bottom: 15px; }
         .post { border-bottom: 1px solid #222; padding: 10px 0; font-size: 0.85rem; }
 
@@ -40,124 +41,133 @@
 </head>
 <body oncontextmenu="return false;">
 
-<div id="hacker-alert">⚠️ SISTEMA BLOQUEADO ⚠️</div>
+<div id="hacker-alert">⚠️ BLOQUEO DE SEGURIDAD ⚠️</div>
+
+<div id="auth-overlay">
+    <div class="auth-box">
+        <h2 id="auth-title">INICIAR SESIÓN</h2>
+        <input type="text" id="user-input" placeholder="USUARIO">
+        <input type="password" id="pass-input" placeholder="CONTRASEÑA">
+        <button onclick="procesarAuth()" id="btn-auth">ACCEDER AL NÚCLEO</button>
+        <div style="margin-top:15px;">
+            <span class="toggle-link" onclick="cambiarModo('login')">Login</span> | 
+            <span class="toggle-link" onclick="cambiarModo('registro')">Registrar</span>
+        </div>
+    </div>
+</div>
 
 <div id="main-content">
     <header>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
-        <p>[ AUDITORÍA ACTUALIZADA 2026 ]</p>
+        <p>OPERADOR: <span id="user-session" style="color:white; letter-spacing:2px;"></span></p>
     </header>
 
     <div class="tabs-nav">
-        <button class="tab-button active" onclick="verTab('tablas')">AUDITORÍA SAGA</button>
-        <button class="tab-button" onclick="verTab('lore')">LORE Y MEDIA</button>
-        <button class="tab-button" onclick="verTab('foro')">REPORTES</button>
+        <button class="tab-button active" onclick="verSeccion('tablas')">AUDITORÍA</button>
+        <button class="tab-button" onclick="verSeccion('lore')">LORE / MEDIA</button>
+        <button class="tab-button" onclick="verSeccion('foro')">REPORTES</button>
     </div>
 
-    <div id="tab-tablas" class="section-content active">
-        <h2>🗂️ SECCIÓN I: ARCHIVO V1</h2>
-        <div class="table-scroll">
-            <table>
-                <thead><tr><th>PROYECTO</th><th>CANCIÓN</th><th>ESTATUS</th></tr></thead>
-                <tbody>
-                    <tr><td>DMD Proyecto No Alfa</td><td>Terror</td><td>✅ Preservado</td></tr>
-                    <tr><td>DMD Proyecto Beta</td><td>Cradles</td><td>✅ Preservado</td></tr>
-                    <tr><td>DMD Proyecto Delta</td><td>Stalemate</td><td>✅ Preservado</td></tr>
-                </tbody>
-            </table>
-        </div>
+    <div id="sec-tablas" class="section-content" style="display:block;">
+        <h2>🗂️ SAGA DMD (V1)</h2>
+        <table>
+            <thead><tr><th>PROYECTO</th><th>ESTATUS</th></tr></thead>
+            <tbody>
+                <tr><td>DMD Proyecto Alfa</td><td>✅ Preservado</td></tr>
+                <tr><td>DMD Proyecto Delta</td><td>✅ Preservado</td></tr>
+            </tbody>
+        </table>
 
-        <h2>📊 SECCIÓN III: REMAKES 2.2</h2>
-        <div class="table-scroll">
-            <table>
-                <thead><tr><th>PROYECTO</th><th>AUDIO ACTUAL</th><th>ESTADO</th></tr></thead>
-                <tbody>
-                    <tr><td>Remake No Alfa</td><td>Cursed</td><td>✅ Finalizado</td></tr>
-                    <tr><td>Remake Delta</td><td>Stalemate</td><td class="reanimacion">🔴 EN REANIMACIÓN...</td></tr>
-                    <tr><td>Remake Final</td><td>Soulless 5</td><td>🏗️ Construcción</td></tr>
-                </tbody>
-            </table>
-        </div>
+        <h2>📊 REMAKES (2.2)</h2>
+        <table>
+            <thead><tr><th>PROYECTO</th><th>ESTADO</th></tr></thead>
+            <tbody>
+                <tr><td>DMD Proyecto Alfa</td><td>✅ Finalizado</td></tr>
+                <tr><td>DMD Proyecto Delta</td><td class="reanimacion">🔴 EN REANIMACIÓN...</td></tr>
+            </tbody>
+        </table>
     </div>
 
-    <div id="tab-lore" class="section-content">
-        <h2>🕒 SECCIÓN II: EXPERIMENTOS & LOST MEDIA</h2>
+    <div id="sec-lore" class="section-content" style="display:none;">
+        <h2>📁 EXPEDIENTES</h2>
         <div class="card">
-            <h3>Experimento Duffy (V3)</h3>
-            <p>Lore: Registro rescatado por Sebas. V1 es Lost Media.</p>
+            <h3>DMD Proyecto Alfa</h3>
+            <p>Lore: El origen del Departamento. Archivos V1 y Remake 2.2 sincronizados.</p>
         </div>
-        <div class="card" style="border-left-color: red;">
-            <h3>LOS PAYASOS DE LA DEEP WEB</h3>
-            <p>Estado: Vigilancia activa. Vinculados a la frecuencia Nuke Powder.</p>
+        <div class="card">
+            <h3>Lost Media: Duffy & Mini Mini</h3>
+            <p>Estado: Recuperado / Inaccesible.</p>
         </div>
     </div>
 
-    <div id="tab-foro" class="section-content">
+    <div id="sec-foro" class="section-content" style="display:none;">
         <h2>💬 TRANSMISIÓN DE EVIDENCIA</h2>
-        <div class="forum-box" id="forum-display"></div>
+        <div id="forum-display" class="forum-box"></div>
         <div class="card">
-            <p style="font-size:0.6rem; color:#444;">🛡️ FILTRO: ANTI-BULLYING / GORE / +18 [ACTIVO]</p>
-            <textarea id="forum-input" placeholder="Enviar reporte multimedia..."></textarea>
-            <button onclick="enviar()" style="width:100%; background:red; color:black; border:none; padding:10px; font-weight:bold; cursor:pointer;">PUBLICAR</button>
+            <textarea id="forum-input" style="width:100%; background:#000; color:red; border:1px solid #400;" placeholder="Pegar link de evidencia..."></textarea>
+            <button onclick="publicar()">ENVIAR A INTELIGENCIA</button>
         </div>
     </div>
 </div>
 
 <script>
-let mensajes = JSON.parse(localStorage.getItem('DMD_FORO_FINAL')) || [];
-const BLACKLIST = ["gore", "+18", "xxx", "sangre", "muerte", "idiota", "manco", "puto", "basura"];
+let usuarios = JSON.parse(localStorage.getItem('DMD_DB')) || {
+    "stilexlplus": { pass: "Departamento mental demoníaco" },
+    "sebasbloxbx": { pass: "sebasbloxbxdash" } // CUENTA ADMIN CREADA
+};
+let mensajes = JSON.parse(localStorage.getItem('DMD_MSGS')) || [];
+let userActivo = "";
+let modo = 'login';
 
-function verTab(id) {
-    document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+function cambiarModo(m) {
+    modo = m;
+    document.getElementById('auth-title').innerText = m.toUpperCase();
+}
+
+function procesarAuth() {
+    const u = document.getElementById('user-input').value.toLowerCase();
+    const p = document.getElementById('pass-input').value;
+    if (modo === 'login') {
+        if (usuarios[u] && usuarios[u].pass === p) { logear(u); }
+        else { alert("DATOS INCORRECTOS"); }
+    } else {
+        usuarios[u] = { pass: p };
+        localStorage.setItem('DMD_DB', JSON.stringify(usuarios));
+        alert("REGISTRO COMPLETADO"); cambiarModo('login');
+    }
+}
+
+function logear(u) {
+    userActivo = u;
+    document.getElementById('user-session').innerText = u.toUpperCase();
+    document.getElementById('auth-overlay').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+    renderForo();
+}
+
+function verSeccion(id) {
+    document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
+    document.getElementById('sec-' + id).style.display = 'block';
     event.currentTarget.classList.add('active');
 }
 
-function enviar() {
+function publicar() {
     const input = document.getElementById('forum-input');
-    const msg = input.value.trim();
-    if(!msg) return;
-
-    if(BLACKLIST.some(p => msg.toLowerCase().includes(p))) {
-        alert("⚠️ CONTENIDO PROHIBIDO DETECTADO.");
-        return;
-    }
-
-    let html = msg;
-    const imgR = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
-    const ytR = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/;
-
-    if(imgR.test(msg)) {
-        const url = msg.match(imgR)[0];
-        html = msg.replace(url, '') + `<br><img src="${url}" style="max-width:100%;">`;
-    } else if(ytR.test(msg)) {
-        const id = msg.match(ytR)[1].split('&')[0];
-        html = msg.replace(ytR, '') + `<br><iframe width="100%" height="200" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
-    }
-
-    mensajes.push({ u: "AGENTE", m: html, d: new Date().toLocaleString() });
-    localStorage.setItem('DMD_FORO_FINAL', JSON.stringify(mensajes));
+    const txt = input.value.trim();
+    if(!txt) return;
+    if(["gore", "+18", "bullying"].some(p => txt.toLowerCase().includes(p))) { alert("FILTRO ACTIVO"); return; }
+    mensajes.push({ u: userActivo, m: txt });
+    localStorage.setItem('DMD_MSGS', JSON.stringify(mensajes));
     input.value = "";
-    render();
+    renderForo();
 }
 
-function render() {
+function renderForo() {
     const d = document.getElementById('forum-display');
-    d.innerHTML = mensajes.map(m => `<div class="post"><b style="color:red">[${m.u}]</b> <i style="font-size:0.6rem;">${m.d}</i><br>${m.m}</div>`).join('');
+    d.innerHTML = mensajes.map(m => `<div class="post"><b>[${m.u.toUpperCase()}]</b>: ${m.m}</div>`).join('');
     d.scrollTop = d.scrollHeight;
 }
-
-render();
-
-// Anti-Hacker
-document.onkeydown = function(e) {
-    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
-        document.getElementById('hacker-alert').style.display = 'block';
-        setTimeout(() => location.reload(), 2000);
-        return false;
-    }
-};
 </script>
 </body>
 </html>

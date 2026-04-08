@@ -23,7 +23,6 @@
         /* --- CONTENIDO --- */
         #main-content { display: none; padding: 20px; max-width: 1100px; margin: auto; }
         header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; background: rgba(10,0,0,0.8); }
-        .card { background: rgba(20, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-left: 4px solid #600; line-height: 1.6; }
         
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 10px; background: rgba(10,0,0,0.5); }
         th, td { border: 1px solid #200; padding: 10px; text-align: left; }
@@ -32,12 +31,10 @@
         /* --- ESTADOS Y BOTONES --- */
         .reanimacion { color: #ff0000; font-weight: bold; animation: alert 0.8s infinite; text-shadow: 0 0 8px red; }
         .sincronizado { color: #00ff00; font-weight: bold; text-shadow: 0 0 10px #00ff00; }
-        .denied-btn { background: #200; color: #500; border: 1px solid #300; padding: 6px 12px; font-size: 0.7rem; cursor: not-allowed; display: inline-block; }
-        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none; font-size: 0.7rem; display: inline-block; cursor: pointer; transition: 0.3s; }
+        .denied-btn { background: #200; color: #500; border: 1px solid #300; padding: 6px 12px; font-size: 0.7rem; cursor: not-allowed; display: inline-block; text-transform: uppercase; }
+        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; transition: 0.3s; }
         .btn-archivo:hover { background: red; color: #000; box-shadow: 0 0 10px red; }
         @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        .denied-screen { background: rgba(40, 0, 0, 0.9); border: 2px solid red; padding: 100px 20px; text-align: center; margin-top: 20px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -54,7 +51,7 @@
 <div id="main-content">
     <header>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
-        <p>[ AUDITORÍA INTEGRAL 2026 - NIVEL 5 ]</p>
+        <p>[ ARCHIVO MAESTRO 2026 - NIVEL 5 ]</p>
     </header>
 
     <div class="tabs-nav">
@@ -64,73 +61,31 @@
     </div>
 
     <div id="sec-auditoria" class="section-content" style="display:block;">
-        <h2>🗂️ REGISTRO HISTÓRICO V1 (ANTIGUAS)</h2>
+        <h2>🗂️ REGISTRO HISTÓRICO V1 (TOTALMENTE PRESERVADO)</h2>
         <table>
             <thead><tr><th>PROYECTO</th><th>ESTATUS</th><th>EVIDENCIA</th></tr></thead>
             <tbody>
-                <tr><td>DMD Proyecto Alfa</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Beta</td><td>✅ Preservado</td><td><a href="#" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Gamma</td><td>✅ Preservado</td><td><a href="#" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Delta</td><td>✅ Preservado</td><td><a href="#" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Final</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=SshHogL9pI0" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Alfa (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=1aRzOjynTxw" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Beta (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=TWe5_23_rd0" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Gamma (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=SbgF-LUdxhU" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Delta (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=rMxKo099LUM" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Omega (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=ydFFRSLYgmg" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Final (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
             </tbody>
         </table>
 
-        <h2 style="margin-top:30px;">📊 REMAKES ACTUALES (2.2)</h2>
+        <h2 style="margin-top:30px;">📊 REMAKES ACTUALES (FASE 2.2)</h2>
         <table>
-            <thead><tr><th>PROYECTO</th><th>AUDIO ACTUAL</th><th>ESTADO</th><th>EVIDENCIA</th></tr></thead>
+            <thead><tr><th>PROYECTO</th><th>ESTADO ACTUAL</th><th>EVIDENCIA</th></tr></thead>
             <tbody>
-                <tr><td>DMD Proyecto Alfa</td><td>Cursed</td><td>✅ Finalizado</td><td><a href="#" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Beta</td><td>Cradles</td><td>✅ Finalizado</td><td><a href="#" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Gamma</td><td>Bonfire</td><td>✅ Finalizado</td><td><a href="#" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Delta</td><td>Stalemate</td><td><span class="reanimacion">⚠️ 95% - EN REANIMACIÓN</span></td><td><span class="denied-btn">ARCHIVO DENEGADO</span></td></tr>
-                <tr><td>DMD Proyecto Final</td><td>Soulless 5</td><td><span class="sincronizado">🤝 COLLAB / SINCRONIZADO</span></td><td><a href="#" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Alfa Remake</td><td>✅ Finalizado</td><td><a href="https://youtu.be/8kl_IeFCb8Y" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Beta Remake</td><td>✅ Finalizado</td><td><a href="https://youtu.be/mKHdJxEyPb0" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Gamma Remake</td><td>✅ Finalizado</td><td><a href="https://youtu.be/cqxARXV1ECY" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Omega Remake</td><td>✅ Finalizado</td><td><a href="https://youtu.be/vHtphwcbXtE" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Delta Remake</td><td><span class="reanimacion">⚠️ REANIMACIÓN 95%</span></td><td><span class="denied-btn">ARCHIVO DENEGADO</span></td></tr>
+                <tr><td>DMD Proyecto Final Collab</td><td><span class="sincronizado">🤝 SINCRONIZADO</span></td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
             </tbody>
         </table>
-    </div>
-
-    <div id="sec-lostmedia" class="section-content" style="display:none;">
-        <h2>⏪ PRECUELAS CONFIRMADAS</h2>
-        <div class="card">
-            <h3 style="color:#00ff00;">Experimento Duffy (V3)</h3>
-            <p><strong>Estado: CONFIRMADO.</strong> Basado en el Proyecto Duffy original (V1/V2).<br>
-            <strong>Creador:</strong> Maeluox.<br>
-            <strong>Canción:</strong> Nuke Powder.</p>
-            <a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER ARCHIVOS</a>
-        </div>
-
-        <div class="card">
-            <h3 style="color:#00ff00;">Experimento Mini Mini</h3>
-            <p><strong>Estado: EN DESARROLLO (Visto en En Vivo).</strong> Basado en Proyecto Mini (V1).<br>
-            <strong>Creador:</strong> Maeluox.<br>
-            <strong>Canción:</strong> Nuke Powder 2.</p>
-        </div>
-
-        <hr style="border-color: #300; margin: 20px 0;">
-        <h2>🕒 DOCUMENTACIÓN Y LOST MEDIA</h2>
-        
-        <div class="card">
-            <h3>DMD Proyecto Alfa (Versión de Broma)</h3>
-            <p><strong>ESTADO: LOST MEDIA.</strong> Incidente del 1 de abril. Nivel eliminado tras error de dispositivo de Sebas.</p>
-        </div>
-
-        <div class="card">
-            <h3>Origen DMD / Caso Dindon</h3>
-            <p><strong>Origen:</strong> CANCELADO. Canción: Astronaut 13.<br>
-            <strong>Dindon:</strong> MITO DESMENTIDO. No existe Nuke Powder 3.</p>
-        </div>
-
-        <div class="card" style="border-left-color: #f0f;">
-            <h3>Evolución Sonora</h3>
-            <p>Transición técnica: Steel Terror -> Tears of the Damned | Speed of Light -> Soulless 5.</p>
-        </div>
-    </div>
-
-    <div id="sec-foro" class="section-content" style="display:none;">
-        <div class="denied-screen">
-            <h2 style="color:red; animation: alert 0.5s infinite;">⚠️ ACCESO DENEGADO ⚠️</h2>
-            <p>FORO CLAUSURADO POR ADMINISTRACIÓN</p>
-        </div>
     </div>
 </div>
 
@@ -148,7 +103,6 @@ function verTab(id) {
     document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
     document.getElementById('sec-' + id).style.display = 'block';
-    event.currentTarget.classList.add('active');
 }
 </script>
 </body>

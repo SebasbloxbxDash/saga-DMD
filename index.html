@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DMD | TERMINAL DE AUDITORÍA 2026</title>
+    <title>SISTEMA DMD | NÚCLEO TÉCNICO 2026</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
         :root { --color-principal: #ff0000; --color-fondo: #050000; }
@@ -22,41 +22,37 @@
 
         /* --- CONTENIDO --- */
         #main-content { display: none; padding: 20px; max-width: 1100px; margin: auto; }
-        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; background: rgba(10,0,0,0.8); }
-        .card { background: rgba(20, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-left: 4px solid #600; line-height: 1.6; position: relative; }
+        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; }
         
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 10px; background: rgba(10,0,0,0.5); }
         th, td { border: 1px solid #200; padding: 10px; text-align: left; }
         th { background: #200; color: red; text-transform: uppercase; }
 
-        /* --- ESTADOS --- */
-        .reanimacion { color: #ff0000; font-weight: bold; animation: pulse 0.8s infinite; text-shadow: 0 0 8px red; }
+        /* --- ESTADOS Y BOTONES --- */
+        .reanimacion { color: #ff0000; font-weight: bold; animation: alert 0.8s infinite; text-shadow: 0 0 8px red; }
         .sincronizado { color: #00ff00; font-weight: bold; text-shadow: 0 0 10px #00ff00; }
-        .btn-archivo { background: #300; color: #f00; border: 1px solid #600; padding: 5px 10px; text-decoration: none; font-size: 0.7rem; display: inline-block; margin-top: 10px; }
+        .btn-archivo { background: #300; color: #f00; border: 1px solid #600; padding: 5px 10px; text-decoration: none; font-size: 0.7rem; display: inline-block; cursor: pointer; }
         .btn-archivo:hover { background: #f00; color: #000; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        /* --- FORO CERRADO --- */
-        .denied-screen { background: rgba(40, 0, 0, 0.9); border: 2px solid red; padding: 100px 20px; text-align: center; margin-top: 20px; }
-        .denied-text { color: red; font-size: 2rem; font-weight: bold; animation: alert 0.5s infinite; }
         @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .denied-screen { background: rgba(40, 0, 0, 0.9); border: 2px solid red; padding: 100px 20px; text-align: center; margin-top: 20px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
 <div id="auth-overlay">
     <div class="auth-box">
-        <h2>IDENTIFICACIÓN REQUERIDA</h2>
-        <input type="text" id="user-input" placeholder="OPERADOR">
-        <input type="password" id="pass-input" placeholder="PASSCODE">
-        <button onclick="login()">ACCEDER AL NÚCLEO</button>
+        <h2>CENTRAL DMD: ACCESO 2026</h2>
+        <input type="text" id="user-input" placeholder="USUARIO">
+        <input type="password" id="pass-input" placeholder="CONTRASEÑA">
+        <button onclick="login()">INICIAR AUDITORÍA</button>
     </div>
 </div>
 
 <div id="main-content">
     <header>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
-        <p>AUDITORÍA MAESTRA 2026 | AGENTE: <span id="user-tag" style="color:white;"></span></p>
+        <p>[ AUDITORÍA INTEGRAL ACTUALIZADA ]</p>
     </header>
 
     <div class="tabs-nav">
@@ -66,80 +62,62 @@
     </div>
 
     <div id="sec-auditoria" class="section-content" style="display:block;">
-        <h2>🗂️ REGISTRO HISTÓRICO V1</h2>
+        <h2>🗂️ REGISTRO HISTÓRICO V1 (VERSIONES ANTIGUAS)</h2>
         <table>
             <thead><tr><th>PROYECTO</th><th>ESTATUS</th><th>EVIDENCIA</th></tr></thead>
             <tbody>
                 <tr><td>DMD Proyecto Alfa</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" class="btn-archivo" target="_blank">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Delta</td><td>✅ Preservado</td><td><a href="#" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Final (Old)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=SshHogL9pI0" class="btn-archivo" target="_blank">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Beta</td><td>✅ Preservado</td><td><span class="btn-archivo">VER ARCHIVOS</span></td></tr>
+                <tr><td>DMD Proyecto Gamma</td><td>✅ Preservado</td><td><span class="btn-archivo">VER ARCHIVOS</span></td></tr>
+                <tr><td>DMD Proyecto Delta</td><td>✅ Preservado</td><td><span class="btn-archivo">VER ARCHIVOS</span></td></tr>
+                <tr><td>DMD Proyecto Final</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=SshHogL9pI0" class="btn-archivo" target="_blank">VER ARCHIVOS</a></td></tr>
             </tbody>
         </table>
 
-        <h2>📊 REMAKES ACTUALES (2.2)</h2>
+        <h2 style="margin-top:30px;">📊 REMAKES ACTUALES (2.2)</h2>
         <table>
-            <thead><tr><th>PROYECTO</th><th>AUDIO ACTUAL</th><th>ESTADO</th></tr></thead>
+            <thead><tr><th>PROYECTO</th><th>AUDIO ACTUAL</th><th>ESTADO</th><th>EVIDENCIA</th></tr></thead>
             <tbody>
-                <tr><td>DMD Proyecto Alfa</td><td>Cursed</td><td>✅ Finalizado</td></tr>
-                <tr><td>DMD Proyecto Delta</td><td>Stalemate</td><td class="reanimacion">⚠️ 95% - EN REANIMACIÓN</td></tr>
-                <tr><td>DMD Proyecto Final</td><td>Soulless 5</td><td class="sincronizado">🤝 COLLAB / SINCRONIZADO</td></tr>
+                <tr><td>DMD Proyecto Alfa</td><td>Cursed</td><td>✅ Finalizado</td><td><span class="btn-archivo">VER ARCHIVOS</span></td></tr>
+                <tr><td>DMD Proyecto Beta</td><td>Cradles</td><td>✅ Finalizado</td><td><span class="btn-archivo">VER ARCHIVOS</span></td></tr>
+                <tr><td>DMD Proyecto Gamma</td><td>Bonfire</td><td>✅ Finalizado</td><td><span class="btn-archivo">VER ARCHIVOS</span></td></tr>
+                <tr><td>DMD Proyecto Delta</td><td>Stalemate</td><td><span class="reanimacion">⚠️ 95% - EN REANIMACIÓN</span></td><td><span class="btn-archivo">VER ARCHIVOS</span></td></tr>
+                <tr><td>DMD Proyecto Final</td><td>Soulless 5</td><td><span class="sincronizado">🤝 COLLAB / SINCRONIZADO</span></td><td><span class="btn-archivo">VER ARCHIVOS</span></td></tr>
             </tbody>
         </table>
     </div>
 
     <div id="sec-lostmedia" class="section-content" style="display:none;">
         <h2>🕒 SERIE "EXPERIMENTO" Y LOST MEDIA</h2>
-        
-        <div class="card">
-            <h3>DMD Proyecto Alfa (Versión de Broma)</h3>
-            <p><strong>ESTADO: LOST MEDIA.</strong> Programado para el 1 de abril. Debido a una desinstalación accidental de Geometry Dash en el dispositivo de <strong>sebasbloxbx</strong>, el nivel se perdió sin respaldo de datos.</p>
+        <div style="background: rgba(20,0,0,0.7); padding: 15px; border-left: 4px solid #600; margin-bottom: 10px;">
+            <h3 style="color:red;">DMD Proyecto Alfa (Versión de Broma)</h3>
+            <p><strong>ESTADO: LOST MEDIA.</strong> Incidente del 1 de abril. El nivel se eliminó accidentalmente del dispositivo móvil tras desinstalar GD sin copia de seguridad.</p>
         </div>
-
-        <div class="card">
-            <h3>Experimento Duffy (V3)</h3>
-            <p>La V1 es Lost Media. Rescatada parcialmente.</p>
+        <div style="background: rgba(20,0,0,0.7); padding: 15px; border-left: 4px solid #600;">
+            <h3 style="color:red;">Experimento Duffy (V3)</h3>
+            <p>Rescatado parcialmente de evidencia en video.</p>
             <a href="https://www.youtube.com/watch?v=52AZ2MG33IU" class="btn-archivo" target="_blank">VER ARCHIVOS</a>
-        </div>
-
-        <div class="card">
-            <h3>Experimento Mini Mini</h3>
-            <p>Basado en DMD Proyecto Mini (V1). Lost Media total.</p>
-            <a href="#" class="btn-archivo">VER ARCHIVOS</a>
-        </div>
-
-        <div class="card" style="border-left-color: #300;">
-            <h3>Caso Dindon</h3>
-            <p><strong>DETERMINACIÓN: NO EXISTE.</strong> Sin Nuke Powder 3, el proyecto se considera un mito desmentido.</p>
         </div>
     </div>
 
     <div id="sec-foro" class="section-content" style="display:none;">
         <div class="denied-screen">
-            <div class="denied-text">⚠️ ACCESO DENEGADO ⚠️</div>
-            <p style="margin-top:20px;">FOROS CLAUSURADOS POR PROTOCOLO DE SEGURIDAD</p>
+            <h2 style="color:red; animation: alert 0.5s infinite;">⚠️ ACCESO DENEGADO ⚠️</h2>
+            <p>FORO CLAUSURADO POR ADMINISTRACIÓN</p>
         </div>
     </div>
 </div>
 
 <script>
-const db = {
-    "usuario10": "D.M.D",
-    "sebasbloxbx": "sebasbloxbxdash",
-    "stilexlplus": "Departamento mental demoníaco"
-};
-
+const db = {"usuario10": "D.M.D", "sebasbloxbx": "sebasbloxbxdash", "stilexlplus": "Departamento mental demoníaco"};
 function login() {
     const u = document.getElementById('user-input').value;
     const p = document.getElementById('pass-input').value;
-    if(db[u] && db[u] === p) {
-        document.getElementById('user-tag').innerText = u.toUpperCase();
+    if(db[u] === p) {
         document.getElementById('auth-overlay').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
-    } else {
-        alert("CREDENCIALES INVÁLIDAS");
-    }
+    } else { alert("ACCESO DENEGADO"); }
 }
-
 function verTab(id) {
     document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));

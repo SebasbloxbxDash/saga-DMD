@@ -3,159 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMD | NÚCLEO DE LORE Y EVIDENCIA</title>
+    <title>SISTEMA DMD | NÚCLEO DE AUDITORÍA 2026</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
-        :root { --color-principal: #ff0000; --color-fondo: #050000; }
-        body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; user-select: none; }
+        :root { --color-principal: #ff0000; --color-fondo: #050000; --color-card: rgba(20, 0, 0, 0.8); }
+        body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; user-select: none; overflow-x: hidden; }
 
-        /* --- NAVEGACIÓN --- */
-        .tabs-nav { display: flex; justify-content: center; gap: 10px; padding: 20px; background: #000; border-bottom: 2px solid #300; position: sticky; top: 0; z-index: 100; }
+        /* --- INTERFAZ DE NAVEGACIÓN --- */
+        .tabs-nav { display: flex; justify-content: center; gap: 10px; padding: 15px; background: #000; border-bottom: 2px solid #300; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
         .tab-button { background: none; border: 1px solid #400; color: #600; padding: 10px 15px; cursor: pointer; font-family: 'Special Elite'; font-size: 0.8rem; transition: 0.3s; }
-        .tab-button.active { border-color: red; color: red; box-shadow: 0 0 10px red; }
+        .tab-button.active { border-color: red; color: red; box-shadow: 0 0 15px rgba(255,0,0,0.5); background: rgba(50,0,0,0.2); }
 
         /* --- CONTENIDO --- */
-        .section-content { display: none; padding: 20px; max-width: 900px; margin: auto; animation: fadeIn 0.5s; }
+        .section-content { display: none; padding: 20px; max-width: 1000px; margin: auto; animation: fadeIn 0.4s ease-in; }
         .section-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 30px; }
-        .card { background: rgba(20, 0, 0, 0.7); padding: 20px; margin-bottom: 20px; border-left: 5px solid #600; }
-        .video-container { margin-top: 15px; border: 1px solid #444; position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        .status-denied { color: #ff0000; font-weight: bold; text-transform: uppercase; border: 1px solid red; padding: 2px 10px; display: inline-block; margin-top: 10px; }
+        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 30px; background: linear-gradient(to bottom, #100, #000); }
+        .card { background: var(--color-card); padding: 15px; margin-bottom: 15px; border-left: 4px solid #600; border-right: 1px solid #200; }
         
+        /* --- TABLAS --- */
+        .table-scroll { overflow-x: auto; margin-top: 10px; border: 1px solid #300; }
+        table { width: 100%; border-collapse: collapse; min-width: 700px; font-size: 0.8rem; }
+        th, td { border: 1px solid #200; padding: 10px; text-align: left; }
+        th { background: #200; color: red; text-transform: uppercase; }
+
+        /* --- ESTADOS --- */
+        .status-ok { color: #00ff00; font-weight: bold; }
+        .status-denied { color: red; font-weight: bold; border: 1px solid red; padding: 2px 5px; animation: pulse 1.5s infinite; }
+        .status-lost { color: #888; font-style: italic; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
         /* --- FORO --- */
-        .forum-box { background: #000; border: 1px solid #300; padding: 15px; height: 350px; overflow-y: auto; margin-bottom: 15px; }
-        .post { border-bottom: 1px solid #222; padding: 10px 0; font-size: 0.9rem; }
-        
+        .forum-box { background: #000; border: 1px solid #300; padding: 15px; height: 400px; overflow-y: auto; margin-bottom: 15px; box-shadow: inset 0 0 20px #100; }
+        .post { border-bottom: 1px solid #1a1a1a; padding: 12px 0; }
+        .post img, .post iframe { max-width: 100%; margin-top: 10px; border: 1px solid #333; }
+
         #hacker-alert { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: red; color: black; z-index: 99999; text-align: center; padding-top: 20%; font-size: 2rem; font-weight: bold; }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
-<div id="hacker-alert">⚠️ SISTEMA COMPROMETIDO: BLOQUEO DE SEGURIDAD ⚠️</div>
+<div id="hacker-alert">⚠️ SISTEMA BLOQUEADO: INTENTO DE HACKEO DETECTADO ⚠️</div>
 
 <div id="main-content">
     <header>
-        <div style="color:red; font-size:0.7rem;">[ ARCHIVO HISTÓRICO DMD - SOLO LORE ]</div>
+        <div style="color:red; font-size:0.7rem; letter-spacing: 2px;">[ REPORTE DE AUDITORÍA TÉCNICA 2026 ]</div>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
-        <p>CONEXIÓN ESTABLECIDA // OPERADOR: <span id="user-display">SEBASBLOXBX</span></p>
+        <p>ADMIN: StilexlPlus | DEV: sebasbloxbx</p>
     </header>
 
-    <div class="tabs-nav">
-        <button class="tab-button active" onclick="verSeccion('cronologia')">CRONOLOGÍA VIDEO</button>
-        <button class="tab-button" onclick="verSeccion('profundo')">LORE PROFUNDO</button>
-        <button class="tab-button" onclick="verSeccion('reportes')">CENTRO DE REPORTES</button>
-    </div>
+    <nav class="tabs-nav">
+        <button class="tab-button active" onclick="verTab('reporte')">AUDITORÍA SAGA</button>
+        <button class="tab-button" onclick="verTab('lore')">LORE Y LOST MEDIA</button>
+        <button class="tab-button" onclick="verTab('foro')">REPORTE MULTIMEDIA</button>
+    </nav>
 
-    <div id="seccion-cronologia" class="section-content active">
-        <h2>🎞️ REGISTRO DE EVIDENCIA MULTIMEDIA</h2>
-        
-        <div class="card">
-            <h3>REMAKES 2.2 (ERA ACTUAL)</h3>
-            <p>Evolución de las frecuencias mentales con tecnología moderna.</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/7hHWxGLE9iw" frameborder="0" allowfullscreen></iframe>
-            </div>
+    <div id="tab-reporte" class="section-content active">
+        <h2>🗂️ SECCIÓN I: ARCHIVO HISTÓRICO (V1)</h2>
+        <div class="table-scroll">
+            <table>
+                <thead><tr><th>PROYECTO</th><th>CANCIÓN</th><th>ARTISTA</th><th>ESTATUS</th></tr></thead>
+                <tbody>
+                    <tr><td>Alfa</td><td>Terror</td><td>DemonCity</td><td class="status-ok">Preservado</td></tr>
+                    <tr><td>Beta</td><td>Cradles</td><td>Sub Urban</td><td class="status-ok">Preservado</td></tr>
+                    <tr><td>Gamma</td><td>Bonfire</td><td>Knife Party</td><td class="status-ok">Preservado</td></tr>
+                    <tr><td>Delta</td><td>Stalemate</td><td>NightKilla</td><td class="status-ok">Preservado</td></tr>
+                    <tr><td>Omega</td><td>Steel Terror</td><td>Acid Notation</td><td class="status-ok">Preservado</td></tr>
+                    <tr><td>Final</td><td>At the Speed of Light</td><td>Dimrain47</td><td class="status-ok">Preservado</td></tr>
+                </tbody>
+            </table>
         </div>
 
-        <div class="card">
-            <h3>ARCHIVOS V1 (ORIGINALES)</h3>
-            <p>Los primeros registros capturados por el Departamento. Estilo crudo y experimental.</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/52AZ2MG33IU" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <div id="seccion-profundo" class="section-content">
-        <h2>📁 EXPEDIENTES CLASIFICADOS</h2>
-        
-        <div class="card">
-            <h3>LOS PAYASOS DE LA RED PROFUNDA</h3>
-            <p>Entidades que operan bajo la frecuencia <b>Nuke Powder</b>. No son humanos, son manifestaciones de datos corruptos que buscan "sincronizar" con la mente del espectador.</p>
-            <div class="status-denied">IDENTIDAD: ACCESO DENEGADO</div>
-        </div>
-
-        <div class="card" style="border-left-color: #444;">
-            <h3>ORIGEN DEL DMD</h3>
-            <p>El Departamento no fue creado, fue "encontrado" tras el experimento fallido <i>Astronaut 13</i>. Los videos son la única forma de contener la brecha.</p>
-            <p><b>Lugares:</b> El Nodo Ciego y el Laboratorio Delta.</p>
+        <h2>📊 SECCIÓN III: PRODUCCIÓN ACTUAL (2.2)</h2>
+        <div class="table-scroll">
+            <table>
+                <thead><tr><th>PROYECTO</th><th>AUDIO ACTUAL</th><th>ESTADO</th></tr></thead>
+                <tbody>
+                    <tr><td>Remake Alfa</td><td>Cursed</td><td class="status-ok">✅ Finalizado</td></tr>
+                    <tr><td>Remake Beta</td><td>Cradles</td><td class="status-ok">✅ Finalizado</td></tr>
+                    <tr><td>Remake Gamma</td><td>Bonfire</td><td class="status-ok">✅ Finalizado</td></tr>
+                    <tr><td>Remake Delta</td><td>Stalemate</td><td style="color:orange;">⚠️ 95% Completado</td></tr>
+                    <tr><td>Remake Omega</td><td>Tears of the Damned</td><td class="status-ok">✅ Finalizado</td></tr>
+                    <tr><td>Remake Final</td><td>Soulless 5</td><td style="color:#aaa;">🏗️ En Construcción</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div id="seccion-reportes" class="section-content">
-        <h2>💬 CENTRO DE INTELIGENCIA</h2>
+    <div id="tab-lore" class="section-content">
+        <h2>🕒 SECCIÓN II: SERIE EXPERIMENTO & LOST MEDIA</h2>
+        <div class="card">
+            <h3>Experimento Duffy (V3)</h3>
+            <p>Lore: Basado en Proyecto Duffy V1/V2. La V1 es <b>Lost Media</b> rescatada por Sebas.</p>
+            <p>Audio: <i>Nuke Powder</i></p>
+            <span class="status-ok">REGISTRO RECUPERADO</span>
+        </div>
+
+        <div class="card">
+            <h3>Experimento Mini Mini</h3>
+            <p>Lore: Basado en Proyecto Mini V1. <b>Lost Media total</b>.</p>
+            <p>Audio: <i>Nuke Powder 2</i></p>
+            <span class="status-lost">DATA CORRUPTA</span>
+        </div>
+
+        <div class="card" style="border-left-color: #ff0000;">
+            <h3>LOS PAYASOS DE LA DEEP WEB</h3>
+            <p>Entidades vinculadas a la frecuencia Nuke Powder. Su rastro fue detectado en el <i>Origen DMD (Astronaut 13)</i>.</p>
+            <div class="status-denied">ACCESO DENEGADO</div>
+        </div>
+
+        <div class="card">
+            <h3>🔍 RESOLUCIÓN: CASO DINDON</h3>
+            <p>Se confirma oficialmente: <b>No existe</b> un Nuke Powder 3. El experimento Dindon ha sido descartado del canon oficial.</p>
+        </div>
+    </div>
+
+    <div id="tab-foro" class="section-content">
+        <h2>💬 TRANSMISIÓN DE EVIDENCIA (BETA 2.2)</h2>
         <div class="forum-box" id="forum-display"></div>
         
         <div class="card" style="border-left-color: red;">
-            <p style="font-size:0.7rem; color:#666;">🛡️ FILTRO: ANTI-BULLYING / GORE / +18 / LINKS DAÑINOS [ACTIVO]</p>
-            <textarea id="forum-input" placeholder="Escribir reporte de lore o evidencia visual..."></textarea>
-            <button onclick="publicarMensaje()" style="width:100%; background:red; color:black; font-weight:bold; border:none; padding:10px; cursor:pointer;">ENVIAR TRANSMISIÓN</button>
+            <p style="font-size:0.7rem; color:#555;">FILTRO ACTIVO: ANTI-BULLYING / GORE / +18 / LINKS DAÑINOS</p>
+            <textarea id="forum-input" placeholder="Pegar link de imagen o video de evidencia..."></textarea>
+            <button onclick="publicar()" style="width:100%; background:red; color:black; font-weight:bold; border:none; padding:10px; cursor:pointer;">ENVIAR REPORTE</button>
         </div>
     </div>
 </div>
 
 <script>
-let foroMensajes = JSON.parse(localStorage.getItem('DMD_LORE_FORO')) || [
-    { user: "StilexlPlus", msg: "Bienvenidos al archivo de Lore. Mantengan el orden.", date: "07/04/26" },
-    { user: "sebasbloxbx", msg: "He subido los archivos de los payasos. Revisen con cuidado.", date: "07/04/26" }
+// Base de Datos y Filtro
+let foroMsgs = JSON.parse(localStorage.getItem('DMD_FORO_2026')) || [
+    { u: "StilexlPlus", m: "Auditoría 2026 cargada.", d: "07/04/26" },
+    { u: "sebasbloxbx", m: "Lost Media de Duffy ha sido restaurada en la base.", d: "07/04/26" }
 ];
 
-// Navegación
-function verSeccion(id) {
+const PROHIBIDO = ["gore", "+18", "xxx", "sangre", "muerte", "suicidio", "manco", "idiota", "pendejo", "estupido", "basura", "puto"];
+
+function verTab(id) {
     document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-    document.getElementById('seccion-' + id).classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
     event.currentTarget.classList.add('active');
 }
 
-// Filtro de Seguridad (Gore, +18, Bullying)
-const BLACKLIST = ["gore", "+18", "xxx", "sangre", "muerte", "suicidio", "idiota", "manco", "pendejo", "puto", "basura"];
-
-function publicarMensaje() {
+function publicar() {
     const input = document.getElementById('forum-input');
-    const msg = input.value.trim();
-    
-    if (!msg) return;
+    const raw = input.value.trim();
+    if(!raw) return;
 
-    if (BLACKLIST.some(p => msg.toLowerCase().includes(p))) {
-        alert("⚠️ PROTOCOLO DE SEGURIDAD: El mensaje infringe las normas de convivencia (No Gore / No Bullying).");
+    // Filtro Anti-Bullying / Gore / +18
+    if(PROHIBIDO.some(p => raw.toLowerCase().includes(p))) {
+        alert("⚠️ VIOLACIÓN DE PROTOCOLO: Contenido inapropiado o bullying detectado.");
         return;
     }
 
-    let finalMsg = msg;
-    const imgRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
-    const ytRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/;
+    let final = raw;
+    const imgR = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
+    const ytR = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/;
 
-    if (imgRegex.test(msg)) {
-        const url = msg.match(imgRegex)[0];
-        finalMsg = msg.replace(url, '') + `<br><img src="${url}" style="max-width:100%; border:1px solid #444; margin-top:10px;">`;
-    } else if (ytRegex.test(msg)) {
-        const id = msg.match(ytRegex)[1].split('&')[0];
-        finalMsg = msg.replace(ytRegex, '') + `<br><iframe width="100%" height="200" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
+    if(imgR.test(raw)) {
+        const url = raw.match(imgR)[0];
+        final = raw.replace(url, '') + `<br><img src="${url}">`;
+    } else if(ytR.test(raw)) {
+        const id = raw.match(ytR)[1].split('&')[0];
+        final = raw.replace(ytR, '') + `<br><iframe width="100%" height="220" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
     }
 
-    foroMensajes.push({ user: "AGENTE", msg: finalMsg, date: new Date().toLocaleString() });
-    localStorage.setItem('DMD_LORE_FORO', JSON.stringify(foroMensajes));
+    foroMsgs.push({ u: "AGENTE", m: final, d: new Date().toLocaleString() });
+    localStorage.setItem('DMD_FORO_2026', JSON.stringify(foroMsgs));
     input.value = "";
-    renderForo();
+    render();
 }
 
-function renderForo() {
-    const d = document.getElementById('forum-display');
-    d.innerHTML = foroMensajes.map(m => `
+function render() {
+    const box = document.getElementById('forum-display');
+    box.innerHTML = foroMsgs.map(m => `
         <div class="post">
-            <b style="color:red; font-size:0.7rem;">[${m.user}]</b> <i style="font-size:0.5rem; color:#444;">${m.date}</i>
-            <div style="color:#bbb; margin-top:5px; font-size:0.85rem;">${m.msg}</div>
+            <b style="color:red; font-size:0.7rem;">[${m.u}]</b> <i style="color:#333; font-size:0.6rem;">${m.d}</i>
+            <div style="color:#ccc; margin-top:5px; font-size:0.85rem;">${m.m}</div>
         </div>
     `).join('');
-    d.scrollTop = d.scrollHeight;
+    box.scrollTop = box.scrollHeight;
 }
 
-renderForo();
+render();
 
 // Escudo Anti-Hacker
 document.onkeydown = function(e) {

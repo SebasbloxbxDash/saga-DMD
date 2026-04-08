@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DMD | CUARTEL CENTRAL</title>
+    <title>SISTEMA DMD | TERMINAL FINAL 2026</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
         :root { --color-principal: #ff0000; --color-fondo: #050000; }
@@ -12,34 +12,43 @@
         /* --- ACCESO --- */
         #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; }
         .auth-box { border: 1px solid var(--color-principal); padding: 30px; background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 50px #4a0000; }
-        input { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 10px; font-family: 'Special Elite'; box-sizing: border-box; outline: none; }
+        input, textarea { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 10px; font-family: 'Special Elite'; box-sizing: border-box; outline: none; }
         button { background: var(--color-principal); color: #000; border: none; padding: 12px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
         .link-group { margin-top: 15px; font-size: 0.7rem; }
         .toggle-link { color: #600; cursor: pointer; text-decoration: underline; margin: 0 5px; }
 
-        /* --- DISEÑO DEL CONTENIDO --- */
+        /* --- CONTENIDO --- */
         #main-content { display: none; opacity: 0; transition: 2s; padding: 20px; }
-        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 30px; background: rgba(10, 0, 0, 0.8); }
-        .warning-label { background: var(--color-principal); color: #000; padding: 5px 20px; font-weight: bold; display: inline-block; text-transform: uppercase; }
+        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 30px; background: rgba(15, 0, 0, 0.9); }
+        .warning-label { background: var(--color-principal); color: #000; padding: 5px 20px; font-weight: bold; text-transform: uppercase; }
         h2 { border-bottom: 1px solid #4a0000; color: var(--color-principal); text-transform: uppercase; letter-spacing: 2px; margin-top: 40px; }
         
-        /* TABLAS Y CARDS */
         .scroll-box { overflow-x: auto; background: #000; border: 1px solid #4a0000; margin-top: 15px; }
         table { width: 100%; border-collapse: collapse; min-width: 800px; font-size: 0.85rem; }
         th, td { border: 1px solid #200; padding: 12px; text-align: left; }
         th { background: #300; color: var(--color-principal); }
-        .card { background: rgba(20, 0, 0, 0.8); padding: 20px; margin-bottom: 20px; border-left: 5px solid #600; }
+        
+        .btn-link { color: #ff4444; text-decoration: none; font-weight: bold; border: 1px solid #4a0000; padding: 4px 8px; font-size: 0.7rem; transition: 0.3s; }
+        .btn-link:hover { background: #ff0000; color: #000; }
+
+        .card { background: rgba(20, 0, 0, 0.8); padding: 15px; margin-bottom: 15px; border-left: 5px solid #600; }
         .tag-ok { color: #00ff00; font-weight: bold; border: 1px solid #00ff00; padding: 2px 5px; font-size: 0.7rem; }
         .tag-reanimation { color: #ff0000; font-weight: bold; border: 1px solid #ff0000; padding: 2px 5px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-        
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* --- FORO --- */
+        .forum-box { background: rgba(10, 0, 0, 0.9); border: 1px solid #300; padding: 15px; margin-top: 20px; max-height: 300px; overflow-y: auto; text-align: left; }
+        .post { border-bottom: 1px solid #200; padding: 10px 0; font-size: 0.85rem; }
+        .post b { color: #fff; }
+        .post i { font-size: 0.7rem; color: #555; margin-right: 10px; }
+
         #hacker-alert { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: red; color: black; z-index: 99999; text-align: center; padding-top: 20%; font-size: 2rem; font-weight: bold; }
-        footer { text-align: center; padding: 40px; color: #400; font-size: 0.7rem; border-top: 1px solid #200; margin-top: 50px; }
+        footer { text-align: center; padding: 40px; color: #300; font-size: 0.7rem; border-top: 1px solid #200; margin-top: 50px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-<div id="hacker-alert">⚠️ INTRUSIÓN DETECTADA: SISTEMA BLOQUEADO ⚠️</div>
+<div id="hacker-alert">⚠️ SISTEMA COMPROMETIDO: BLOQUEO ACTIVO ⚠️</div>
 
 <div id="auth-overlay">
     <div class="auth-box">
@@ -49,7 +58,6 @@
         <input type="password" id="pass-input" placeholder="CONTRASEÑA">
         <input type="email" id="email-input" placeholder="CORREO@DMD.COM" style="display:none;">
         <button onclick="procesarAuth()" id="btn-main">ACCEDER</button>
-        <p id="auth-msg" style="color:red; display:none; font-size:0.7rem; margin-top:10px"></p>
         <div class="link-group">
             <span class="toggle-link" onclick="cambiarModo('login')">Login</span> |
             <span class="toggle-link" onclick="cambiarModo('registro')">Registrar</span> |
@@ -61,8 +69,8 @@
 <div id="main-content">
     <header>
         <div class="warning-label">SISTEMA DMD 2026</div>
-        <h1>REGISTRO MAESTRO DE LA SAGA</h1>
-        <p>BIENVENIDO, AGENTE: <span id="user-session" style="color:white; text-transform:uppercase;"></span></p>
+        <h1>REGISTRO MAESTRO</h1>
+        <p>AGENTE: <span id="user-session" style="color:white; text-transform:uppercase;"></span></p>
     </header>
 
     <div style="max-width:1000px; margin:auto;">
@@ -70,14 +78,14 @@
         <h2>🗂️ SECCIÓN I: ARCHIVO HISTÓRICO V1</h2>
         <div class="scroll-box">
             <table>
-                <thead><tr><th>SUJETO</th><th>FRECUENCIA</th><th>ESTATUS</th></tr></thead>
+                <thead><tr><th>SUJETO</th><th>FRECUENCIA</th><th>ESTATUS</th><th>REGISTRO VIDEO</th></tr></thead>
                 <tbody>
-                    <tr><td>Proyecto Alfa</td><td>Terror</td><td><span class="tag-ok">PRESERVADO</span></td></tr>
-                    <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">PRESERVADO</span></td></tr>
-                    <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">PRESERVADO</span></td></tr>
-                    <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-ok">PRESERVADO</span></td></tr>
-                    <tr><td>Proyecto Omega</td><td>Steel Terror</td><td><span class="tag-ok">PRESERVADO</span></td></tr>
-                    <tr><td>Proyecto Final</td><td>At the Speed of Light</td><td><span class="tag-ok">PRESERVADO</span></td></tr>
+                    <tr><td>Proyecto Alfa</td><td>Terror</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/1aRzOjynTxw" target="_blank" class="btn-link">VER V1</a></td></tr>
+                    <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/TWe5_23_rd0" target="_blank" class="btn-link">VER V1</a></td></tr>
+                    <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/SbgF-LUdxhU" target="_blank" class="btn-link">VER V1</a></td></tr>
+                    <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/C3jUv1z5kCc" target="_blank" class="btn-link">VER V1</a></td></tr>
+                    <tr><td>Proyecto Omega</td><td>Steel Terror</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/ydFFRSLYgmg" target="_blank" class="btn-link">VER V1</a></td></tr>
+                    <tr><td>Proyecto Final</td><td>At the Speed of Light</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/52AZ2MG33IU" target="_blank" class="btn-link">VER V1</a></td></tr>
                 </tbody>
             </table>
         </div>
@@ -85,60 +93,68 @@
         <h2>🕒 SECCIÓN II: EXPERIMENTOS Y LOST MEDIA</h2>
         <div class="card">
             <h3>Experimento Duffy (V3)</h3>
-            <p>V1 Lost Media rescatada. 🎵 Canción: <b>Nuke Powder</b></p>
+            <p>V1 Lost Media rescatada. 🎵 Nuke Powder</p>
+            <a href="https://youtu.be/jJyvanYn7Ho" target="_blank" class="btn-link">VER REGISTRO RECUPERADO</a>
         </div>
         <div class="card">
             <h3>Experimento Mini Mini</h3>
-            <p>V1 Inaccesible. 🎵 Canción: <b>Nuke Powder 2</b></p>
-        </div>
-        <div class="card" style="border-left-color:red">
-            <h3>Origen DMD (CANCELADO)</h3>
-            <p>Lost Media total. 🎵 Canción: <b>Astronaut 13</b></p>
+            <p>V1 Inaccesible (Data Corrupt). 🎵 Nuke Powder 2</p>
         </div>
 
         <h2>📊 SECCIÓN III: REMAKES 2.2</h2>
         <div class="scroll-box">
             <table>
-                <thead><tr><th>SUJETO</th><th>NUEVA CANCIÓN</th><th>ESTADO</th></tr></thead>
+                <thead><tr><th>SUJETO</th><th>NUEVA CANCIÓN</th><th>ESTADO</th><th>REGISTRO 2.2</th></tr></thead>
                 <tbody>
-                    <tr><td>Proyecto Alfa</td><td>Cursed</td><td><span class="tag-ok">✅ FINALIZADO</span></td></tr>
-                    <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">✅ FINALIZADO</span></td></tr>
-                    <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">✅ FINALIZADO</span></td></tr>
-                    <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-reanimation">🔴 EN REANIMACIÓN</span></td></tr>
-                    <tr><td>Proyecto Omega</td><td>Tears of the Damned</td><td><span class="tag-ok">✅ FINALIZADO</span></td></tr>
-                    <tr><td>Proyecto Final</td><td>Soulless 5</td><td><span class="tag-ok">✅ SINCRONIZADO</span></td></tr>
+                    <tr><td>Proyecto Alfa</td><td>Cursed</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/8kl_IeFCb8Y" target="_blank" class="btn-link">VER REMAKE</a></td></tr>
+                    <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/mKHdJxEyPb0" target="_blank" class="btn-link">VER REMAKE</a></td></tr>
+                    <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/cqxARXV1ECY" target="_blank" class="btn-link">VER REMAKE</a></td></tr>
+                    <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-reanimation">🔴 EN REANIMACIÓN</span></td><td>---</td></tr>
+                    <tr><td>Proyecto Omega</td><td>Tears of the Damned</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/vHtphwcbXtE" target="_blank" class="btn-link">VER REMAKE</a></td></tr>
+                    <tr><td>Proyecto Final</td><td>Soulless 5</td><td><span class="tag-ok">✅ SINCRONIZADO</span></td><td><a href="https://youtu.be/7hHWxGLE9iw" target="_blank" class="btn-link">VER REMAKE</a></td></tr>
                 </tbody>
             </table>
         </div>
 
         <h2>🔍 SECCIÓN IV: RESOLUCIONES</h2>
         <div class="card" style="border-left-color:white">
-            <h3>Caso Dindon: Oficialmente Desmentido</h3>
-            <p>Se desmiente la existencia de Nuke Powder 3. La serie termina en Mini Mini.</p>
+            <h3>Caso Dindon</h3>
+            <p>Oficialmente desmentido. No existe Nuke Powder 3. La serie termina en Mini Mini.</p>
         </div>
 
+        <h2>💬 SECCIÓN V: FOROS DE INTELIGENCIA (BETA)</h2>
+        <div class="forum-box" id="forum-display"></div>
+        <textarea id="forum-input" placeholder="ESCRIBIR MENSAJE AL DEPARTAMENTO..."></textarea>
+        <button onclick="publicarMensaje()" style="background:#300; color:red; border:1px solid red;">ENVIAR REPORTE</button>
+
         <div style="text-align:center; margin-top:40px;">
-            <a href="https://discord.gg/XBnVak8Aj" target="_blank" style="color:red; text-decoration:none; border:1px solid red; padding:10px 20px;">ENTRAR AL DISCORD</a>
+            <a href="https://discord.gg/XBnVak8Aj" target="_blank" style="color:red; text-decoration:none; border:2px solid red; padding:15px 30px; font-weight:bold; background:black;">ACCEDER AL DISCORD OFICIAL</a>
         </div>
     </div>
-    <footer>DMD SYSTEM // 2026</footer>
+    <footer>DMD TERMINAL // REGISTRO MAESTRO // 2026</footer>
 </div>
 
 <script>
-// Base de datos (con soporte para guardar en el navegador)
+// Base de datos y seguridad
 let usuarios = JSON.parse(localStorage.getItem('DMD_DB')) || {
     "stilexlplus": { pass: "Departamento mental demoníaco", email: "admin@dmd.com" },
-    "sebasbloxbx": { pass: "Departamento mental demoníaco", email: "dev@dmd.com" },
-    "usuario10": { pass: "Departamento mental demoníaco", email: "agente@dmd.com" }
+    "sebasbloxbx": { pass: "sebas2026", email: "dev@dmd.com" } 
 };
 
+const BLACKLIST = ["gore", "+18", "xxx", "porno", "hentai", "sangre", "muerte"];
+
+let foroMensajes = JSON.parse(localStorage.getItem('DMD_FORO')) || [
+    { user: "StilexlPlus", msg: "Sistema restaurado al 100%.", date: "07/04/26" },
+    { user: "sebasbloxbx", msg: "Foro y links actualizados.", date: "07/04/26" }
+];
+
 let modoActual = 'login';
+let usuarioActivo = "";
 
 function cambiarModo(modo) {
     modoActual = modo;
     document.getElementById('auth-title').innerText = modo === 'login' ? "INICIAR SESIÓN" : modo === 'registro' ? "REGISTRAR" : "RECUPERAR";
     document.getElementById('email-input').style.display = modo === 'login' ? "none" : "block";
-    document.getElementById('pass-input').placeholder = modo === 'reset' ? "NUEVA CONTRASEÑA" : "CONTRASEÑA";
 }
 
 function procesarAuth() {
@@ -147,24 +163,12 @@ function procesarAuth() {
     const m = document.getElementById('email-input').value;
 
     if (modoActual === 'login') {
-        if (usuarios[u] && usuarios[u].pass === p) { iniciar(u); }
-        else { alert("ERROR: DATOS INCORRECTOS"); }
-    } 
-    else if (modoActual === 'registro') {
-        if (u && p && m) {
-            usuarios[u] = { pass: p, email: m };
-            localStorage.setItem('DMD_DB', JSON.stringify(usuarios));
-            alert("REGISTRO EXITOSO. INICIE SESIÓN.");
-            cambiarModo('login');
-        }
-    }
-    else if (modoActual === 'reset') {
-        if (usuarios[u] && usuarios[u].email === m) {
-            usuarios[u].pass = p;
-            localStorage.setItem('DMD_DB', JSON.stringify(usuarios));
-            alert("CONTRASEÑA ACTUALIZADA");
-            cambiarModo('login');
-        } else { alert("EL CORREO NO COINCIDE"); }
+        if (usuarios[u] && usuarios[u].pass === p) { usuarioActivo = u; iniciar(u); }
+        else { alert("ACCESO DENEGADO"); }
+    } else if (modoActual === 'registro') {
+        if (u && p && m) { usuarios[u] = { pass: p, email: m }; save(); alert("CUENTA CREADA"); cambiarModo('login'); }
+    } else if (modoActual === 'reset') {
+        if (usuarios[u] && usuarios[u].email === m) { usuarios[u].pass = p; save(); alert("CLAVE CAMBIADA"); cambiarModo('login'); }
     }
 }
 
@@ -172,10 +176,33 @@ function iniciar(u) {
     document.getElementById('user-session').innerText = u;
     document.getElementById('auth-overlay').style.display = 'none';
     document.getElementById('main-content').style.display = 'block';
-    setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; }, 50);
+    setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; renderForo(); }, 50);
 }
 
-// Escudo Anti-Hacker
+function renderForo() {
+    const display = document.getElementById('forum-display');
+    display.innerHTML = foroMensajes.map(m => `<div class="post"><i>[${m.date}]</i> <b>${m.user}:</b> ${m.msg}</div>`).join('');
+    display.scrollTop = display.scrollHeight;
+}
+
+function publicarMensaje() {
+    const input = document.getElementById('forum-input');
+    const msg = input.value.toLowerCase();
+    if (msg.trim() !== "") {
+        if (BLACKLIST.some(p => msg.includes(p))) {
+            alert("⚠️ BLOQUEO: Contenido inapropiado detectado.");
+            return;
+        }
+        foroMensajes.push({ user: usuarioActivo, msg: input.value, date: new Date().toLocaleTimeString() });
+        localStorage.setItem('DMD_FORO', JSON.stringify(foroMensajes));
+        input.value = "";
+        renderForo();
+    }
+}
+
+function save() { localStorage.setItem('DMD_DB', JSON.stringify(usuarios)); }
+
+/* ANTI-HACKER */
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
         document.getElementById('hacker-alert').style.display = 'block';

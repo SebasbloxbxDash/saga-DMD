@@ -3,157 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DMD | RESTAURACIÓN COMPLETA 2026</title>
+    <title>SISTEMA DMD | GESTIÓN DE IDENTIDAD</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
         :root { --color-principal: #ff0000; --color-fondo: #050000; }
         body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; overflow-x: hidden; user-select: none; }
 
-        /* --- ACCESO --- */
+        /* --- INTERFAZ DE ACCESO --- */
         #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; }
-        .auth-box { border: 1px solid var(--color-principal); padding: 40px; background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 50px #4a0000; }
-        input { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 15px; font-family: 'Special Elite'; box-sizing: border-box; }
-        button { background: var(--color-principal); color: #000; border: none; padding: 12px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; }
-        .toggle-link { color: #500; font-size: 0.7rem; cursor: pointer; text-decoration: underline; margin-top: 10px; display: block; }
+        .auth-box { border: 1px solid var(--color-principal); padding: 30px; background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 50px #4a0000; }
+        
+        input { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 10px; font-family: 'Special Elite'; box-sizing: border-box; outline: none; }
+        input:focus { border-color: white; }
+        
+        button { background: var(--color-principal); color: #000; border: none; padding: 12px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
+        button:hover { background: white; }
 
-        /* --- DISEÑO GENERAL --- */
+        .link-group { margin-top: 15px; font-size: 0.7rem; }
+        .toggle-link { color: #600; cursor: pointer; text-decoration: underline; margin: 0 5px; }
+
+        /* --- CONTENIDO --- */
         #main-content { display: none; opacity: 0; transition: 2s; padding: 20px; }
-        header { text-align: center; border: 2px double #4a0000; padding: 30px; margin-bottom: 40px; background: rgba(10, 0, 0, 0.8); }
-        .warning-label { background: var(--color-principal); color: #000; padding: 5px 20px; font-weight: bold; text-transform: uppercase; }
-        h2 { border-bottom: 1px solid #4a0000; color: var(--color-principal); text-transform: uppercase; letter-spacing: 2px; margin-top: 50px; padding-bottom: 5px; }
-        .scroll-box { overflow-x: auto; background: #000; border: 1px solid #4a0000; margin-top: 15px; }
-        table { width: 100%; border-collapse: collapse; min-width: 850px; font-size: 0.85rem; }
-        th, td { border: 1px solid #200; padding: 12px; text-align: left; }
-        th { background: #300; color: var(--color-principal); }
-        .card { background: rgba(20, 0, 0, 0.8); padding: 20px; margin-bottom: 20px; border-left: 5px solid #600; }
-        .tag-lost { background: #600; color: #fff; padding: 2px 8px; font-size: 0.7rem; font-weight: bold; }
-        .tag-ok { color: #00ff00; font-weight: bold; border: 1px solid #00ff00; padding: 2px 5px; }
-        .tag-reanimation { color: #ff0000; font-weight: bold; border: 1px solid #ff0000; padding: 2px 5px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-        .btn-video { color: #ff4444; text-decoration: none; font-weight: bold; border: 1px solid #4a0000; padding: 6px 12px; font-size: 0.75rem; background: rgba(50,0,0,0.3); }
-        .forum-container { background: rgba(10, 0, 0, 0.8); border: 1px solid #300; padding: 20px; }
-        .post { border-bottom: 1px solid #200; padding: 10px 0; }
+        .warning-label { background: var(--color-principal); color: #000; padding: 5px 20px; font-weight: bold; display: inline-block; }
+
+        /* --- ALERTA --- */
         #hacker-alert { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: red; color: black; z-index: 99999; text-align: center; padding-top: 20%; font-size: 2rem; font-weight: bold; }
-        footer { text-align: center; padding: 60px; color: #400; font-size: 0.75rem; border-top: 1px solid #200; margin-top: 60px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-<div id="hacker-alert">⚠️ INTRUSIÓN DETECTADA: SISTEMA BLOQUEADO ⚠️</div>
+<div id="hacker-alert">⚠️ ACCESO NO AUTORIZADO DETECTADO ⚠️</div>
 
 <div id="auth-overlay">
-    <div class="auth-box">
-        <div class="warning-label" style="margin-bottom:20px">SISTEMA RESTRINGIDO</div>
+    <div class="auth-box" id="auth-box">
+        <div class="warning-label" style="margin-bottom:20px">TERMINAL DE ACCESO</div>
         <h2 id="auth-title">INICIAR SESIÓN</h2>
-        <input type="text" id="user-input" placeholder="USUARIO / AGENTE">
-        <input type="password" id="pass-input" placeholder="CONTRASEÑA">
-        <button onclick="ejecutarAuth()">ACCEDER AL TERMINAL</button>
-        <p id="error-msg" style="color:red; display:none; font-size:0.7rem; margin-top:10px">❌ ACCESO DENEGADO</p>
-        <span class="toggle-link" id="toggle-text" onclick="toggleAuth()">¿Nuevo sujeto? Crear cuenta</span>
+        
+        <div id="inputs-container">
+            <input type="text" id="user-input" placeholder="USUARIO / AGENTE">
+            <input type="password" id="pass-input" placeholder="CONTRASEÑA">
+            <input type="email" id="email-input" placeholder="CORREO@DMD.GOV" style="display:none;">
+        </div>
+
+        <button onclick="procesarAuth()" id="btn-main">ACCEDER</button>
+        
+        <p id="auth-msg" style="color:red; display:none; font-size:0.7rem; margin-top:10px"></p>
+
+        <div class="link-group">
+            <span class="toggle-link" onclick="cambiarModo('login')">Login</span> |
+            <span class="toggle-link" onclick="cambiarModo('registro')">Registrar</span> |
+            <span class="toggle-link" onclick="cambiarModo('reset')">Recuperar Clave</span>
+        </div>
     </div>
 </div>
 
 <div id="main-content">
-    <header>
-        <div class="warning-label">📑 AUDITORÍA TÉCNICA DMD 2026</div>
-        <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
-        <p>IDENTIDAD: <span id="display-user" style="color:white; text-transform:uppercase;"></span></p>
+    <header style="text-align:center; border:2px double #4a0000; padding:20px; margin-bottom:30px;">
+        <div class="warning-label">SISTEMA DMD 2026</div>
+        <h1>REGISTRO MAESTRO RESTAURADO</h1>
+        <p>AGENTE ACTIVO: <span id="user-session" style="color:white;"></span></p>
+        <button onclick="location.reload()" style="width:auto; padding:5px 15px; font-size:0.6rem;">CERRAR SESIÓN</button>
     </header>
-
-    <div class="container" style="max-width:1100px; margin:0 auto">
-        
-        <h2>🗂️ SECCIÓN I: ARCHIVO HISTÓRICO V1</h2>
-        <div class="scroll-box">
-            <table>
-                <thead><tr><th>SUJETO</th><th>FRECUENCIA</th><th>ESTATUS</th><th>REGISTRO</th></tr></thead>
-                <tbody>
-                    <tr><td>Proyecto Alfa</td><td>Terror</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/1aRzOjynTxw" class="btn-video" target="_blank">VER V1</a></td></tr>
-                    <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/TWe5_23_rd0" class="btn-video" target="_blank">VER V1</a></td></tr>
-                    <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/SbgF-LUdxhU" class="btn-video" target="_blank">VER V1</a></td></tr>
-                    <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/C3jUv1z5kCc" class="btn-video" target="_blank">VER V1</a></td></tr>
-                    <tr><td>Proyecto Omega</td><td>Steel Terror</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/ydFFRSLYgmg" class="btn-video" target="_blank">VER V1</a></td></tr>
-                    <tr><td>Proyecto Final</td><td>At the Speed of Light</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/52AZ2MG33IU" class="btn-video" target="_blank">VER V1</a></td></tr>
-                </tbody>
-            </table>
+    
+    <div style="max-width:900px; margin:auto;">
+        <p>Acceso verificado. Todos los módulos de la saga DMD están disponibles.</p>
         </div>
-
-        <h2>🕒 SECCIÓN II: SERIE "EXPERIMENTO" Y LOST MEDIA</h2>
-        <div class="card">
-            <span class="tag-lost">Rescatado</span>
-            <h3>Experimento Duffy (V3)</h3>
-            <p>V1 Lost Media rescatada en video. 🎵 Frecuencia: <b>Nuke Powder</b></p>
-        </div>
-        <div class="card">
-            <span class="tag-lost">Lost Media</span>
-            <h3>Experimento Mini Mini</h3>
-            <p>V1 inaccesible. 🎵 Frecuencia: <b>Nuke Powder 2</b></p>
-        </div>
-        <div class="card" style="border-left-color:red">
-            <span class="tag-lost" style="background:red">CANCELADO</span>
-            <h3>Origen DMD</h3>
-            <p>Purgado de la línea temporal. 🎵 Canción: <b>Astronaut 13</b></p>
-        </div>
-
-        <h2>📊 SECCIÓN III: REMAKES 2.2</h2>
-        <div class="scroll-box">
-            <table>
-                <thead><tr><th>SUJETO</th><th>NUEVA CANCIÓN</th><th>ESTADO</th><th>LINK</th></tr></thead>
-                <tbody>
-                    <tr><td>Proyecto Alfa</td><td>Cursed</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/8kl_IeFCb8Y" class="btn-video" target="_blank">VER</a></td></tr>
-                    <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/mKHdJxEyPb0" class="btn-video" target="_blank">VER</a></td></tr>
-                    <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/cqxARXV1ECY" class="btn-video" target="_blank">VER</a></td></tr>
-                    <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-reanimation">🔴 EN REANIMACIÓN</span></td><td>-</td></tr>
-                    <tr><td>Proyecto Omega</td><td>Tears of the Damned</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/vHtphwcbXtE" class="btn-video" target="_blank">VER</a></td></tr>
-                    <tr><td>Proyecto Final</td><td>Soulless 5</td><td><span class="tag-ok">✅ SINCRONIZADO</span></td><td><a href="https://youtu.be/7hHWxGLE9iw" class="btn-video" target="_blank">VER</a></td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h2>🔍 SECCIÓN IV: RESOLUCIONES ADMINISTRATIVAS</h2>
-        <div class="card" style="border-left-color:white">
-            <h3>Caso Dindon: Desmentido</h3>
-            <p>Se confirma la inexistencia de Nuke Powder 3. La serie termina en Mini Mini.</p>
-        </div>
-
-        <h2>💬 SECCIÓN V: FOROS DE INTELIGENCIA (BETA)</h2>
-        <div class="forum-container">
-            <div class="post"><b>[Admin] StilexlPlus:</b> Sistema restaurado tras fallo crítico.</div>
-            <div class="post"><b>[Dev] sebasbloxbx:</b> Defensa activa al 100%. Delta sigue en proceso.</div>
-        </div>
-
-        <div style="text-align:center; margin-top:50px">
-            <a href="https://discord.gg/XBnVak8Aj" target="_blank" style="padding:15px 30px; background:black; color:red; border:2px solid red; text-decoration:none;">DISCORD OFICIAL</a>
-        </div>
-    </div>
-    <footer>DMD SYSTEM // 2026</footer>
 </div>
 
 <script>
-let modoRegistro = false;
-const ADMINS = { "stilexlplus": "Departamento mental demoníaco", "sebasbloxbx": "Departamento mental demoníaco", "usuario10": "Departamento mental demoníaco" };
+/* --- BASE DE DATOS LOCAL (SIMULADA) --- */
+let usuarios = {
+    "stilexlplus": { pass: "Departamento mental demoníaco", email: "admin@dmd.com", verificado: true },
+    "sebasbloxbx": { pass: "Departamento mental demoníaco", email: "dev@dmd.com", verificado: true },
+    "usuario10": { pass: "Departamento mental demoníaco", email: "agente10@dmd.com", verificado: true }
+};
 
-function toggleAuth() {
-    modoRegistro = !modoRegistro;
-    document.getElementById('auth-title').innerText = modoRegistro ? "CREAR CUENTA" : "INICIAR SESIÓN";
+let modoActual = 'login';
+
+function cambiarModo(modo) {
+    modoActual = modo;
+    const t = document.getElementById('auth-title');
+    const b = document.getElementById('btn-main');
+    const e = document.getElementById('email-input');
+    const p = document.getElementById('pass-input');
+    const u = document.getElementById('user-input');
+    
+    document.getElementById('auth-msg').style.display = 'none';
+
+    if(modo === 'login') {
+        t.innerText = "INICIAR SESIÓN";
+        b.innerText = "ACCEDER";
+        e.style.display = "none";
+        p.style.display = "block";
+    } else if(modo === 'registro') {
+        t.innerText = "NUEVO REGISTRO";
+        b.innerText = "CREAR CUENTA Y VINCULAR";
+        e.style.display = "block";
+        p.style.display = "block";
+    } else if(modo === 'reset') {
+        t.innerText = "RECUPERAR ACCESO";
+        b.innerText = "VERIFICAR Y CAMBIAR";
+        e.style.display = "block";
+        p.placeholder = "NUEVA CONTRASEÑA";
+        p.style.display = "block";
+    }
 }
 
-function ejecutarAuth() {
+function procesarAuth() {
     const u = document.getElementById('user-input').value.toLowerCase();
     const p = document.getElementById('pass-input').value;
-    if (modoRegistro) { ADMINS[u] = p; alert("REGISTRO EXITOSO"); toggleAuth(); }
-    else {
-        if (ADMINS[u] === p) {
-            document.getElementById('display-user').innerText = u;
-            document.getElementById('auth-overlay').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; }, 50);
-        } else { document.getElementById('error-msg').style.display = 'block'; }
+    const m = document.getElementById('email-input').value;
+    const msg = document.getElementById('auth-msg');
+
+    if(modoActual === 'login') {
+        if(usuarios[u] && usuarios[u].pass === p) {
+            iniciar(u);
+        } else {
+            mostrarError("ERROR: CREDENCIALES INVÁLIDAS");
+        }
+    } 
+    else if(modoActual === 'registro') {
+        if(u && p && m.includes('@')) {
+            usuarios[u] = { pass: p, email: m, verificado: false };
+            const cod = Math.floor(1000 + Math.random() * 9000);
+            alert("CÓDIGO DE VERIFICACIÓN ENVIADO A: " + m + "\nCÓDIGO: " + cod);
+            let check = prompt("INGRESE EL CÓDIGO DE 4 DÍGITOS:");
+            if(check == cod) {
+                usuarios[u].verificado = true;
+                alert("CORREO VERIFICADO. CUENTA VINCULADA.");
+                cambiarModo('login');
+            } else {
+                mostrarError("CÓDIGO INCORRECTO. REGISTRO FALLIDO.");
+            }
+        } else {
+            mostrarError("COMPLETE TODOS LOS CAMPOS");
+        }
     }
+    else if(modoActual === 'reset') {
+        if(usuarios[u] && usuarios[u].email === m) {
+            const cod = Math.floor(1000 + Math.random() * 9000);
+            alert("PROTOCOLO DE RECUPERACIÓN PARA: " + u + "\nCÓDIGO: " + cod);
+            let check = prompt("CONFIRME EL CÓDIGO PARA CAMBIAR CLAVE:");
+            if(check == cod) {
+                usuarios[u].pass = p;
+                alert("CONTRASEÑA ACTUALIZADA CON ÉXITO.");
+                cambiarModo('login');
+            } else {
+                mostrarError("ERROR DE VERIFICACIÓN.");
+            }
+        } else {
+            mostrarError("EL USUARIO Y CORREO NO COINCIDEN.");
+        }
+    }
+}
+
+function mostrarError(txt) {
+    const msg = document.getElementById('auth-msg');
+    msg.innerText = txt;
+    msg.style.display = 'block';
+}
+
+function iniciar(u) {
+    document.getElementById('user-session').innerText = u;
+    document.getElementById('auth-overlay').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+    setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; }, 50);
 }
 
 /* ANTI-HACKER */
 document.onkeydown = function(e) {
-    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) {
+    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
         document.getElementById('hacker-alert').style.display = 'block';
         setTimeout(() => { location.reload(); }, 2000);
         return false;

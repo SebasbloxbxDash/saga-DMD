@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DMD | NÚCLEO TÉCNICO 2026</title>
+    <title>SISTEMA DMD | REGISTRO MAESTRO 2026</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
         :root { --color-principal: #ff0000; --color-fondo: #050000; }
@@ -23,69 +23,86 @@
         /* --- CONTENIDO --- */
         #main-content { display: none; padding: 20px; max-width: 1100px; margin: auto; }
         header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; background: rgba(10,0,0,0.8); }
+        .card { background: rgba(20, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-left: 4px solid #600; line-height: 1.6; }
         
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 10px; background: rgba(10,0,0,0.5); }
         th, td { border: 1px solid #200; padding: 10px; text-align: left; }
         th { background: #200; color: red; text-transform: uppercase; }
 
-        /* --- ESTADOS Y BOTONES --- */
+        /* --- ESTADOS --- */
         .reanimacion { color: #ff0000; font-weight: bold; animation: alert 0.8s infinite; text-shadow: 0 0 8px red; }
         .sincronizado { color: #00ff00; font-weight: bold; text-shadow: 0 0 10px #00ff00; }
-        .denied-btn { background: #200; color: #500; border: 1px solid #300; padding: 6px 12px; font-size: 0.7rem; cursor: not-allowed; display: inline-block; text-transform: uppercase; }
-        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; transition: 0.3s; }
-        .btn-archivo:hover { background: red; color: #000; box-shadow: 0 0 10px red; }
+        .denied-btn { background: #200; color: #500; border: 1px solid #300; padding: 6px 12px; font-size: 0.7rem; cursor: not-allowed; display: inline-block; }
+        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; }
         @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
 <div id="auth-overlay">
     <div class="auth-box">
-        <h2>CENTRAL DMD: ACCESO 2026</h2>
+        <h2>DMD CENTRAL: AUDITORÍA 2026</h2>
         <input type="text" id="user-input" placeholder="USUARIO">
         <input type="password" id="pass-input" placeholder="CONTRASEÑA">
-        <button onclick="login()">INICIAR AUDITORÍA</button>
+        <button onclick="login()">INICIAR REGISTRO MAESTRO</button>
     </div>
 </div>
 
 <div id="main-content">
     <header>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
-        <p>[ ARCHIVO MAESTRO 2026 - NIVEL 5 ]</p>
+        <p><strong>ADMINISTRACIÓN:</strong> StilexlPlus | <strong>DESARROLLO:</strong> sebasbloxbx</p>
+        <p>[ ESTATUS: REGISTRO MAESTRO DE VERSIONES Y TRANSICIÓN SONORA ]</p>
     </header>
 
     <div class="tabs-nav">
         <button class="tab-button active" onclick="verTab('auditoria')">AUDITORÍA (V1/2.2)</button>
-        <button class="tab-button" onclick="verTab('lostmedia')">🕒 SECCIÓN II: LOST MEDIA</button>
+        <button class="tab-button" onclick="verTab('lostmedia')">🕒 LOST MEDIA & PRECUELAS</button>
         <button class="tab-button" onclick="verTab('foro')">FORO</button>
     </div>
 
     <div id="sec-auditoria" class="section-content" style="display:block;">
-        <h2>🗂️ REGISTRO HISTÓRICO V1 (TOTALMENTE PRESERVADO)</h2>
+        <h2>📊 REMAKES Y TRANSICIÓN TÉCNICA (2.2)</h2>
         <table>
-            <thead><tr><th>PROYECTO</th><th>ESTATUS</th><th>EVIDENCIA</th></tr></thead>
+            <thead><tr><th>PROYECTO</th><th>ESTADO</th><th>ESPECIFICACIÓN</th><th>ARCHIVO</th></tr></thead>
             <tbody>
-                <tr><td>DMD Proyecto Alfa (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=1aRzOjynTxw" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Beta (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=TWe5_23_rd0" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Gamma (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=SbgF-LUdxhU" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Delta (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=rMxKo099LUM" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Omega (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=ydFFRSLYgmg" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Final (V1)</td><td>✅ Sincronizado</td><td><a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
+                <tr><td>DMD Proyecto Alfa</td><td>✅ Finalizado</td><td>Remake 2.2</td><td><a href="https://youtu.be/8kl_IeFCb8Y" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Beta</td><td>✅ Finalizado</td><td>Remake 2.2</td><td><a href="https://youtu.be/mKHdJxEyPb0" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Gamma</td><td>✅ Finalizado</td><td>Remake 2.2</td><td><a href="https://youtu.be/cqxARXV1ECY" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Omega</td><td>✅ Finalizado</td><td>Remake 2.2</td><td><a href="https://youtu.be/vHtphwcbXtE" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Delta</td><td><span class="reanimacion">⚠️ 95%</span></td><td>Remake 2.2</td><td><span class="denied-btn">ARCHIVO DENEGADO</span></td></tr>
+                <tr><td>DMD Proyecto Final</td><td><span class="sincronizado">🤝 SINCRONIZADO</span></td><td><strong>COLLAB</strong></td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
             </tbody>
         </table>
 
-        <h2 style="margin-top:30px;">📊 REMAKES ACTUALES (FASE 2.2)</h2>
-        <table>
-            <thead><tr><th>PROYECTO</th><th>ESTADO ACTUAL</th><th>EVIDENCIA</th></tr></thead>
-            <tbody>
-                <tr><td>DMD Proyecto Alfa Remake</td><td>✅ Finalizado</td><td><a href="https://youtu.be/8kl_IeFCb8Y" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Beta Remake</td><td>✅ Finalizado</td><td><a href="https://youtu.be/mKHdJxEyPb0" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Gamma Remake</td><td>✅ Finalizado</td><td><a href="https://youtu.be/cqxARXV1ECY" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Omega Remake</td><td>✅ Finalizado</td><td><a href="https://youtu.be/vHtphwcbXtE" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-                <tr><td>DMD Proyecto Delta Remake</td><td><span class="reanimacion">⚠️ REANIMACIÓN 95%</span></td><td><span class="denied-btn">ARCHIVO DENEGADO</span></td></tr>
-                <tr><td>DMD Proyecto Final Collab</td><td><span class="sincronizado">🤝 SINCRONIZADO</span></td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" target="_blank" class="btn-archivo">VER ARCHIVOS</a></td></tr>
-            </tbody>
-        </table>
+        <div class="card" style="margin-top: 25px; border-left-color: #00ff00;">
+            <h3>🎵 NOTA DE TRANSICIÓN SONORA</h3>
+            <p>La evolución del Departamento marca un cambio hacia la dificultad extrema y la sincronización técnica avanzada:</p>
+            <ul>
+                <li><strong>Omega:</strong> Transición de <em>Steel Terror Supernova</em> a <strong>Tears of the Damned</strong>.</li>
+                <li><strong>Final:</strong> Transición de <em>At the Speed of Light</em> a <strong>Soulless 5</strong>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="sec-lostmedia" class="section-content" style="display:none;">
+        <h2>⏪ PRECUELAS (EXPERIMENTOS MAELUOX)</h2>
+        <div class="card">
+            <h3>Experimento Duffy</h3>
+            <p><strong>Confirmado.</strong> Canción: Nuke Powder. Creador: Maeluox.</p>
+            <a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER ARCHIVOS</a>
+        </div>
+        <div class="card">
+            <h3>Experimento Mini Mini</h3>
+            <p><strong>Desarrollo Confirmado (En Vivo).</strong> Canción: Nuke Powder 2. Creador: Maeluox.</p>
+        </div>
+    </div>
+
+    <div id="sec-foro" class="section-content" style="display:none;">
+        <div style="background:rgba(40,0,0,0.9); padding:100px; text-align:center; border:2px solid red;">
+            <h2 style="color:red; animation:alert 0.5s infinite;">⚠️ ACCESO DENEGADO ⚠️</h2>
+            <p>FORO BAJO RESTRICCIÓN TOTAL DE <strong>STILEXLPLUS</strong></p>
+        </div>
     </div>
 </div>
 
@@ -103,6 +120,7 @@ function verTab(id) {
     document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
     document.getElementById('sec-' + id).style.display = 'block';
+    event.currentTarget.classList.add('active');
 }
 </script>
 </body>

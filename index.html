@@ -13,7 +13,8 @@
         #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; }
         .auth-box { border: 1px solid var(--color-principal); padding: 30px; background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 50px #4a0000; }
         input { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 10px; font-family: 'Special Elite'; text-align: center; outline: none; }
-        button { background: var(--color-principal); color: #000; border: none; padding: 12px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; }
+        button { background: var(--color-principal); color: #000; border: none; padding: 12px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        button:hover { background: #fff; box-shadow: 0 0 20px #fff; }
 
         /* --- NAVEGACIÓN --- */
         .tabs-nav { display: flex; justify-content: center; gap: 10px; padding: 15px; background: #000; border-bottom: 2px solid #300; position: sticky; top: 0; z-index: 100; }
@@ -29,22 +30,27 @@
         th, td { border: 1px solid #200; padding: 10px; text-align: left; }
         th { background: #200; color: red; text-transform: uppercase; }
 
-        /* --- ESTADOS --- */
+        /* --- ESTADOS Y BOTONES --- */
         .reanimacion { color: #ff0000; font-weight: bold; animation: alert 0.8s infinite; text-shadow: 0 0 8px red; }
         .sincronizado { color: #00ff00; font-weight: bold; text-shadow: 0 0 10px #00ff00; }
         .denied-btn { background: #200; color: #500; border: 1px solid #300; padding: 6px 12px; font-size: 0.7rem; cursor: not-allowed; display: inline-block; }
-        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; }
+        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; transition: 0.3s; }
+        .btn-archivo:hover { background: red; color: #000; box-shadow: 0 0 10px red; }
+        
+        .precuela-card { border-left: 4px solid #ff0000; background: rgba(40, 0, 0, 0.6); padding: 15px; margin-bottom: 15px; }
+        .status-lost { color: #ff0000; font-weight: bold; text-transform: uppercase; animation: alert 1s infinite; }
+
         @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
 <div id="auth-overlay">
     <div class="auth-box">
-        <h2>DMD CENTRAL: AUDITORÍA 2026</h2>
+        <h2>CENTRAL DMD: ACCESO 2026</h2>
         <input type="text" id="user-input" placeholder="USUARIO">
         <input type="password" id="pass-input" placeholder="CONTRASEÑA">
-        <button onclick="login()">INICIAR REGISTRO MAESTRO</button>
+        <button onclick="login()">AUDITAR SISTEMA</button>
     </div>
 </div>
 
@@ -56,72 +62,105 @@
     </header>
 
     <div class="tabs-nav">
-        <button class="tab-button active" onclick="verTab('auditoria')">AUDITORÍA (V1/2.2)</button>
-        <button class="tab-button" onclick="verTab('lostmedia')">🕒 LOST MEDIA & PRECUELAS</button>
-        <button class="tab-button" onclick="verTab('foro')">FORO</button>
+        <button id="btn-auditoria" class="tab-button active" onclick="verTab('auditoria')">AUDITORÍA (V1/2.2)</button>
+        <button id="btn-lostmedia" class="tab-button" onclick="verTab('lostmedia')">🕒 SECCIÓN II: LOST MEDIA</button>
+        <button id="btn-foro" class="tab-button" onclick="verTab('foro')">FORO</button>
     </div>
 
     <div id="sec-auditoria" class="section-content" style="display:block;">
-        <h2>📊 REMAKES Y TRANSICIÓN TÉCNICA (2.2)</h2>
+        <h2>📊 REMAKES Y TRANSICIÓN TÉCNICA (FASE 2.2)</h2>
         <table>
-            <thead><tr><th>PROYECTO</th><th>ESTADO</th><th>ESPECIFICACIÓN</th><th>ARCHIVO</th></tr></thead>
+            <thead>
+                <tr><th>PROYECTO</th><th>ESTADO</th><th>ESPECIFICACIÓN</th><th>ARCHIVO</th></tr>
+            </thead>
             <tbody>
-                <tr><td>DMD Proyecto Alfa</td><td>✅ Finalizado</td><td>Remake 2.2</td><td><a href="https://youtu.be/8kl_IeFCb8Y" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Beta</td><td>✅ Finalizado</td><td>Remake 2.2</td><td><a href="https://youtu.be/mKHdJxEyPb0" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Gamma</td><td>✅ Finalizado</td><td>Remake 2.2</td><td><a href="https://youtu.be/cqxARXV1ECY" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Omega</td><td>✅ Finalizado</td><td>Remake 2.2</td><td><a href="https://youtu.be/vHtphwcbXtE" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Delta</td><td><span class="reanimacion">⚠️ 95%</span></td><td>Remake 2.2</td><td><span class="denied-btn">ARCHIVO DENEGADO</span></td></tr>
-                <tr><td>DMD Proyecto Final</td><td><span class="sincronizado">🤝 SINCRONIZADO</span></td><td><strong>COLLAB</strong></td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Alfa</td><td>✅ Finalizado</td><td>Remake 2.2 (Cursed)</td><td><a href="https://youtu.be/8kl_IeFCb8Y" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Beta</td><td>✅ Finalizado</td><td>Remake 2.2 (Cradles)</td><td><a href="https://youtu.be/mKHdJxEyPb0" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Gamma</td><td>✅ Finalizado</td><td>Remake 2.2 (Bonfire)</td><td><a href="https://youtu.be/cqxARXV1ECY" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Omega</td><td>✅ Finalizado</td><td>Remake 2.2 (Tears of the Damned)</td><td><a href="https://youtu.be/vHtphwcbXtE" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Delta</td><td><span class="reanimacion">⚠️ 95%</span></td><td>Remake 2.2 (Stalemate)</td><td><span class="denied-btn">DENEGADO</span></td></tr>
+                <tr><td>DMD Proyecto Final</td><td><span class="sincronizado">🤝 SINCRONIZADO</span></td><td><strong>COLLAB / SOULLESS 5</strong></td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
             </tbody>
         </table>
 
         <div class="card" style="margin-top: 25px; border-left-color: #00ff00;">
-            <h3>🎵 NOTA DE TRANSICIÓN SONORA</h3>
-            <p>La evolución del Departamento marca un cambio hacia la dificultad extrema y la sincronización técnica avanzada:</p>
+            <h3>🎵 EVOLUCIÓN SONORA</h3>
+            <p>El cambio hacia la dificultad extrema se define por la transición técnica de los audios:</p>
             <ul>
-                <li><strong>Omega:</strong> Transición de <em>Steel Terror Supernova</em> a <strong>Tears of the Damned</strong>.</li>
-                <li><strong>Final:</strong> Transición de <em>At the Speed of Light</em> a <strong>Soulless 5</strong>.</li>
+                <li><strong>Omega:</strong> Steel Terror supernova ➔ <strong>Tears of the Damned</strong>.</li>
+                <li><strong>Final:</strong> At the Speed of Light ➔ <strong>Soulless 5</strong>.</li>
             </ul>
         </div>
     </div>
 
     <div id="sec-lostmedia" class="section-content" style="display:none;">
-        <h2>⏪ PRECUELAS (EXPERIMENTOS MAELUOX)</h2>
-        <div class="card">
-            <h3>Experimento Duffy</h3>
-            <p><strong>Confirmado.</strong> Canción: Nuke Powder. Creador: Maeluox.</p>
-            <a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER ARCHIVOS</a>
+        <h2 style="color: #ff0000;">⏮️ PRECUELAS: EXPEDIENTES LOST MEDIA</h2>
+
+        <div class="precuela-card">
+            <h3>🔬 DMD Proyecto Mini Mini (V1)</h3>
+            <p><strong>Clasificación:</strong> Precuela / <span class="status-lost">LOST MEDIA</span></p>
+            <p><strong>Canción:</strong> Nuke Powder 2</p>
+            <p>Archivo original perdido. Representa la fase experimental temprana del Departamento.</p>
         </div>
+
+        <div class="precuela-card">
+            <h3>🧪 DMD Proyecto Duffy (V1)</h3>
+            <p><strong>Clasificación:</strong> Precuela / <span class="status-lost">LOST MEDIA</span></p>
+            <p><strong>Canción:</strong> Nuke Powder</p>
+            <p><strong>Nota:</strong> V1 rescatada parcialmente por <strong>sebasbloxbx</strong> en registro de video.</p>
+            <a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER EVIDENCIA RECUPERADA</a>
+        </div>
+
+        <div class="precuela-card" style="border-left-color: #555;">
+            <h3>🛸 Origen DMD</h3>
+            <p><strong>ESTADO:</strong> <span class="status-lost">CANCELADO / LOST MEDIA</span></p>
+            <p><strong>Canción:</strong> Astronaut 13 (Flashyizz Remix)</p>
+        </div>
+
+        <hr style="border-color: #400; margin: 25px 0;">
+        <h2>🔍 REGISTROS HISTÓRICOS V1 (ANTIGUOS)</h2>
         <div class="card">
-            <h3>Experimento Mini Mini</h3>
-            <p><strong>Desarrollo Confirmado (En Vivo).</strong> Canción: Nuke Powder 2. Creador: Maeluox.</p>
+            <p><strong>DMD Alfa (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=1aRzOjynTxw" target="_blank">Ver Archivo</a></p>
+            <p><strong>DMD Beta (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=TWe5_23_rd0" target="_blank">Ver Archivo</a></p>
+            <p><strong>DMD Gamma (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=SbgF-LUdxhU" target="_blank">Ver Archivo</a></p>
+            <p><strong>DMD Delta (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=rMxKo099LUM" target="_blank">Ver Archivo</a></p>
+            <p><strong>DMD Omega (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=ydFFRSLYgmg" target="_blank">Ver Archivo</a></p>
         </div>
     </div>
 
     <div id="sec-foro" class="section-content" style="display:none;">
         <div style="background:rgba(40,0,0,0.9); padding:100px; text-align:center; border:2px solid red;">
-            <h2 style="color:red; animation:alert 0.5s infinite;">⚠️ ACCESO DENEGADO ⚠️</h2>
-            <p>FORO BAJO RESTRICCIÓN TOTAL DE <strong>STILEXLPLUS</strong></p>
+            <h2 style="color:red; animation: alert 0.5s infinite;">⚠️ ACCESO DENEGADO ⚠️</h2>
+            <p>ESTE SECTOR HA SIDO CLAUSURADO POR ADMINISTRACIÓN:</p>
+            <p><strong>RESTRICCIÓN STILEXLPLUS</strong></p>
         </div>
     </div>
 </div>
 
 <script>
-const db = {"usuario10": "D.M.D", "sebasbloxbx": "sebasbloxbxdash", "stilexlplus": "Departamento mental demoníaco"};
-function login() {
-    const u = document.getElementById('user-input').value;
-    const p = document.getElementById('pass-input').value;
-    if(db[u] === p) {
-        document.getElementById('auth-overlay').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-    } else { alert("ACCESO DENEGADO"); }
-}
-function verTab(id) {
-    document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
-    document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-    document.getElementById('sec-' + id).style.display = 'block';
-    event.currentTarget.classList.add('active');
-}
+    const db = {
+        "usuario10": "D.M.D", 
+        "sebasbloxbx": "sebasbloxbxdash", 
+        "stilexlplus": "Departamento mental demoníaco"
+    };
+
+    function login() {
+        const u = document.getElementById('user-input').value;
+        const p = document.getElementById('pass-input').value;
+        if(db[u] === p) {
+            document.getElementById('auth-overlay').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        } else {
+            alert("ACCESO RECHAZADO: CREDENCIALES INVÁLIDAS");
+        }
+    }
+
+    function verTab(id) {
+        document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
+        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+        document.getElementById('sec-' + id).style.display = 'block';
+        document.getElementById('btn-' + id).classList.add('active');
+    }
 </script>
 </body>
 </html>

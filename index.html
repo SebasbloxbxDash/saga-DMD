@@ -3,131 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DMD | NÚCLEO DE INTELIGENCIA</title>
+    <title>DMD | NÚCLEO DE LORE Y EVIDENCIA</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
-        :root { --color-principal: #ff0000; --color-fondo: #050000; --color-secundario: #1a0000; }
-        body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; overflow-x: hidden; user-select: none; }
-
-        /* --- ACCESO --- */
-        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; }
-        .auth-box { border: 1px solid var(--color-principal); padding: 30px; background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 50px #4a0000; }
-        input, textarea { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 10px; font-family: 'Special Elite'; box-sizing: border-box; outline: none; }
-        button { background: var(--color-principal); color: #000; border: none; padding: 10px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; transition: 0.3s; }
-        button:hover { background: white; }
+        :root { --color-principal: #ff0000; --color-fondo: #050000; }
+        body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; user-select: none; }
 
         /* --- NAVEGACIÓN --- */
-        .tabs-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #300; padding: 10px; sticky: top; background: var(--color-fondo); z-index: 100; }
-        .tab-button { background: none; border: 1px solid #400; color: #600; padding: 8px 15px; cursor: pointer; font-family: 'Special Elite'; width: auto; font-size: 0.8rem; }
-        .tab-button.active { border-color: red; color: red; background: rgba(50,0,0,0.3); box-shadow: 0 0 10px red; }
+        .tabs-nav { display: flex; justify-content: center; gap: 10px; padding: 20px; background: #000; border-bottom: 2px solid #300; position: sticky; top: 0; z-index: 100; }
+        .tab-button { background: none; border: 1px solid #400; color: #600; padding: 10px 15px; cursor: pointer; font-family: 'Special Elite'; font-size: 0.8rem; transition: 0.3s; }
+        .tab-button.active { border-color: red; color: red; box-shadow: 0 0 10px red; }
 
-        .section-content { display: none; animation: fadeIn 0.5s; }
+        /* --- CONTENIDO --- */
+        .section-content { display: none; padding: 20px; max-width: 900px; margin: auto; animation: fadeIn 0.5s; }
         .section-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- ESTILOS DE CONTENIDO --- */
-        #main-content { display: none; padding: 20px; max-width: 1100px; margin: auto; }
-        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; background: var(--color-secundario); }
-        .card { background: rgba(20, 0, 0, 0.6); padding: 15px; margin-bottom: 15px; border-left: 5px solid #600; position: relative; overflow: hidden; }
-        .denied { color: #ff0000; font-weight: bold; background: rgba(255,0,0,0.1); padding: 2px 10px; border: 1px solid red; display: inline-block; margin-top: 5px; animation: blink 1s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 30px; }
+        .card { background: rgba(20, 0, 0, 0.7); padding: 20px; margin-bottom: 20px; border-left: 5px solid #600; }
+        .video-container { margin-top: 15px; border: 1px solid #444; position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
+        .status-denied { color: #ff0000; font-weight: bold; text-transform: uppercase; border: 1px solid red; padding: 2px 10px; display: inline-block; margin-top: 10px; }
+        
         /* --- FORO --- */
-        .forum-box { background: #000; border: 1px solid #300; padding: 15px; height: 400px; overflow-y: auto; margin-bottom: 15px; }
-        .post { border-bottom: 1px solid #200; padding: 15px 0; }
-        .post img { max-width: 100%; border: 1px solid #444; margin-top: 10px; }
-
+        .forum-box { background: #000; border: 1px solid #300; padding: 15px; height: 350px; overflow-y: auto; margin-bottom: 15px; }
+        .post { border-bottom: 1px solid #222; padding: 10px 0; font-size: 0.9rem; }
+        
         #hacker-alert { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: red; color: black; z-index: 99999; text-align: center; padding-top: 20%; font-size: 2rem; font-weight: bold; }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-<div id="hacker-alert">⚠️ INTRUSIÓN DETECTADA - SISTEMA BLOQUEADO ⚠️</div>
-
-<div id="auth-overlay">
-    <div class="auth-box">
-        <h2 id="auth-title">SISTEMA DMD 2026</h2>
-        <input type="text" id="user-input" placeholder="IDENTIFICACIÓN AGENTE">
-        <input type="password" id="pass-input" placeholder="CLAVE DE ACCESO">
-        <button onclick="procesarAuth()">INGRESAR AL NÚCLEO</button>
-        <p id="login-err" style="color:red; font-size:0.7rem; display:none;">CREDENTIALS ERROR</p>
-        <div style="margin-top:10px; font-size:0.6rem; color:#444">
-            <span onclick="cambiarModo('login')" style="cursor:pointer">LOGIN</span> | 
-            <span onclick="cambiarModo('registro')" style="cursor:pointer">REGISTRO</span>
-        </div>
-    </div>
-</div>
+<div id="hacker-alert">⚠️ SISTEMA COMPROMETIDO: BLOQUEO DE SEGURIDAD ⚠️</div>
 
 <div id="main-content">
     <header>
-        <div style="font-size:0.7rem; color:red;">[ ENCRYPTED CONNECTION ]</div>
+        <div style="color:red; font-size:0.7rem;">[ ARCHIVO HISTÓRICO DMD - SOLO LORE ]</div>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
-        <p>OPERADOR: <span id="user-session" style="color:white; letter-spacing:3px;"></span></p>
+        <p>CONEXIÓN ESTABLECIDA // OPERADOR: <span id="user-display">SEBASBLOXBX</span></p>
     </header>
 
     <div class="tabs-nav">
-        <button class="tab-button active" onclick="verSeccion('saga')">ESTADO SAGA</button>
-        <button class="tab-button" onclick="verSeccion('lore')">ARCHIVOS CLASIFICADOS</button>
-        <button class="tab-button" onclick="verSeccion('foro')">CENTRO DE REPORTES</button>
+        <button class="tab-button active" onclick="verSeccion('cronologia')">CRONOLOGÍA VIDEO</button>
+        <button class="tab-button" onclick="verSeccion('profundo')">LORE PROFUNDO</button>
+        <button class="tab-button" onclick="verSeccion('reportes')">CENTRO DE REPORTES</button>
     </div>
 
-    <div id="seccion-saga" class="section-content active">
-        <h2>📂 REGISTROS DE SUJETOS</h2>
-        <div class="card"><h3>V1: Auditoría Completa</h3><p>Alfa a Final: Preservados en el servidor maestro.</p></div>
-        <div class="card"><h3>Remakes 2.2: Estatus</h3><p>Sujeto Delta: <span style="color:red; animation: blink 2s infinite;">REANIMACIÓN EN CURSO...</span></p></div>
-    </div>
-
-    <div id="seccion-lore" class="section-content">
-        <h2>📁 EXPEDIENTES MULTIMEDIA</h2>
+    <div id="seccion-cronologia" class="section-content active">
+        <h2>🎞️ REGISTRO DE EVIDENCIA MULTIMEDIA</h2>
         
         <div class="card">
-            <h3>PROYECTO ALFA & OMEGA</h3>
-            <p>Lore: Origen de la primera frecuencia mental detectada en 2021.</p>
-            <div class="denied">ACCESO DENEGADO - NIVEL 5 REQUERIDO</div>
+            <h3>REMAKES 2.2 (ERA ACTUAL)</h3>
+            <p>Evolución de las frecuencias mentales con tecnología moderna.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/7hHWxGLE9iw" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
 
-        <div class="card" style="border-left-color: #555;">
-            <h3>LORE: LOS PAYASOS DE LA DEEP WEB</h3>
-            <p>Información: Entidades vinculadas a la frecuencia "Nuke Powder". Se rumorea su presencia en los servidores de Mini Mini.</p>
-            <p style="color:#600; font-size:0.8rem;">Estatus: <span style="color:red;">EN VIGILANCIA</span></p>
-        </div>
-
-        <div id="lugares" class="card">
-            <h3>LOCALIZACIONES MARCADAS</h3>
-            <ul>
-                <li>Sector V1: Antiguo servidor DMD (Inaccesible)</li>
-                <li>Laboratorio Delta: [COORDENADAS BORRADAS]</li>
-                <li>Red Profunda: Nodo Payasos_Data</li>
-            </ul>
+        <div class="card">
+            <h3>ARCHIVOS V1 (ORIGINALES)</h3>
+            <p>Los primeros registros capturados por el Departamento. Estilo crudo y experimental.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/52AZ2MG33IU" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 
-    <div id="seccion-foro" class="section-content">
-        <h2>💬 TRANSMISIÓN DE EVIDENCIA</h2>
+    <div id="seccion-profundo" class="section-content">
+        <h2>📁 EXPEDIENTES CLASIFICADOS</h2>
+        
+        <div class="card">
+            <h3>LOS PAYASOS DE LA RED PROFUNDA</h3>
+            <p>Entidades que operan bajo la frecuencia <b>Nuke Powder</b>. No son humanos, son manifestaciones de datos corruptos que buscan "sincronizar" con la mente del espectador.</p>
+            <div class="status-denied">IDENTIDAD: ACCESO DENEGADO</div>
+        </div>
+
+        <div class="card" style="border-left-color: #444;">
+            <h3>ORIGEN DEL DMD</h3>
+            <p>El Departamento no fue creado, fue "encontrado" tras el experimento fallido <i>Astronaut 13</i>. Los videos son la única forma de contener la brecha.</p>
+            <p><b>Lugares:</b> El Nodo Ciego y el Laboratorio Delta.</p>
+        </div>
+    </div>
+
+    <div id="seccion-reportes" class="section-content">
+        <h2>💬 CENTRO DE INTELIGENCIA</h2>
         <div class="forum-box" id="forum-display"></div>
         
-        <div class="card" style="border-left-color: #ff0000; background: #0a0000;">
-            <p style="font-size:0.7rem; color:#555;">⚠️ FILTRO ACTIVO: ANTI-BULLYING / GORE / +18 / LINKS EXTERNOS ⚠️</p>
-            <textarea id="forum-input" placeholder="Reportar evidencia o pegar URL de imagen/video..."></textarea>
-            <button onclick="publicarMensaje()">ENVIAR A INTELIGENCIA</button>
+        <div class="card" style="border-left-color: red;">
+            <p style="font-size:0.7rem; color:#666;">🛡️ FILTRO: ANTI-BULLYING / GORE / +18 / LINKS DAÑINOS [ACTIVO]</p>
+            <textarea id="forum-input" placeholder="Escribir reporte de lore o evidencia visual..."></textarea>
+            <button onclick="publicarMensaje()" style="width:100%; background:red; color:black; font-weight:bold; border:none; padding:10px; cursor:pointer;">ENVIAR TRANSMISIÓN</button>
         </div>
-    </div>
-
-    <div style="text-align:center; margin-top:20px;">
-        <button onclick="location.reload()" style="width:auto; background:none; color:#400; border:1px solid #400; font-size:0.6rem;">CERRAR TERMINAL</button>
     </div>
 </div>
 
 <script>
-// Lógica de base de datos
-let usuarios = JSON.parse(localStorage.getItem('DMD_DB')) || {
-    "stilexlplus": { pass: "Departamento mental demoníaco" },
-    "sebasbloxbx": { pass: "sebas2026" }
-};
-
-let foroMensajes = JSON.parse(localStorage.getItem('DMD_FORO')) || [];
-let usuarioActivo = "";
-let modoAuth = 'login';
+let foroMensajes = JSON.parse(localStorage.getItem('DMD_LORE_FORO')) || [
+    { user: "StilexlPlus", msg: "Bienvenidos al archivo de Lore. Mantengan el orden.", date: "07/04/26" },
+    { user: "sebasbloxbx", msg: "He subido los archivos de los payasos. Revisen con cuidado.", date: "07/04/26" }
+];
 
 // Navegación
 function verSeccion(id) {
@@ -137,17 +112,17 @@ function verSeccion(id) {
     event.currentTarget.classList.add('active');
 }
 
-// Filtros y Seguridad
-const BLACKLIST = ["gore", "+18", "xxx", "sangre", "muerte", "suicidio", "pendejo", "estupido", "manco", "idiota", "puto"];
+// Filtro de Seguridad (Gore, +18, Bullying)
+const BLACKLIST = ["gore", "+18", "xxx", "sangre", "muerte", "suicidio", "idiota", "manco", "pendejo", "puto", "basura"];
 
 function publicarMensaje() {
     const input = document.getElementById('forum-input');
     const msg = input.value.trim();
+    
     if (!msg) return;
 
-    // Validación Anti-Bullying / Gore / +18
     if (BLACKLIST.some(p => msg.toLowerCase().includes(p))) {
-        alert("⚠️ VIOLACIÓN DE PROTOCOLO: El mensaje contiene términos prohibidos o contenido violento.");
+        alert("⚠️ PROTOCOLO DE SEGURIDAD: El mensaje infringe las normas de convivencia (No Gore / No Bullying).");
         return;
     }
 
@@ -157,14 +132,14 @@ function publicarMensaje() {
 
     if (imgRegex.test(msg)) {
         const url = msg.match(imgRegex)[0];
-        finalMsg = msg.replace(url, '') + `<br><img src="${url}" style="max-width:100%; border:1px solid #400;">`;
+        finalMsg = msg.replace(url, '') + `<br><img src="${url}" style="max-width:100%; border:1px solid #444; margin-top:10px;">`;
     } else if (ytRegex.test(msg)) {
         const id = msg.match(ytRegex)[1].split('&')[0];
-        finalMsg = msg.replace(ytRegex, '') + `<br><iframe width="100%" height="220" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
+        finalMsg = msg.replace(ytRegex, '') + `<br><iframe width="100%" height="200" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
     }
 
-    foroMensajes.push({ user: usuarioActivo, msg: finalMsg, date: new Date().toLocaleString() });
-    localStorage.setItem('DMD_FORO', JSON.stringify(foroMensajes));
+    foroMensajes.push({ user: "AGENTE", msg: finalMsg, date: new Date().toLocaleString() });
+    localStorage.setItem('DMD_LORE_FORO', JSON.stringify(foroMensajes));
     input.value = "";
     renderForo();
 }
@@ -173,43 +148,16 @@ function renderForo() {
     const d = document.getElementById('forum-display');
     d.innerHTML = foroMensajes.map(m => `
         <div class="post">
-            <b style="color:red; font-size:0.7rem;">[${m.user.toUpperCase()}]</b> 
-            <i style="font-size:0.5rem; color:#444;">${m.date}</i>
+            <b style="color:red; font-size:0.7rem;">[${m.user}]</b> <i style="font-size:0.5rem; color:#444;">${m.date}</i>
             <div style="color:#bbb; margin-top:5px; font-size:0.85rem;">${m.msg}</div>
         </div>
     `).join('');
     d.scrollTop = d.scrollHeight;
 }
 
-function procesarAuth() {
-    const u = document.getElementById('user-input').value.toLowerCase();
-    const p = document.getElementById('pass-input').value;
-    const err = document.getElementById('login-err');
+renderForo();
 
-    if(modoAuth === 'login') {
-        if (usuarios[u] && usuarios[u].pass === p) {
-            usuarioActivo = u;
-            document.getElementById('user-session').innerText = u;
-            document.getElementById('auth-overlay').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            renderForo();
-        } else { err.style.display = 'block'; }
-    } else {
-        if(u && p) {
-            usuarios[u] = { pass: p };
-            localStorage.setItem('DMD_DB', JSON.stringify(usuarios));
-            alert("AGENTE REGISTRADO. INICIE SESIÓN.");
-            cambiarModo('login');
-        }
-    }
-}
-
-function cambiarModo(m) {
-    modoAuth = m;
-    document.getElementById('auth-title').innerText = m === 'login' ? "SISTEMA DMD 2026" : "NUEVO REGISTRO";
-}
-
-// Anti-Hacker
+// Escudo Anti-Hacker
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
         document.getElementById('hacker-alert').style.display = 'block';

@@ -33,8 +33,8 @@
         .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; }
         .denied-btn { background: #200; color: #500; border: 1px solid #300; padding: 6px 12px; font-size: 0.7rem; cursor: not-allowed; display: inline-block; }
         
-        .lost-media-card { border-left: 4px solid #ff0000; background: rgba(40, 0, 0, 0.6); padding: 15px; margin-bottom: 15px; }
-        .precuela-tag { color: #00ff00; font-size: 0.7rem; letter-spacing: 1px; border: 1px solid #00ff00; padding: 2px 5px; margin-left: 10px; }
+        .lost-media-card { border-left: 4px solid #ff0000; background: rgba(25, 0, 0, 0.8); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
+        .precuela-tag { color: #00ff00; font-size: 0.7rem; letter-spacing: 1px; border: 1px solid #00ff00; padding: 2px 5px; margin-left: 10px; font-weight: bold; }
         @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
@@ -42,10 +42,10 @@
 
 <div id="auth-overlay">
     <div class="auth-box">
-        <h2>CENTRAL DMD: ACCESO TOTAL</h2>
+        <h2>CENTRAL DMD: ACCESO NIVEL 5</h2>
         <input type="text" id="user-input" placeholder="USUARIO">
         <input type="password" id="pass-input" placeholder="CONTRASEÑA">
-        <button onclick="login()">RESTAURAR REGISTRO MAESTRO</button>
+        <button onclick="login()">EJECUTAR REGISTRO MAESTRO</button>
     </div>
 </div>
 
@@ -53,18 +53,18 @@
     <header>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
         <p><strong>ADMINISTRACIÓN:</strong> StilexlPlus | <strong>DESARROLLO:</strong> sebasbloxbx</p>
-        <p>[ REGISTRO MAESTRO 2026: V1, 2.2 Y EXPERIMENTOS ]</p>
+        <p>[ SISTEMA DE ARCHIVOS 2026: V1, REMAKES Y PRECUELAS ]</p>
     </header>
 
     <div class="tabs-nav">
         <button id="btn-auditoria" class="tab-button active" onclick="verTab('auditoria')">AUDITORÍA (V1/2.2)</button>
-        <button id="btn-lostmedia" class="tab-button" onclick="verTab('lostmedia')">🕒 SECCIÓN II: PRECUELAS & LOST MEDIA</button>
+        <button id="btn-lostmedia" class="tab-button" onclick="verTab('lostmedia')">🕒 SECCIÓN II: LOST MEDIA & PRECUELAS</button>
         <button id="btn-foro" class="tab-button" onclick="verTab('foro')">FORO</button>
     </div>
 
     <div id="sec-auditoria" class="section-content" style="display:block;">
         
-        <h2>📂 VERSIONES V1 (ANTIGUAS PRESERVADAS)</h2>
+        <h2>📂 VERSIONES V1 (PRESERVADAS)</h2>
         <table>
             <thead><tr><th>PROYECTO V1</th><th>ESTATUS</th><th>ARCHIVO</th></tr></thead>
             <tbody>
@@ -77,7 +77,7 @@
             </tbody>
         </table>
 
-        <h2 style="margin-top:30px;">📊 REMAKES 2.2</h2>
+        <h2 style="margin-top:30px;">📊 REMAKES 2.2 (SINC TOTAL)</h2>
         <table>
             <thead><tr><th>PROYECTO</th><th>ESTADO</th><th>ARCHIVO</th></tr></thead>
             <tbody>
@@ -92,30 +92,38 @@
     </div>
 
     <div id="sec-lostmedia" class="section-content" style="display:none;">
-        <h2 style="color: #ff0000;">⚠️ EXPEDIENTES EXPERIMENTALES</h2>
+        <h2 style="color: #ff0000;">⚠️ EXPEDIENTES DE LOST MEDIA & PRECUELAS</h2>
         
         <div class="lost-media-card" style="border-left-color: #00ff00;">
             <h3>🧪 Experimento Duffy <span class="precuela-tag">PRECUELA</span></h3>
-            <p><strong>Estatus:</strong> Construcción Confirmada.</p>
+            <p><strong>Basado en:</strong> DMD Proyecto Duffy (V1/V2).</p>
+            <p><strong>Estatus:</strong> La V1 es Lost Media (Rescatada por Sebas en video).</p>
             <p><strong>Canción:</strong> Nuke Powder</p>
         </div>
 
         <div class="lost-media-card" style="border-left-color: #ffaa00;">
             <h3>🔬 Experimento Mini Mini <span class="precuela-tag">PRECUELA</span></h3>
-            <p><strong>Estatus:</strong> Avistado en En Vivo de Sebas.</p>
+            <p><strong>Basado en:</strong> DMD Proyecto Mini (V1).</p>
+            <p><strong>Estatus:</strong> La V1 es Lost Media.</p>
             <p><strong>Canción:</strong> Nuke Powder 2</p>
         </div>
 
+        <div class="lost-media-card" style="border-left-color: #555;">
+            <h3>🛸 Origen DMD</h3>
+            <p><strong>Estado:</strong> CANCELADO / LOST MEDIA</p>
+            <p><strong>Canción:</strong> Astronaut 13 (Flashyizz Remix)</p>
+        </div>
+
         <div class="lost-media-card">
-            <h3>🤡 DMD Proyecto Alfa (Versión Broma)</h3>
-            <p><strong>ESTADO:</strong> LOST MEDIA.</p>
+            <h3>🤡 DMD Proyecto Alfa (Broma)</h3>
+            <p><strong>Estatus:</strong> Versión antigua descartada / LOST MEDIA.</p>
         </div>
     </div>
 
     <div id="sec-foro" class="section-content" style="display:none;">
         <div style="background:rgba(40,0,0,0.9); padding:100px; text-align:center; border:2px solid red;">
             <h2 style="color:red;">⚠️ ACCESO DENEGADO ⚠️</h2>
-            <p>PROPIEDAD DE <strong>STILEXLPLUS</strong></p>
+            <p>RESTRICCIÓN PARA: <strong>STILEXLPLUS</strong></p>
         </div>
     </div>
 </div>
@@ -128,7 +136,7 @@
         if(db[u] === p) {
             document.getElementById('auth-overlay').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
-        } else { alert("ERROR DE CREDENCIALES"); }
+        } else { alert("ERROR DE ACCESO: CREDENCIALES INVÁLIDAS"); }
     }
     function verTab(id) {
         document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');

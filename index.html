@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DMD | AUDITORÍA FINAL 2026</title>
+    <title>SISTEMA DMD | ACCESO RESTRINGIDO</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
@@ -11,7 +11,6 @@
             --color-principal: #ff0000;
             --color-secundario: #b30000;
             --color-fondo: #050000;
-            --color-texto: #eee;
         }
 
         body { 
@@ -20,8 +19,40 @@
             font-family: 'Special Elite', monospace; 
             margin: 0; padding: 20px; 
             background-image: radial-gradient(circle, #0f0000 0%, #000000 100%);
-            line-height: 1.4;
+            overflow-x: hidden;
         }
+
+        /* --- ESTILOS DEL LOGIN --- */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 10000; display: flex;
+            align-items: center; justify-content: center; flex-direction: column;
+            transition: 0.8s;
+        }
+
+        .login-box {
+            border: 1px solid var(--color-principal); padding: 40px;
+            background: rgba(20, 0, 0, 0.9); box-shadow: 0 0 40px #4a0000;
+            text-align: center; max-width: 400px; width: 90%;
+        }
+
+        .login-box input {
+            display: block; width: 100%; background: #000;
+            border: 1px solid #4a0000; color: var(--color-principal);
+            padding: 12px; margin-bottom: 15px; font-family: 'Special Elite';
+            box-sizing: border-box; outline: none;
+        }
+
+        .login-box button {
+            background: var(--color-principal); color: #000; border: none;
+            padding: 12px; font-family: 'Special Elite'; font-weight: bold;
+            cursor: pointer; width: 100%; transition: 0.3s;
+        }
+
+        .login-box button:hover { background: #fff; box-shadow: 0 0 20px #fff; }
+
+        /* --- ESTILOS DEL REPORTE --- */
+        #main-content { display: none; opacity: 0; transition: 1.5s; }
 
         header { 
             text-align: center; border: 2px double #4a0000; padding: 30px; 
@@ -32,14 +63,10 @@
         .warning-label { 
             background: var(--color-principal); color: #000; padding: 5px 20px; 
             font-weight: bold; display: inline-block; text-transform: uppercase; 
-            margin-bottom: 15px; font-size: 0.9rem; border-radius: 2px;
+            margin-bottom: 15px; font-size: 0.9rem;
         }
 
-        h2 { 
-            border-bottom: 1px solid #4a0000; color: var(--color-principal); 
-            text-transform: uppercase; letter-spacing: 2px; margin-top: 50px; 
-            padding-bottom: 10px; text-shadow: 0 0 10px rgba(255,0,0,0.3);
-        }
+        h2 { border-bottom: 1px solid #4a0000; color: var(--color-principal); text-transform: uppercase; letter-spacing: 2px; margin-top: 50px; padding-bottom: 10px; }
 
         .scroll-box { overflow-x: auto; background: #000; border: 1px solid #4a0000; margin-top: 15px; }
 
@@ -47,157 +74,141 @@
         th, td { border: 1px solid #200; padding: 12px; text-align: left; }
         th { background: #300; color: var(--color-principal); text-transform: uppercase; }
 
-        .card { 
-            background: rgba(20, 0, 0, 0.8); padding: 20px; margin-bottom: 20px; 
-            border-left: 5px solid #600; position: relative; border-right: 1px solid #200;
-        }
-
+        .card { background: rgba(20, 0, 0, 0.8); padding: 20px; margin-bottom: 20px; border-left: 5px solid #600; }
+        
         .tag { font-weight: bold; padding: 3px 10px; font-size: 0.7rem; border-radius: 3px; text-transform: uppercase; display: inline-block; margin-bottom: 10px; }
         .tag-lost { background: #600; color: #fff; }
-        .tag-change { background: #f1c40f; color: #000; }
         .tag-ok { color: #00ff00; font-weight: bold; border: 1px solid #00ff00; padding: 2px 5px; }
         .tag-reanimation { color: #ff0000; font-weight: bold; border: 1px solid #ff0000; padding: 2px 5px; animation: pulse 1.5s infinite; }
 
         @keyframes pulse {
-            0% { opacity: 1; box-shadow: 0 0 2px #f00; }
-            50% { opacity: 0.4; box-shadow: 0 0 10px #f00; }
-            100% { opacity: 1; box-shadow: 0 0 2px #f00; }
+            0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; }
         }
 
-        .btn-video { 
-            color: #ff4444; text-decoration: none; font-weight: bold; 
-            border: 1px solid #4a0000; padding: 6px 12px; 
-            background: rgba(139, 0, 0, 0.1); transition: 0.3s; font-size: 0.75rem;
-        }
-        .btn-video:hover { background: var(--color-principal); color: #000; box-shadow: 0 0 15px #f00; }
+        .btn-video { color: #ff4444; text-decoration: none; font-weight: bold; border: 1px solid #4a0000; padding: 6px 12px; font-size: 0.75rem; }
+        
+        .conclusion-box { background: rgba(40, 0, 0, 0.5); border: 2px double #ff0000; padding: 25px; margin-top: 40px; }
 
-        .conclusion-box {
-            background: rgba(40, 0, 0, 0.5); border: 2px double #ff0000;
-            padding: 25px; margin-top: 40px; font-size: 0.95rem; color: #eee;
-            border-radius: 5px; line-height: 1.6;
-        }
+        .btn-discord { display: inline-block; background: #000; color: #fff; border: 2px solid #ff0000; padding: 20px 45px; text-decoration: none; font-weight: bold; letter-spacing: 3px; }
 
-        .discord-section {
-            text-align: center; margin-top: 50px; padding: 30px; 
-            border: 1px dashed #ff0000; background: rgba(15, 0, 0, 0.8);
-        }
-
-        .btn-discord {
-            display: inline-block; background: #000; color: #fff; border: 2px solid #ff0000; 
-            padding: 20px 45px; text-decoration: none; font-weight: bold; 
-            text-transform: uppercase; letter-spacing: 3px; transition: 0.4s;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-        }
-        .btn-discord:hover { background: #ff0000; color: #000; transform: scale(1.05); }
-
-        footer { text-align: center; padding: 60px; color: #400; font-size: 0.75rem; border-top: 1px solid #200; margin-top: 60px; letter-spacing: 2px; }
+        footer { text-align: center; padding: 60px; color: #400; font-size: 0.75rem; border-top: 1px solid #200; margin-top: 60px; }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="warning-label">📑 REPORTE DE AUDITORÍA TÉCNICA</div>
-    <h1>DEPARTAMENTO MENTAL DEMONÍACO (DMD)</h1>
-    <p style="color: #888;">Administración: <b>StilexlPlus</b> | Desarrollo y Remakes: <b>sebasbloxbx</b></p>
-    <p style="font-size: 0.8rem; margin-top: 10px;">Estatus: Registro Maestro de Versiones y Transición Sonora // 2026</p>
-</header>
-
-<div class="container" style="max-width: 1100px; margin: 0 auto;">
-
-    <h2>🗂️ SECCIÓN I: ARCHIVO HISTÓRICO DE VERSIONES ORIGINALES (V1)</h2>
-    <div class="scroll-box">
-        <table>
-            <thead>
-                <tr>
-                    <th>SUJETO / PROYECTO</th>
-                    <th>FRECUENCIA SONORA</th>
-                    <th>ESTATUS</th>
-                    <th>REGISTRO DE VIDEO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>DMD Proyecto Alfa</td><td>Terror (DemonCity)</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/1aRzOjynTxw" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
-                <tr><td>DMD Proyecto Beta</td><td>Cradles (Sub Urban)</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/TWe5_23_rd0" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
-                <tr><td>DMD Proyecto Gamma</td><td>Bonfire (Knife Party)</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/SbgF-LUdxhU" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
-                <tr><td>DMD Proyecto Delta</td><td>Stalemate</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/C3jUv1z5kCc" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
-                <tr><td>DMD Proyecto Omega</td><td>Steel Terror supernova</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/ydFFRSLYgmg" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
-                <tr><td>DMD Proyecto Final</td><td>At the Speed of Light</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/52AZ2MG33IU" class="btn-video" target="_blank">[ 🔴 VER V1 ]</a></td></tr>
-            </tbody>
-        </table>
+<div id="login-overlay">
+    <div class="login-box">
+        <div class="warning-label" style="margin-bottom: 25px;">SISTEMA BLOQUEADO</div>
+        <h2 style="margin-top: 0; font-size: 1.2rem; border: none;">IDENTIFICACIÓN REQUERIDA</h2>
+        
+        <input type="text" id="user-input" placeholder="USUARIO">
+        <input type="password" id="pass-input" placeholder="CONTRASEÑA">
+        
+        <button onclick="verificarAcceso()">INICIAR SESIÓN</button>
+        
+        <p id="error-msg" style="color: #ff0000; font-size: 0.7rem; margin-top: 15px; display: none; font-weight: bold;">❌ ACCESO DENEGADO. CREDENCIALES INCORRECTAS.</p>
     </div>
-
-    <h2>⚠️ SECCIÓN II: DOCUMENTACIÓN DE PRECUELAS Y LOST MEDIA</h2>
-    
-    <div class="card">
-        <span class="tag tag-lost">Lost Media Rescatado</span>
-        <h3>Experimento Duffy (V3)</h3>
-        <p>Basado en DMD Proyecto Duffy (V1/V2). La versión V1 es Lost Media, rescatada mediante registros externos de video.</p>
-        <p style="color: #888;">🎵 Canción: <b>Nuke Powder</b> | <a href="https://youtu.be/jJyvanYn7Ho" style="color:#f00" target="_blank">Acceder a Rescate</a></p>
-    </div>
-
-    <div class="card">
-        <span class="tag tag-lost">Lost Media</span>
-        <h3>Experimento Mini Mini</h3>
-        <p>Proyecto basado en DMD Proyecto Mini (V1). La V1 permanece inaccesible en los servidores públicos.</p>
-        <p style="color: #888;">🎵 Canción: <b>Nuke Powder 2</b></p>
-    </div>
-
-    <div class="card" style="border-left-color: #ff0000;">
-        <span class="tag" style="background:#000; color:#f00; border:1px solid #f00;">CANCELADO / INEXISTENTE</span>
-        <h3>Origen DMD / Experimento DinDon</h3>
-        <p><b>Origen:</b> Cancelado. <b>DinDon:</b> Confirmado como inexistente al no detectarse la frecuencia "Nuke Powder 3".</p>
-        <p style="color: #888;">🎵 Canción: <b>Astronaut 13 (Flashyizz Remix)</b></p>
-    </div>
-
-    <div class="card" style="border-left-color: #3498db;">
-        <span class="tag" style="background:#3498db; color:#fff;">ERROR DE HARDWARE</span>
-        <h3>DMD Proyecto Alfa (Versión Broma)</h3>
-        <p>Nivel satírico perdido definitivamente tras un cambio de teléfono sin respaldo de datos del terminal antiguo.</p>
-    </div>
-
-    <h2>📊 SECCIÓN III: ESTADO DE REMAKES Y PRODUCCIÓN ACTUAL (2.2)</h2>
-    <div class="scroll-box">
-        <table>
-            <thead>
-                <tr>
-                    <th>SUJETO (REMAKE)</th>
-                    <th>NUEVA FRECUENCIA</th>
-                    <th>ESTADO</th>
-                    <th>REGISTRO ACTUALIZADO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Proyecto Alfa</td><td>Cursed</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/8kl_IeFCb8Y" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
-                <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/mKHdJxEyPb0" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
-                <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/cqxARXV1ECY" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
-                <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-reanimation">🔴 EN REANIMACIÓN</span></td><td><span style="color:#444;">[ PROCESANDO... ]</span></td></tr>
-                <tr><td>Proyecto Omega</td><td>Tears of the Damned</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/vHtphwcbXtE" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
-                <tr><td>Proyecto Final</td><td>Soulless 5</td><td><span class="tag-ok">✅ SINCRONIZADO</span></td><td><a href="https://youtu.be/7hHWxGLE9iw" class="btn-video" target="_blank">[ 📡 VER REMAKE ]</a></td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="conclusion-box">
-        <h3 style="color: #ff0000; margin-top: 0;">📉 CONCLUSIÓN DE EVOLUCIÓN SONORA</h3>
-        <p>La transición de <b>Steel Terror supernova</b> a <b>Tears of the Damned (Omega)</b> y de <b>At the Speed of Light</b> a <b>Soulless 5 (Final)</b> marca el cambio hacia un estilo de dificultad extrema y sincronización técnica milimétrica.</p>
-        <hr style="border: 0; border-top: 1px solid #4a0000; margin: 15px 0;">
-        <p style="text-align: center; font-weight: bold; margin-bottom: 0;">
-            FIN DEL REPORTE OFICIAL <br>
-            Autenticado por: Sistema de Gestión de Activos DMD - 2026
-        </p>
-    </div>
-
-    <div class="discord-section">
-        <p style="color: #ff4444; font-size: 0.75rem; margin-bottom: 20px; text-transform: uppercase;">⚠️ PROTOCOLO DE COMUNICACIÓN EXTERNA ACTIVADO ⚠️</p>
-        <a href="https://discord.gg/XBnVak8Aj" target="_blank" class="btn-discord">INGRESAR AL DISCORD OFICIAL</a>
-        <p style="color: #400; font-size: 0.65rem; margin-top: 15px;">ID ENLACE: XBnVak8Aj // ACCESO NIVEL 5</p>
-    </div>
-
 </div>
 
-<footer>
-    DMD AUDIT SYSTEM // REGISTRO MAESTRO SINCRO // CUARTEL CENTRAL // 2026
-</footer>
+<div id="main-content">
+    <header>
+        <div class="warning-label">📑 AUDITORÍA TÉCNICA DMD</div>
+        <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
+        <p style="color: #888;">Administración: <b>StilexlPlus</b> | Desarrollo: <b>sebasbloxbx</b></p>
+    </header>
+
+    <div class="container" style="max-width: 1100px; margin: 0 auto;">
+
+        <h2>🗂️ SECCIÓN I: ARCHIVO HISTÓRICO V1</h2>
+        <div class="scroll-box">
+            <table>
+                <thead>
+                    <tr><th>PROYECTO</th><th>FRECUENCIA</th><th>ESTATUS</th><th>REGISTRO</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Proyecto Alfa</td><td>Terror</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/1aRzOjynTxw" class="btn-video" target="_blank">VER V1</a></td></tr>
+                    <tr><td>Proyecto Beta</td><td>Cradles</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/TWe5_23_rd0" class="btn-video" target="_blank">VER V1</a></td></tr>
+                    <tr><td>Proyecto Gamma</td><td>Bonfire</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/SbgF-LUdxhU" class="btn-video" target="_blank">VER V1</a></td></tr>
+                    <tr><td>Proyecto Delta</td><td>Stalemate</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/C3jUv1z5kCc" class="btn-video" target="_blank">VER V1</a></td></tr>
+                    <tr><td>Proyecto Omega</td><td>Steel Terror</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/ydFFRSLYgmg" class="btn-video" target="_blank">VER V1</a></td></tr>
+                    <tr><td>Proyecto Final</td><td>At the Speed of Light</td><td><span class="tag-ok">PRESERVADO</span></td><td><a href="https://youtu.be/52AZ2MG33IU" class="btn-video" target="_blank">VER V1</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>⚠️ SECCIÓN II: LOST MEDIA & PRECUELAS</h2>
+        <div class="card">
+            <span class="tag tag-lost">Lost Media Rescatado</span>
+            <h3>Experimento Duffy (V3)</h3>
+            <p>V1 rescatada por registros externos. | 🎵 Frecuencia: <b>Nuke Powder</b></p>
+        </div>
+        <div class="card">
+            <span class="tag tag-lost">Lost Media</span>
+            <h3>Experimento Mini Mini</h3>
+            <p>V1 Inaccesible. | 🎵 Frecuencia: <b>Nuke Powder 2</b></p>
+        </div>
+        <div class="card" style="border-left-color: #ff0000;">
+            <span class="tag" style="background:#000; color:#f00; border:1px solid #f00;">CANCELADO</span>
+            <h3>Origen DMD / DinDon</h3>
+            <p>DinDon: Inexistente (No rastro de Nuke Powder 3).</p>
+        </div>
+
+        <h2>📊 SECCIÓN III: REMAKES 2.2</h2>
+        <div class="scroll-box">
+            <table>
+                <thead>
+                    <tr><th>REMAKE</th><th>NUEVA CANCIÓN</th><th>ESTADO</th><th>LINK</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Proyecto Alfa</td><td>Cursed</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/8kl_IeFCb8Y" class="btn-video" target="_blank">VER</a></td></tr>
+                    <tr><td>Proyecto Omega</td><td>Tears of the Damned</td><td><span class="tag-ok">✅ FINALIZADO</span></td><td><a href="https://youtu.be/vHtphwcbXtE" class="btn-video" target="_blank">VER</a></td></tr>
+                    <tr><td>Proyecto Final</td><td>Soulless 5</td><td><span class="tag-ok">✅ SINCRONIZADO</span></td><td><a href="https://youtu.be/7hHWxGLE9iw" class="btn-video" target="_blank">VER</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="conclusion-box">
+            <p style="text-align: center; font-weight: bold;">
+                FIN DEL REPORTE OFICIAL <br>
+                Autenticado por: Sistema de Gestión de Activos DMD - 2026
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://discord.gg/XBnVak8Aj" target="_blank" class="btn-discord">CUARTEL CENTRAL DISCORD</a>
+        </div>
+    </div>
+
+    <footer>DMD AUDIT // SINCRO 2026</footer>
+</div>
+
+<script>
+function verificarAcceso() {
+    const user = document.getElementById('user-input').value;
+    const pass = document.getElementById('pass-input').value;
+
+    // CREDENCIALES CONFIGURADAS: usuario10 / Departamento mental demoníaco
+    if (user.toLowerCase() === "usuario10" && pass === "Departamento mental demoníaco") {
+        document.getElementById('login-overlay').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('login-overlay').style.display = 'none';
+            const content = document.getElementById('main-content');
+            content.style.display = 'block';
+            setTimeout(() => { content.style.opacity = '1'; }, 50);
+        }, 800);
+    } else {
+        document.getElementById('error-msg').style.display = 'block';
+        document.getElementById('pass-input').value = "";
+    }
+}
+
+// Permitir presionar "Enter" para entrar
+document.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        verificarAcceso();
+    }
+});
+</script>
 
 </body>
 </html>

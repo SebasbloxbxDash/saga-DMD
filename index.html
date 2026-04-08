@@ -30,6 +30,7 @@
         .login-box {
             border: 1px solid var(--color-principal); padding: 40px;
             background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px;
+            box-shadow: 0 0 30px #4a0000;
         }
         .login-box input {
             display: block; width: 100%; background: #000; border: 1px solid #4a0000;
@@ -44,18 +45,29 @@
         #main-content { display: none; opacity: 0; transition: 1.5s; }
         header { text-align: center; border: 2px double #4a0000; padding: 30px; background: rgba(10, 0, 0, 0.9); margin-bottom: 40px; }
         .warning-label { background: var(--color-principal); color: #000; padding: 5px 20px; font-weight: bold; display: inline-block; text-transform: uppercase; }
-        h2 { border-bottom: 1px solid #4a0000; color: var(--color-principal); text-transform: uppercase; letter-spacing: 2px; margin-top: 50px; }
+        h2 { border-bottom: 1px solid #4a0000; color: var(--color-principal); text-transform: uppercase; letter-spacing: 2px; margin-top: 50px; padding-bottom: 5px; }
+        
         .scroll-box { overflow-x: auto; background: #000; border: 1px solid #4a0000; margin-top: 15px; }
         table { width: 100%; border-collapse: collapse; min-width: 850px; font-size: 0.85rem; }
         th, td { border: 1px solid #200; padding: 12px; text-align: left; }
         th { background: #300; color: var(--color-principal); }
+        
         .card { background: rgba(20, 0, 0, 0.8); padding: 20px; margin-bottom: 20px; border-left: 5px solid #600; }
+        .tag-lost { background: #600; color: #fff; padding: 2px 8px; font-size: 0.7rem; text-transform: uppercase; font-weight: bold; }
         .tag-ok { color: #00ff00; font-weight: bold; border: 1px solid #00ff00; padding: 2px 5px; font-size: 0.7rem; }
         .tag-reanimation { color: #ff0000; font-weight: bold; border: 1px solid #ff0000; padding: 2px 5px; animation: pulse 1.5s infinite; }
+        
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        
         .btn-video { color: #ff4444; text-decoration: none; font-weight: bold; border: 1px solid #4a0000; padding: 6px 12px; font-size: 0.75rem; }
-        .conclusion-box { background: rgba(40, 0, 0, 0.5); border: 2px double #ff0000; padding: 25px; margin-top: 40px; color: #eee; }
-        footer { text-align: center; padding: 60px; color: #400; font-size: 0.75rem; border-top: 1px solid #200; }
+        
+        /* --- FORO --- */
+        .forum-container { background: rgba(10, 0, 0, 0.8); border: 1px solid #300; padding: 20px; margin-top: 20px; }
+        .post { border-bottom: 1px solid #200; padding: 15px 0; margin-bottom: 10px; }
+        .post-user { color: #fff; font-weight: bold; font-size: 0.9rem; }
+        .post-msg { color: #aaa; font-size: 0.85rem; margin-top: 5px; }
+
+        footer { text-align: center; padding: 60px; color: #400; font-size: 0.75rem; border-top: 1px solid #200; margin-top: 60px; }
     </style>
 </head>
 <body>
@@ -66,7 +78,7 @@
         <input type="text" id="user-input" placeholder="USUARIO">
         <input type="password" id="pass-input" placeholder="CONTRASEÑA">
         <button onclick="verificarAcceso()">AUTENTICAR</button>
-        <p id="error-msg" style="color:red; display:none; font-size:0.7rem; margin-top:10px">❌ CREDENCIALES INCORRECTAS</p>
+        <p id="error-msg" style="color:red; display:none; font-size:0.7rem; margin-top:10px">❌ ACCESO DENEGADO</p>
     </div>
 </div>
 
@@ -94,10 +106,25 @@
             </table>
         </div>
 
-        <h2>⚠️ SECCIÓN II: LOST MEDIA & PRECUELAS</h2>
-        <div class="card"><h3>Duffy (V3)</h3><p>🎵 Nuke Powder | <a href="https://youtu.be/jJyvanYn7Ho" style="color:red" target="_blank">Rescate</a></p></div>
-        <div class="card"><h3>Mini Mini</h3><p>🎵 Nuke Powder 2 | [Lost Media]</p></div>
-        <div class="card" style="border-left-color:red"><h3>Origen / DinDon</h3><p>DinDon: Inexistente | Origen: Purgado</p></div>
+        <h2>🕒 SECCIÓN II: SERIE "EXPERIMENTO" Y LOST MEDIA</h2>
+        <div class="card">
+            <span class="tag-lost">Lost Media Rescatado</span>
+            <h3>Experimento Duffy (V3)</h3>
+            <p>Basado en DMD Proyecto Duffy (V1/V2). La V1 es Lost Media, rescatada por Sebas en video.</p>
+            <p style="color: #888;">🎵 Canción: <b>Nuke Powder</b> | <a href="https://youtu.be/jJyvanYn7Ho" style="color:red" target="_blank">Ver Registro</a></p>
+        </div>
+        <div class="card">
+            <span class="tag-lost">Lost Media</span>
+            <h3>Experimento Mini Mini</h3>
+            <p>Basado en DMD Proyecto Mini (V1). La V1 es Lost Media definitiva.</p>
+            <p style="color: #888;">🎵 Canción: <b>Nuke Powder 2</b></p>
+        </div>
+        <div class="card" style="border-left-color: #ff0000;">
+            <span class="tag-lost" style="background:#000; border:1px solid red; color:red;">CANCELADO</span>
+            <h3>Origen DMD</h3>
+            <p>Proyecto eliminado de la línea temporal principal. Lost Media total.</p>
+            <p style="color: #888;">🎵 Canción: <b>Astronaut 13 (Flashyizz Remix)</b></p>
+        </div>
 
         <h2>📊 SECCIÓN III: REMAKES 2.2</h2>
         <div class="scroll-box">
@@ -114,24 +141,35 @@
             </table>
         </div>
 
-        <div class="conclusion-box">
-            <h3>📉 EVOLUCIÓN SONORA</h3>
-            <p>La transición de <b>Steel Terror</b> a <b>Tears of the Damned</b> y de <b>At the Speed of Light</b> a <b>Soulless 5</b> marca el cambio hacia la dificultad extrema y sincronización técnica.</p>
-            <p style="text-align:center; font-weight:bold; margin-top:20px">FIN DEL REPORTE OFICIAL - 2026</p>
+        <h2>🔍 SECCIÓN IV: RESOLUCIONES ADMINISTRATIVAS</h2>
+        <div class="card" style="border-left: 5px solid #fff; background: rgba(50, 0, 0, 0.4);">
+            <h3 style="color:#fff;">Caso Dindon: Desmentido Oficial</h3>
+            <p>Se desmiente oficialmente la existencia de un "Experimento Dindon" o una frecuencia "Nuke Powder 3". La serie experimental se limita estrictamente a las dos entregas documentadas en la Sección II.</p>
+        </div>
+
+        <h2>💬 SECCIÓN V: FOROS DE INTELIGENCIA (BETA)</h2>
+        <div class="forum-container">
+            <div class="post">
+                <div class="post-user">[Admin] StilexlPlus</div>
+                <div class="post-msg">Resolución del Caso Dindon archivada con éxito. No habrá más registros Nuke Powder.</div>
+            </div>
+            <div class="post">
+                <div class="post-user">[Dev] sebasbloxbx</div>
+                <div class="post-msg">Entendido. Concentrando recursos en la sincronización de Soulless 5.</div>
+            </div>
         </div>
 
         <div style="text-align:center; margin-top:50px">
-            <a href="https://discord.gg/XBnVak8Aj" target="_blank" class="btn-video" style="padding:15px 30px; background:black; color:red; border:2px solid red;">DISCORD OFICIAL</a>
+            <a href="https://discord.gg/XBnVak8Aj" target="_blank" class="btn-video" style="padding:15px 30px; background:black; color:red; border:2px solid red; font-size:1rem;">CUARTEL CENTRAL DISCORD</a>
         </div>
     </div>
-    <footer>DMD SYSTEM // 2026</footer>
+    <footer>DMD SYSTEM // REGISTRO MAESTRO // 2026</footer>
 </div>
 
 <script>
 function verificarAcceso() {
     const u = document.getElementById('user-input').value;
     const p = document.getElementById('pass-input').value;
-    // Usuario: usuario10 | Contraseña: Departamento mental demoníaco
     if(u.toLowerCase() === "usuario10" && p === "Departamento mental demoníaco") {
         document.getElementById('login-overlay').style.opacity = '0';
         setTimeout(() => {
@@ -139,17 +177,9 @@ function verificarAcceso() {
             document.getElementById('main-content').style.display = 'block';
             setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; }, 50);
         }, 800);
-    } else { 
-        document.getElementById('error-msg').style.display = 'block'; 
-    }
+    } else { document.getElementById('error-msg').style.display = 'block'; }
 }
-
-// Soporte para tecla Enter
-document.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        verificarAcceso();
-    }
-});
+document.addEventListener('keypress', function(e) { if(e.key === 'Enter') verificarAcceso(); });
 </script>
 </body>
 </html>

@@ -14,7 +14,6 @@
         .auth-box { border: 1px solid var(--color-principal); padding: 30px; background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 50px #4a0000; }
         input { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 10px; font-family: 'Special Elite'; text-align: center; outline: none; }
         button { background: var(--color-principal); color: #000; border: none; padding: 12px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
-        button:hover { background: #fff; box-shadow: 0 0 20px #fff; }
 
         /* --- NAVEGACIÓN --- */
         .tabs-nav { display: flex; justify-content: center; gap: 10px; padding: 15px; background: #000; border-bottom: 2px solid #300; position: sticky; top: 0; z-index: 100; }
@@ -24,33 +23,27 @@
         /* --- CONTENIDO --- */
         #main-content { display: none; padding: 20px; max-width: 1100px; margin: auto; }
         header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; background: rgba(10,0,0,0.8); }
-        .card { background: rgba(20, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-left: 4px solid #600; line-height: 1.6; }
         
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 10px; background: rgba(10,0,0,0.5); }
         th, td { border: 1px solid #200; padding: 10px; text-align: left; }
         th { background: #200; color: red; text-transform: uppercase; }
 
-        /* --- ESTADOS Y BOTONES --- */
-        .reanimacion { color: #ff0000; font-weight: bold; animation: alert 0.8s infinite; text-shadow: 0 0 8px red; }
         .sincronizado { color: #00ff00; font-weight: bold; text-shadow: 0 0 10px #00ff00; }
-        .denied-btn { background: #200; color: #500; border: 1px solid #300; padding: 6px 12px; font-size: 0.7rem; cursor: not-allowed; display: inline-block; }
-        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; transition: 0.3s; }
-        .btn-archivo:hover { background: red; color: #000; box-shadow: 0 0 10px red; }
+        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; }
         
         .precuela-card { border-left: 4px solid #ff0000; background: rgba(40, 0, 0, 0.6); padding: 15px; margin-bottom: 15px; }
         .status-lost { color: #ff0000; font-weight: bold; text-transform: uppercase; animation: alert 1s infinite; }
-
         @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
 <div id="auth-overlay">
     <div class="auth-box">
         <h2>CENTRAL DMD: ACCESO 2026</h2>
         <input type="text" id="user-input" placeholder="USUARIO">
         <input type="password" id="pass-input" placeholder="CONTRASEÑA">
-        <button onclick="login()">AUDITAR SISTEMA</button>
+        <button onclick="login()">AUDITAR REGISTRO MAESTRO</button>
     </div>
 </div>
 
@@ -58,7 +51,7 @@
     <header>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
         <p><strong>ADMINISTRACIÓN:</strong> StilexlPlus | <strong>DESARROLLO:</strong> sebasbloxbx</p>
-        <p>[ ESTATUS: REGISTRO MAESTRO DE VERSIONES Y TRANSICIÓN SONORA ]</p>
+        <p>[ REGISTRO DE VERSIONES, PRECUELAS Y LOST MEDIA ]</p>
     </header>
 
     <div class="tabs-nav">
@@ -68,93 +61,77 @@
     </div>
 
     <div id="sec-auditoria" class="section-content" style="display:block;">
-        <h2>📊 REMAKES Y TRANSICIÓN TÉCNICA (FASE 2.2)</h2>
+        <h2>📂 VERSIONES V1 PRESERVADAS (REGISTRO PÚBLICO)</h2>
         <table>
-            <thead>
-                <tr><th>PROYECTO</th><th>ESTADO</th><th>ESPECIFICACIÓN</th><th>ARCHIVO</th></tr>
-            </thead>
+            <thead><tr><th>PROYECTO</th><th>ESTATUS</th><th>EVIDENCIA</th></tr></thead>
             <tbody>
-                <tr><td>DMD Proyecto Alfa</td><td>✅ Finalizado</td><td>Remake 2.2 (Cursed)</td><td><a href="https://youtu.be/8kl_IeFCb8Y" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Beta</td><td>✅ Finalizado</td><td>Remake 2.2 (Cradles)</td><td><a href="https://youtu.be/mKHdJxEyPb0" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Gamma</td><td>✅ Finalizado</td><td>Remake 2.2 (Bonfire)</td><td><a href="https://youtu.be/cqxARXV1ECY" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Omega</td><td>✅ Finalizado</td><td>Remake 2.2 (Tears of the Damned)</td><td><a href="https://youtu.be/vHtphwcbXtE" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Delta</td><td><span class="reanimacion">⚠️ 95%</span></td><td>Remake 2.2 (Stalemate)</td><td><span class="denied-btn">DENEGADO</span></td></tr>
-                <tr><td>DMD Proyecto Final</td><td><span class="sincronizado">🤝 SINCRONIZADO</span></td><td><strong>COLLAB / SOULLESS 5</strong></td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
+                <tr><td>DMD Proyecto Alfa (V1 Original)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=1aRzOjynTxw" target="_blank" class="btn-archivo">VER</a></td></tr>
+                <tr><td>DMD Proyecto Beta (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=TWe5_23_rd0" target="_blank" class="btn-archivo">VER</a></td></tr>
+                <tr><td>DMD Proyecto Gamma (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=SbgF-LUdxhU" target="_blank" class="btn-archivo">VER</a></td></tr>
+                <tr><td>DMD Proyecto Delta (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=rMxKo099LUM" target="_blank" class="btn-archivo">VER</a></td></tr>
+                <tr><td>DMD Proyecto Omega (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=ydFFRSLYgmg" target="_blank" class="btn-archivo">VER</a></td></tr>
+                <tr><td>DMD Proyecto Final (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER</a></td></tr>
             </tbody>
         </table>
 
-        <div class="card" style="margin-top: 25px; border-left-color: #00ff00;">
-            <h3>🎵 EVOLUCIÓN SONORA</h3>
-            <p>El cambio hacia la dificultad extrema se define por la transición técnica de los audios:</p>
-            <ul>
-                <li><strong>Omega:</strong> Steel Terror supernova ➔ <strong>Tears of the Damned</strong>.</li>
-                <li><strong>Final:</strong> At the Speed of Light ➔ <strong>Soulless 5</strong>.</li>
-            </ul>
-        </div>
+        <h2 style="margin-top:30px;">📊 REMAKES Y COLLABS (FASE 2.2)</h2>
+        <table>
+            <thead><tr><th>PROYECTO</th><th>ESTADO</th><th>DETALLES</th></tr></thead>
+            <tbody>
+                <tr><td>DMD Proyecto Alfa Remake</td><td>✅ Finalizado</td><td>Cursed (2.2)</td></tr>
+                <tr><td>DMD Proyecto Beta Remake</td><td>✅ Finalizado</td><td>Cradles (2.2)</td></tr>
+                <tr><td>DMD Proyecto Gamma Remake</td><td>✅ Finalizado</td><td>Bonfire (2.2)</td></tr>
+                <tr><td>DMD Proyecto Omega Remake</td><td>✅ Finalizado</td><td>Tears of the Damned (2.2)</td></tr>
+                <tr><td>DMD Proyecto Final Collab</td><td><span class="sincronizado">🤝 SINC</span></td><td>Soulless 5 (2.2)</td></tr>
+            </tbody>
+        </table>
     </div>
 
     <div id="sec-lostmedia" class="section-content" style="display:none;">
-        <h2 style="color: #ff0000;">⏮️ PRECUELAS: EXPEDIENTES LOST MEDIA</h2>
+        <h2 style="color: #ff0000;">⚠️ EXPEDIENTES DE LOST MEDIA</h2>
 
         <div class="precuela-card">
-            <h3>🔬 DMD Proyecto Mini Mini (V1)</h3>
-            <p><strong>Clasificación:</strong> Precuela / <span class="status-lost">LOST MEDIA</span></p>
-            <p><strong>Canción:</strong> Nuke Powder 2</p>
-            <p>Archivo original perdido. Representa la fase experimental temprana del Departamento.</p>
+            <h3>🔬 DMD Proyecto Mini Mini</h3>
+            <p><strong>ESTADO:</strong> <span class="status-lost">LOST MEDIA</span></p>
+            <p><strong>Clasificación:</strong> Precuela | Audio: Nuke Powder 2</p>
         </div>
 
         <div class="precuela-card">
-            <h3>🧪 DMD Proyecto Duffy (V1)</h3>
-            <p><strong>Clasificación:</strong> Precuela / <span class="status-lost">LOST MEDIA</span></p>
-            <p><strong>Canción:</strong> Nuke Powder</p>
-            <p><strong>Nota:</strong> V1 rescatada parcialmente por <strong>sebasbloxbx</strong> en registro de video.</p>
-            <a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER EVIDENCIA RECUPERADA</a>
+            <h3>🧪 DMD Proyecto Duffy</h3>
+            <p><strong>ESTADO:</strong> <span class="status-lost">LOST MEDIA</span></p>
+            <p><strong>Clasificación:</strong> Precuela | Audio: Nuke Powder</p>
+        </div>
+
+        <div class="precuela-card">
+            <h3>🤡 DMD Proyecto Alfa (Versión de Broma)</h3>
+            <p><strong>ESTADO:</strong> <span class="status-lost">LOST MEDIA</span></p>
+            <p>Versión alternativa descartada. No confundir con la V1 Original preservada.</p>
         </div>
 
         <div class="precuela-card" style="border-left-color: #555;">
             <h3>🛸 Origen DMD</h3>
-            <p><strong>ESTADO:</strong> <span class="status-lost">CANCELADO / LOST MEDIA</span></p>
-            <p><strong>Canción:</strong> Astronaut 13 (Flashyizz Remix)</p>
-        </div>
-
-        <hr style="border-color: #400; margin: 25px 0;">
-        <h2>🔍 REGISTROS HISTÓRICOS V1 (ANTIGUOS)</h2>
-        <div class="card">
-            <p><strong>DMD Alfa (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=1aRzOjynTxw" target="_blank">Ver Archivo</a></p>
-            <p><strong>DMD Beta (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=TWe5_23_rd0" target="_blank">Ver Archivo</a></p>
-            <p><strong>DMD Gamma (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=SbgF-LUdxhU" target="_blank">Ver Archivo</a></p>
-            <p><strong>DMD Delta (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=rMxKo099LUM" target="_blank">Ver Archivo</a></p>
-            <p><strong>DMD Omega (Antiguo):</strong> <a href="https://www.youtube.com/watch?v=ydFFRSLYgmg" target="_blank">Ver Archivo</a></p>
+            <p><strong>ESTADO:</strong> <span class="status-lost">LOST MEDIA</span> | Audio: Astronaut 13 Remix</p>
         </div>
     </div>
 
     <div id="sec-foro" class="section-content" style="display:none;">
         <div style="background:rgba(40,0,0,0.9); padding:100px; text-align:center; border:2px solid red;">
-            <h2 style="color:red; animation: alert 0.5s infinite;">⚠️ ACCESO DENEGADO ⚠️</h2>
-            <p>ESTE SECTOR HA SIDO CLAUSURADO POR ADMINISTRACIÓN:</p>
-            <p><strong>RESTRICCIÓN STILEXLPLUS</strong></p>
+            <h2 style="color:red;">⚠️ ACCESO DENEGADO ⚠️</h2>
+            <p>RESTRICCIÓN ADMINISTRATIVA: <strong>STILEXLPLUS</strong></p>
         </div>
     </div>
 </div>
 
 <script>
-    const db = {
-        "usuario10": "D.M.D", 
-        "sebasbloxbx": "sebasbloxbxdash", 
-        "stilexlplus": "Departamento mental demoníaco"
-    };
-
+    const db = {"usuario10": "D.M.D", "sebasbloxbx": "sebasbloxbxdash", "stilexlplus": "Departamento mental demoníaco"};
     function login() {
         const u = document.getElementById('user-input').value;
         const p = document.getElementById('pass-input').value;
         if(db[u] === p) {
             document.getElementById('auth-overlay').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
-        } else {
-            alert("ACCESO RECHAZADO: CREDENCIALES INVÁLIDAS");
-        }
+        } else { alert("ACCESO DENEGADO"); }
     }
-
     function verTab(id) {
         document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
         document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));

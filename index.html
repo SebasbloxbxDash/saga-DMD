@@ -9,21 +9,19 @@
         :root { --color-principal: #ff0000; --color-fondo: #050000; }
         body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; user-select: none; }
 
-        /* --- ACCESO --- */
-        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; }
-        .auth-box { border: 1px solid var(--color-principal); padding: 30px; background: rgba(20, 0, 0, 0.9); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 50px #4a0000; }
-        input { display: block; width: 100%; background: #000; border: 1px solid #4a0000; color: var(--color-principal); padding: 12px; margin-bottom: 10px; font-family: 'Special Elite'; text-align: center; outline: none; }
-        button { background: var(--color-principal); color: #000; border: none; padding: 12px; font-family: 'Special Elite'; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        /* --- CONTENIDO PRINCIPAL --- */
+        #main-content { padding: 20px; max-width: 1100px; margin: auto; display: block; }
+        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; background: rgba(10,0,0,0.8); }
+        
+        .discord-link { display: inline-block; background: #5865F2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; transition: 0.3s; border: 1px solid white; }
+        .discord-link:hover { background: #404eed; transform: scale(1.05); }
 
         /* --- NAVEGACIÓN --- */
         .tabs-nav { display: flex; justify-content: center; gap: 10px; padding: 15px; background: #000; border-bottom: 2px solid #300; position: sticky; top: 0; z-index: 100; }
         .tab-button { background: none; border: 1px solid #400; color: #600; padding: 10px 15px; cursor: pointer; font-family: 'Special Elite'; font-size: 0.8rem; }
         .tab-button.active { border-color: red; color: red; background: rgba(50,0,0,0.2); box-shadow: 0 0 10px red; }
 
-        /* --- CONTENIDO --- */
-        #main-content { display: none; padding: 20px; max-width: 1100px; margin: auto; }
-        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; background: rgba(10,0,0,0.8); }
-        
+        /* --- TABLAS Y ELEMENTOS --- */
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 15px; background: rgba(10,0,0,0.5); }
         th, td { border: 1px solid #200; padding: 10px; text-align: left; }
         th { background: #200; color: red; text-transform: uppercase; }
@@ -35,25 +33,18 @@
         
         .lost-media-card { border-left: 4px solid #ff0000; background: rgba(25, 0, 0, 0.8); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
         .precuela-tag { color: #00ff00; font-size: 0.7rem; letter-spacing: 1px; border: 1px solid #00ff00; padding: 2px 5px; margin-left: 10px; font-weight: bold; }
+        
         @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
 
-<div id="auth-overlay">
-    <div class="auth-box">
-        <h2>CENTRAL DMD: ACCESO NIVEL 5</h2>
-        <input type="text" id="user-input" placeholder="USUARIO">
-        <input type="password" id="pass-input" placeholder="CONTRASEÑA">
-        <button onclick="login()">EJECUTAR REGISTRO MAESTRO</button>
-    </div>
-</div>
-
 <div id="main-content">
     <header>
         <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
         <p><strong>ADMINISTRACIÓN:</strong> StilexlPlus | <strong>DESARROLLO:</strong> sebasbloxbx</p>
-        <p>[ SISTEMA DE ARCHIVOS 2026: V1, REMAKES Y PRECUELAS ]</p>
+        <a href="https://discord.gg/Jwswdgb4Yq" target="_blank" class="discord-link">UNIRSE AL DISCORD OFICIAL</a>
+        <p style="margin-top:15px;">[ REGISTRO MAESTRO 2026: BASE DE DATOS ACTUALIZADA ]</p>
     </header>
 
     <div class="tabs-nav">
@@ -63,7 +54,6 @@
     </div>
 
     <div id="sec-auditoria" class="section-content" style="display:block;">
-        
         <h2>📂 VERSIONES V1 (PRESERVADAS)</h2>
         <table>
             <thead><tr><th>PROYECTO V1</th><th>ESTATUS</th><th>ARCHIVO</th></tr></thead>
@@ -77,7 +67,7 @@
             </tbody>
         </table>
 
-        <h2 style="margin-top:30px;">📊 REMAKES 2.2 (SINC TOTAL)</h2>
+        <h2 style="margin-top:30px;">📊 REMAKES 2.2</h2>
         <table>
             <thead><tr><th>PROYECTO</th><th>ESTADO</th><th>ARCHIVO</th></tr></thead>
             <tbody>
@@ -94,10 +84,17 @@
     <div id="sec-lostmedia" class="section-content" style="display:none;">
         <h2 style="color: #ff0000;">⚠️ EXPEDIENTES DE LOST MEDIA & PRECUELAS</h2>
         
+        <div class="lost-media-card" style="border-left-color: #555;">
+            <h3>🚫 Caso Dindon / Experimento Dindon <span class="precuela-tag" style="border-color: #555; color: #888;">DESMENTIDO</span></h3>
+            <p><strong>Estado:</strong> Inexistente / Fake Media.</p>
+            <p><strong>Reporte:</strong> Se desmiente oficialmente la existencia de un "Experimento Dindon" o "Nuke Powder 3".</p>
+            <p><strong>Nota:</strong> La serie se limita estrictamente a las dos entregas oficiales (Duffy y Mini Mini).</p>
+        </div>
+
         <div class="lost-media-card" style="border-left-color: #00ff00;">
             <h3>🧪 Experimento Duffy <span class="precuela-tag">PRECUELA</span></h3>
             <p><strong>Basado en:</strong> DMD Proyecto Duffy (V1/V2).</p>
-            <p><strong>Estatus:</strong> La V1 es Lost Media (Rescatada por Sebas en video).</p>
+            <p><strong>Estatus:</strong> V1 es Lost Media, rescatada por Sebas en video.</p>
             <p><strong>Canción:</strong> Nuke Powder</p>
         </div>
 
@@ -113,31 +110,17 @@
             <p><strong>Estado:</strong> CANCELADO / LOST MEDIA</p>
             <p><strong>Canción:</strong> Astronaut 13 (Flashyizz Remix)</p>
         </div>
-
-        <div class="lost-media-card">
-            <h3>🤡 DMD Proyecto Alfa (Broma)</h3>
-            <p><strong>Estatus:</strong> Versión antigua descartada / LOST MEDIA.</p>
-        </div>
     </div>
 
     <div id="sec-foro" class="section-content" style="display:none;">
         <div style="background:rgba(40,0,0,0.9); padding:100px; text-align:center; border:2px solid red;">
             <h2 style="color:red;">⚠️ ACCESO DENEGADO ⚠️</h2>
-            <p>RESTRICCIÓN PARA: <strong>STILEXLPLUS</strong></p>
+            <p>PROPIEDAD DE <strong>STILEXLPLUS</strong></p>
         </div>
     </div>
 </div>
 
 <script>
-    const db = {"usuario10": "D.M.D", "sebasbloxbx": "sebasbloxbxdash", "stilexlplus": "Departamento mental demoníaco"};
-    function login() {
-        const u = document.getElementById('user-input').value;
-        const p = document.getElementById('pass-input').value;
-        if(db[u] === p) {
-            document.getElementById('auth-overlay').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-        } else { alert("ERROR DE ACCESO: CREDENCIALES INVÁLIDAS"); }
-    }
     function verTab(id) {
         document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
         document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));

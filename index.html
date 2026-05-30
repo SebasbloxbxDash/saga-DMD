@@ -1,132 +1,60 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DMD | REGISTRO MAESTRO 2026</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
-        :root { --color-principal: #ff0000; --color-fondo: #050000; }
-        body { background-color: var(--color-fondo); color: #b30000; font-family: 'Special Elite', monospace; margin: 0; user-select: none; }
-
-        /* --- CONTENIDO PRINCIPAL --- */
-        #main-content { padding: 20px; max-width: 1100px; margin: auto; display: block; }
-        header { text-align: center; border: 2px double #4a0000; padding: 20px; margin-bottom: 20px; background: rgba(10,0,0,0.8); }
+<section id="lost-media-seccion" style="margin-top: 40px; font-family: 'Press Start 2P', cursive; border: 1px solid #ff3333; padding: 20px; background: rgba(10, 0, 0, 0.5);">
+    <h2 style="color: #ff3333; border-bottom: 2px dashed #ff3333; padding-bottom: 10px; font-size: 14px; margin-top: 0;">
+        [ ALERTA: EXPEDIENTES LOST MEDIA REGISTRADOS ]
+    </h2>
+    
+    <div style="display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px;">
         
-        .discord-link { display: inline-block; background: #5865F2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; transition: 0.3s; border: 1px solid white; }
-        .discord-link:hover { background: #404eed; transform: scale(1.05); }
+        <div style="background: rgba(30, 0, 0, 0.3); border-left: 3px solid #ff3333; padding: 10px;">
+            <h4 style="color: #ff9999; font-size: 10px; margin: 0 0 5px 0;">01. EXPERIMENTO DUFFY (ORIGINAL)</h4>
+            <p style="color: #004080; font-size: 9px; margin: 0 0 10px 0; line-height: 1.6;">
+                Iba a ser la precuela de Alfa Remake. Al terminarlo el archivo no guardó de forma correcta y se perdió. Afortunadamente, se rescató la estructura base para la recreación gracias a un vídeo publicado en YouTube.
+            </p>
+            <div style="font-size: 8px;">
+                <span style="color: #ff3333;">PISTA DE AUDIO:</span> 
+                <a href="https://youtu.be/F44f57YzC9M?si=Ar9A09Zv3xKuQUVt" target="_blank" style="color: #ff9999; text-decoration: underline;">Nuke Powder - Track Link</a>
+            </div>
+        </div>
 
-        /* --- NAVEGACIÓN --- */
-        .tabs-nav { display: flex; justify-content: center; gap: 10px; padding: 15px; background: #000; border-bottom: 2px solid #300; position: sticky; top: 0; z-index: 100; }
-        .tab-button { background: none; border: 1px solid #400; color: #600; padding: 10px 15px; cursor: pointer; font-family: 'Special Elite'; font-size: 0.8rem; }
-        .tab-button.active { border-color: red; color: red; background: rgba(50,0,0,0.2); box-shadow: 0 0 10px red; }
+        <div style="background: rgba(30, 0, 0, 0.3); border-left: 3px solid #004080; padding: 10px;">
+            <h4 style="color: #0056b3; font-size: 10px; margin: 0 0 5px 0;">02. EXPERIMENTO MINI MINI</h4>
+            <p style="color: #004080; font-size: 9px; margin: 0 0 10px 0; line-height: 1.6;">
+                Planeado como precuela de Duffy. Borrado por un accidente fatal en el editor mientras hacía limpieza de niveles en los que no estaba trabajando. Nadie recuerda cómo era su gameplay.
+            </p>
+            <div style="font-size: 8px;">
+                <span style="color: #0056b3;">PISTA DE AUDIO:</span> 
+                <a href="https://youtu.be/eKmPVLn8wTA?si=MsF8B63ucfCZ-wQd" target="_blank" style="color: #3385ff; text-decoration: underline;">Nuke Powder 2 - Track Link</a>
+            </div>
+        </div>
 
-        /* --- TABLAS Y ELEMENTOS --- */
-        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 15px; background: rgba(10,0,0,0.5); }
-        th, td { border: 1px solid #200; padding: 10px; text-align: left; }
-        th { background: #200; color: red; text-transform: uppercase; }
+        <div style="background: rgba(30, 0, 0, 0.3); border-left: 3px solid #ff3333; padding: 10px;">
+            <h4 style="color: #ff9999; font-size: 10px; margin: 0 0 5px 0;">03. ORIGEN DMD</h4>
+            <p style="color: #004080; font-size: 9px; margin: 0 0 10px 0; line-height: 1.6;">
+                Iba a ser otra precuela de Alfa Remake, pero causaba monotonía en el desarrollo y decidí borrarlo por aburrimiento. Ese espacio en blanco dio la grandiosa idea de levantar el actual Alfa Remake.
+            </p>
+            <div style="font-size: 8px;">
+                <span style="color: #ff3333;">PISTA DE AUDIO:</span> 
+                <a href="https://youtu.be/jlshlZHTjMA?si=glCwNi_zEITQ0yHb" target="_blank" style="color: #ff9999; text-decoration: underline;">Astronaut 13 (FlashYizz Remix) - Track Link</a>
+            </div>
+        </div>
 
-        .sincronizado { color: #00ff00; font-weight: bold; text-shadow: 0 0 10px #00ff00; }
-        .reanimacion { color: #ff0000; font-weight: bold; animation: alert 0.8s infinite; }
-        .btn-archivo { background: #400; color: #fff; border: 1px solid red; padding: 6px 12px; text-decoration: none !important; font-size: 0.7rem; display: inline-block; cursor: pointer; }
-        .denied-btn { background: #200; color: #500; border: 1px solid #300; padding: 6px 12px; font-size: 0.7rem; cursor: not-allowed; display: inline-block; }
-        
-        .lost-media-card { border-left: 4px solid #ff0000; background: rgba(25, 0, 0, 0.8); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
-        .precuela-tag { color: #00ff00; font-size: 0.7rem; letter-spacing: 1px; border: 1px solid #00ff00; padding: 2px 5px; margin-left: 10px; font-weight: bold; }
-        
-        @keyframes alert { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-    </style>
-</head>
-<body>
+        <div style="background: rgba(30, 0, 0, 0.3); border-left: 3px solid #004080; padding: 10px;">
+            <h4 style="color: #0056b3; font-size: 10px; margin: 0 0 5px 0;">04. ALFA (APRIL FOOLS)</h4>
+            <p style="color: #004080; font-size: 9px; margin: 0 0 10px 0; line-height: 1.6;">
+                Nivel de broma compuesto netamente por la modalidad de Ball con la canción clásica de Alfa. Se perdió accidentalmente al reiniciar y formatear de fábrica el teléfono móvil. No se planea recrear.
+            </p>
+            <div style="font-size: 8px;">
+                <span style="color: #0056b3;">PISTA DE AUDIO:</span> 
+                <a href="https://www.newgrounds.com/audio/listen/598693" target="_blank" style="color: #3385ff; text-decoration: underline;">-Terror- - Newgrounds Link</a>
+            </div>
+        </div>
 
-<div id="main-content">
-    <header>
-        <h1>DEPARTAMENTO MENTAL DEMONÍACO</h1>
-        <p><strong>ADMINISTRACIÓN:</strong> StilexlPlus | <strong>DESARROLLO:</strong> sebasbloxbx</p>
-        <a href="https://discord.gg/Jwswdgb4Yq" target="_blank" class="discord-link">UNIRSE AL DISCORD OFICIAL</a>
-        <p style="margin-top:15px;">[ REGISTRO MAESTRO 2026: BASE DE DATOS ACTUALIZADA ]</p>
-    </header>
+        <div style="background: rgba(30, 0, 0, 0.3); border-left: 3px solid #ff3333; padding: 10px;">
+            <h4 style="color: #ff9999; font-size: 10px; margin: 0 0 5px 0;">05. EXPERIMENTO DINDON</h4>
+            <p style="color: #004080; font-size: 9px; margin: 0; line-height: 1.6;">
+                Un mito de mis inicios como creador. Afirmé en directo que si existía Dindon debía existir un Nuke Powder 3. El registro desapareció por completo al ocultar y borrar permanentemente el stream sin guardar un respaldo local.
+            </p>
+        </div>
 
-    <div class="tabs-nav">
-        <button id="btn-auditoria" class="tab-button active" onclick="verTab('auditoria')">AUDITORÍA (V1/2.2)</button>
-        <button id="btn-lostmedia" class="tab-button" onclick="verTab('lostmedia')">🕒 SECCIÓN II: LOST MEDIA & PRECUELAS</button>
-        <button id="btn-foro" class="tab-button" onclick="verTab('foro')">FORO</button>
     </div>
-
-    <div id="sec-auditoria" class="section-content" style="display:block;">
-        <h2>📂 VERSIONES V1 (PRESERVADAS)</h2>
-        <table>
-            <thead><tr><th>PROYECTO V1</th><th>ESTATUS</th><th>ARCHIVO</th></tr></thead>
-            <tbody>
-                <tr><td>DMD Proyecto Alfa (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=1aRzOjynTxw" target="_blank" class="btn-archivo">VER</a></td></tr>
-                <tr><td>DMD Proyecto Beta (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=TWe5_23_rd0" target="_blank" class="btn-archivo">VER</a></td></tr>
-                <tr><td>DMD Proyecto Gamma (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=SbgF-LUdxhU" target="_blank" class="btn-archivo">VER</a></td></tr>
-                <tr><td>DMD Proyecto Delta (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=rMxKo099LUM" target="_blank" class="btn-archivo">VER</a></td></tr>
-                <tr><td>DMD Proyecto Omega (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=ydFFRSLYgmg" target="_blank" class="btn-archivo">VER</a></td></tr>
-                <tr><td>DMD Proyecto Final (V1)</td><td>✅ Preservado</td><td><a href="https://www.youtube.com/watch?v=52AZ2MG33IU" target="_blank" class="btn-archivo">VER</a></td></tr>
-            </tbody>
-        </table>
-
-        <h2 style="margin-top:30px;">📊 REMAKES 2.2</h2>
-        <table>
-            <thead><tr><th>PROYECTO</th><th>ESTADO</th><th>ARCHIVO</th></tr></thead>
-            <tbody>
-                <tr><td>DMD Proyecto Alfa Remake</td><td>✅ Finalizado (Cursed)</td><td><a href="https://youtu.be/8kl_IeFCb8Y" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Beta Remake</td><td>✅ Finalizado (Cradles)</td><td><a href="https://youtu.be/mKHdJxEyPb0" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Gamma Remake</td><td>✅ Finalizado (Bonfire)</td><td><a href="https://youtu.be/cqxARXV1ECY" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Omega Remake</td><td>✅ Finalizado (Tears)</td><td><a href="https://youtu.be/vHtphwcbXtE" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-                <tr><td>DMD Proyecto Delta Remake</td><td><span class="reanimacion">⚠️ 95% (Stalemate)</span></td><td><span class="denied-btn">DENEGADO</span></td></tr>
-                <tr><td>DMD Proyecto Final Collab</td><td><span class="sincronizado">🤝 Soulless 5</span></td><td><a href="https://www.youtube.com/watch?v=7hHWxGLE9iw" target="_blank" class="btn-archivo">ACCEDER</a></td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div id="sec-lostmedia" class="section-content" style="display:none;">
-        <h2 style="color: #ff0000;">⚠️ EXPEDIENTES DE LOST MEDIA & PRECUELAS</h2>
-        
-        <div class="lost-media-card" style="border-left-color: #555;">
-            <h3>🚫 Caso Dindon / Experimento Dindon <span class="precuela-tag" style="border-color: #555; color: #888;">DESMENTIDO</span></h3>
-            <p><strong>Estado:</strong> Inexistente / Fake Media.</p>
-            <p><strong>Reporte:</strong> Se desmiente oficialmente la existencia de un "Experimento Dindon" o "Nuke Powder 3".</p>
-            <p><strong>Nota:</strong> La serie se limita estrictamente a las dos entregas oficiales (Duffy y Mini Mini).</p>
-        </div>
-
-        <div class="lost-media-card" style="border-left-color: #00ff00;">
-            <h3>🧪 Experimento Duffy <span class="precuela-tag">PRECUELA</span></h3>
-            <p><strong>Basado en:</strong> DMD Proyecto Duffy (V1/V2).</p>
-            <p><strong>Estatus:</strong> V1 es Lost Media, rescatada por Sebas en video.</p>
-            <p><strong>Canción:</strong> Nuke Powder</p>
-        </div>
-
-        <div class="lost-media-card" style="border-left-color: #ffaa00;">
-            <h3>🔬 Experimento Mini Mini <span class="precuela-tag">PRECUELA</span></h3>
-            <p><strong>Basado en:</strong> DMD Proyecto Mini (V1).</p>
-            <p><strong>Estatus:</strong> La V1 es Lost Media.</p>
-            <p><strong>Canción:</strong> Nuke Powder 2</p>
-        </div>
-
-        <div class="lost-media-card" style="border-left-color: #555;">
-            <h3>🛸 Origen DMD</h3>
-            <p><strong>Estado:</strong> CANCELADO / LOST MEDIA</p>
-            <p><strong>Canción:</strong> Astronaut 13 (Flashyizz Remix)</p>
-        </div>
-    </div>
-
-    <div id="sec-foro" class="section-content" style="display:none;">
-        <div style="background:rgba(40,0,0,0.9); padding:100px; text-align:center; border:2px solid red;">
-            <h2 style="color:red;">⚠️ ACCESO DENEGADO ⚠️</h2>
-            <p>PROPIEDAD DE <strong>STILEXLPLUS</strong></p>
-        </div>
-    </div>
-</div>
-
-<script>
-    function verTab(id) {
-        document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
-        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-        document.getElementById('sec-' + id).style.display = 'block';
-        document.getElementById('btn-' + id).classList.add('active');
-    }
-</script>
-</body>
-</html>
+</section>
